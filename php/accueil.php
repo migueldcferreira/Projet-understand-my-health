@@ -12,9 +12,9 @@
       <div class="container">
         <div class="row">
           <!--Copier-Coller-->
-          <form class="form col-md-6">
+          <form class="form col-md-6" action="test.php" method="post">
             <label for="myText" class="form-control-label"><i class="fas fa-paste"></i> Copiez-collez un texte médical</label>
-            <textarea class="form-control form-control-block" id="myText"></textarea>
+            <textarea class="form-control form-control-block" id="myText" name="testtext"></textarea>
             <button type="submit" class="btn btn-primary">Traduire</button>
             <button type="reset" class="btn btn-secondary">Effacer</button>
           </form>
