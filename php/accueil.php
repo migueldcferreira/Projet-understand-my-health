@@ -24,6 +24,7 @@
             <small id="fileHelp" class="form-text text-muted">Vous pouvez importer un fichier texte (.txt) ou un fichier PDF (.pdf). Dans le cas d'un PDF, veillez à ce qu'il ne soit pas protégé en auquel cas il sera impossible de traiter le document.</small>
             <button type="submit" class="btn btn-primary">Valider</button>
           </form>
+          <div class="row">
           <form class="form">
             <label for="myURL" class="form-control-label"><i class="fas fa-code"></i> Renseignez directement le lien d'une page avec du contenu médical</label>
             <div class="form-inline">
@@ -31,6 +32,7 @@
               <button type="submit" class="btn btn-primary">Valider</button>
             </div>
           </form>
+        </div>
         </div>
       </div>
       
