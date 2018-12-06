@@ -24,7 +24,7 @@
               <button type="submit" class="btn btn-primary">Valider</button>
             </div>
           </form>
-          <form class="form col-md-12" action="test.php" method="post">
+          <form class="form col-md-12" action="traduction.php" method="post">
             <label for="myText" class="form-control-label"><i class="fas fa-paste"></i> Copiez-collez un texte médical</label>
             <textarea class="form-control form-control-block" id="myText" name="testtext"></textarea>
             <button type="submit" class="btn btn-primary">Traduire</button>
