@@ -78,5 +78,6 @@
 
 		</div>
 		<?php include("script_menu.php"); ?>
+		<script type="text/javascript" src="../javascript/afficherDefinition.js"></script>
 	</body>
 </html>
