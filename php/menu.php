@@ -19,7 +19,7 @@
 				<a class="nav-link" href="#">À propos</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="maj.php">Mettre a jour</a>
+				<a class="nav-link" href="maj.php">Mettre à jour</a>
 			</li>
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
