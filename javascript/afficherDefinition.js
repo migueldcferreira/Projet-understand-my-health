@@ -1,9 +1,7 @@
 var vocab = document.getElementsByClassName('vocabulaire');
 for(let i = 0; i < vocab.length; i++) {
-  vocab[i].addEventListener("click", function(e)
+  vocab[i].addEventListener("click", function()
   {
-    var def = e.children[0].innerHTML;
-    alert("Bonjour");
-    alert(def);
+    alert(vocab[i].children[1].innerHTML);
   })
 }
