@@ -40,10 +40,10 @@
 		}
 		if($indice != -1)
 		{
-			echo '<p class="vocabulaire">
-							<p class="expression">'.$mot.'</p>
-							<p class="definition">'.$definition[$indice].'</p>
-						</p>';
+			echo '<span class="vocabulaire">
+							<span class="expression">'.$mot.'</span>
+							<span class="definition hidden">'.$definition[$indice].'</span>
+						</span>';
 		}
 		else
 		{
