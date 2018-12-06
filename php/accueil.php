@@ -13,7 +13,7 @@
         <div class="row">
           <form class="form col-md-12">
             <label for="myInputFile" class="form-control-label"><i class="fas fa-file-pdf"></i> Importez un fichier</label>
-            <input type="file" class="form-control-file" id="myInputFile" aria-describedby="fileHelp">
+            <input type="file" name="fichier" class="form-control-file" id="myInputFile" aria-describedby="fileHelp" accept=".txt .pdf">
             <small id="fileHelp" class="form-text text-muted">Vous pouvez importer un fichier texte (.txt) ou un fichier PDF (.pdf). Dans le cas d'un PDF, veillez à ce qu'il ne soit pas protégé en auquel cas il sera impossible de traiter le document.</small>
             <button type="submit" class="btn btn-primary">Valider</button>
           </form>
@@ -35,5 +35,6 @@
 
     </div>
     <?php include("script_menu.php"); ?>
+    <script type="text/javascript" src="../javascript/afficherDefinition.js"></script>
   </body>
 </html>
