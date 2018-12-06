@@ -24,7 +24,6 @@
 
 	while ($mot !== false)
 	{
-		echo "Word=$mot<br />";
 		$indice = -1;
 		while($i<4)
 		{
@@ -41,14 +40,14 @@
 		}
 		if($indice != -1)
 		{
-			echo '<div class="vocabulaire">
-							<div class="expression">'.$mot.'</div>
-							<div class="definition">'.$definition[$indice].'</div>
-						</div>';
+			echo '<i class="vocabulaire">
+							<i class="expression">'.$mot.'< /i>
+							<i class="definition">'.$definition[$indice].'</i>
+						</i>';
 		}
 		else
 		{
-			echo "$mot";
+			echo "$mot ";
 		}
 		$mot = strtok(" \n\t");
 		$i=0;
