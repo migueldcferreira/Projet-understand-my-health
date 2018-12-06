@@ -2,6 +2,7 @@
 <html lang="fr">
   <head>
     <?php include("head.php"); ?>
+		<link rel="stylesheet" href="../css/traduction.css" />
   </head>
   <body>
 
