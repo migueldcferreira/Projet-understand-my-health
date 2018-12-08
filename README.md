@@ -1,6 +1,6 @@
 # Projet Docteur Traducteur
 
-# Première sauvegarde du projet (car la branche master est utilisé pour réaliser des tests grâce au site hébergé qui peut se mettre à jour )
+# Première sauvegarde du projet (car la branche master est utilisée pour réaliser des tests grâce au site hébergé qui peut se mettre à jour )
 
 # Pour recuperer le projet :
 # git clone https://github.com/migueldcferreira/Projet-understand-my-health.git
