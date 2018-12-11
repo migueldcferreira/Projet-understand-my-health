@@ -47,14 +47,14 @@
 										  <div class="form-group">
 											<input type="file" name="files[]" id="js-upload-files" multiple>
 										  </div>
-										  <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Importez</button>
+										  <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Importer</button>
 										</div>
 									  </form>
 
 									  <!-- Drop Zone -->
-									  <h4>Ou glissez-déposez ici</h4>
+									  <h4>Ou glisser-déposer ici</h4>
 									  <div class="upload-drop-zone" id="drop-zone">
-										Glissez-déposez ici
+										Glisser-déposer ici
 									  </div>
 
 									 
