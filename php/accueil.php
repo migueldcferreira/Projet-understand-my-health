@@ -26,7 +26,7 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 								<form class="form col-md-6">
 									<br/>
-									<textarea class="form-control form-control-block" id="myText"></textarea>
+									<textarea class="form-control form-control-block" id="myText" name="testtext"></textarea>
 									<button type="submit" class="btn btn-primary">Traduire</button>
 									<button type="reset" class="btn btn-secondary">Effacer</button>
 								</form>
