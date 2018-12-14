@@ -4,7 +4,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-success " role="navigation">
 		<div class="container-fluid">
 			
-				<a class="navbar-brand" href="accueil.php"><i class="fas fa-file-medical-alt"></i> Docteur Traducteur</a>
+				<a class="navbar-brand" href="accueil.php"><i class="fas fa-file-medical-alt"></i> Tradocteur</a>
 				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
 
 				   <span class="icon-bar top-bar"></span>
