@@ -36,9 +36,9 @@
     								Mettre à jour
   							</button>
   							<div class="dropdown-menu">
-    								<a class="dropdown-item" href="majStable">Version stable</a>
+    								<a class="dropdown-item" href="majStable.php">Version stable</a>
     								<div class="dropdown-divider"></div>
-    								<a class="dropdown-item" href="majTest">Version test</a>
+    								<a class="dropdown-item" href="majTest.php">Version test</a>
   							</div>
 						</div>
 					</li>
