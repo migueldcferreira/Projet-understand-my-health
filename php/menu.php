@@ -31,8 +31,20 @@
 						<a href="#top" class="nav-link">À propos</a>
 					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-						<a href="maj.php" class="nav-link">Mettre à jour</a>
+						<div class="btn-group">
+  							<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    								Mettre à jour
+  							</button>
+  							<div class="dropdown-menu">
+    								<a class="dropdown-item" href="majStable">Version stable</a>
+    								<div class="dropdown-divider"></div>
+    								<a class="dropdown-item" href="majTest">Version test</a>
+  							</div>
+						</div>
 					</li>
+					<!--<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+						<a href="maj.php" class="nav-link">Mettre à jour</a>
+					</li>-->
 				</ul>
 				<form class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2 form-control-sm" type="text" placeholder="Identifiant">
