@@ -32,7 +32,7 @@
 					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<div class="btn-group">
-  							<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  							<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     								Mettre à jour
   							</button>
   							<div class="dropdown-menu">
