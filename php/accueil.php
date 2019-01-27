@@ -42,10 +42,10 @@
 
 									  <!-- Standar Form -->
 									
-									  <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+									  <form action="traductionByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
 										<div class="form-inline">
 										  <div class="form-group">
-											<input type="file" name="files[]" id="js-upload-files" multiple>
+											<input type="file" name="fichier" id="js-upload-files" multiple aria-describedby="fileHelp" accept=".txt .pdf">
 										  </div>
 										  <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Importer</button>
 										</div>
@@ -66,7 +66,7 @@
 								
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-								<form class="form">
+								<form class="form" action="traductionByURL.php" method="post">
 									<br/>
 									<div class="form-inline">
 										<input type="text" class="form-control form-control-lg" id="myURL"></input>
