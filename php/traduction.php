@@ -51,14 +51,14 @@
 
 		if(!empty($row = $res->fetch())) //La méthode fetch() permet de récupérer la ligne suivante du résultat de notre requete qui sont stockés dans la variable $res. 
 		{
-			while (!empty($row))
-			{
+			/*while (!empty($row))
+			{*/
 				echo '<span class="vocabulaire">
 							<span class="expression">'.$mot.'</span>
 							<span class="definition hidden">'.$row['DEFINITION'].'</span>
 						</span>';
 				$row = $res->fetch();
-			}
+			//}
 		}
 		else
 		{
