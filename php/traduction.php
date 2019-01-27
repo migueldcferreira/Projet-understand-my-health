@@ -39,7 +39,7 @@
 	$listeMotsTrouves=array();
 	$nbMotsTrouves=0;
 
-	$textform = str_replace( array( '?', ',', '.', ':', '!', '\''), ' ', $textform );
+	$textform = str_replace( array( '?', ',', '.', ':', '!', '\'', ')', '(', '{', '}'), ' ', $textform );
 
 	$mot = strtok($textform, " \n\t");
 
