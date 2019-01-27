@@ -69,7 +69,7 @@
 								<form class="form" action="traductionByURL.php" method="post">
 									<br/>
 									<div class="form-inline">
-										<input type="text" class="form-control form-control-lg" id="myURL"></input>
+										<input type="text" class="form-control form-control-lg" id="myURL" name="testurl"></input>
 										<button type="submit" class="btn btn-primary">Valider</button>
 									</div>
 								</form>
