@@ -45,7 +45,7 @@
 
 	while ($mot !== false)
 	{
-		$sql = "SELECT DEFINITION FROM BDD_TRADOCTEUR WHERE MOT LIKE '$mot';";
+		$sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot';";
 		$res = $bdd->query($sql); //On récupère (s'il en existe) les lignes de notre table "produits" qui répondent à notre requête $sql. 
 								  //Ces lignes sont stockées dans la variables $res qui est un tableau du jeu de résultat de notre requête.
 
