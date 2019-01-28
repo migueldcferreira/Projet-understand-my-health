@@ -27,7 +27,7 @@
 								<form class="form col-md-6" action="traduction.php" method="post">
 									<br/>
 									<textarea class="form-control form-control-block" id="myText" name="testtext"></textarea>
-									<button type="submit" class="btn btn-primary">Traduire</button>
+									<button type="submit" class="btn btn-primary">Simplifier</button>
 									<button type="reset" class="btn btn-secondary">Effacer</button>
 								</form>
                             </div>
@@ -47,17 +47,20 @@
 										  <div class="form-group">
 											<input type="file" name="fichier" id="js-upload-files" multiple aria-describedby="fileHelp" accept=".txt .pdf">
 										  </div>
-										  <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Importer</button>
+										  <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Simplifier</button>
 										</div>
 									  </form>
 
 									  <!-- Drop Zone -->
+									  <form action="traductionByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
 									  <h4>Ou glisser-déposer ici</h4>
 									  <div class="upload-drop-zone" id="drop-zone">
 										Glisser-déposer ici
 									  </div>
-
-									 
+									  
+									  <input type="file" name="fichier" id="js-upload-files-dropfiles" multiple aria-describedby="fileHelp" accept=".txt .pdf">
+									  <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Simplifier</button>
+									 </form>
 									</div>
 								  </div>
 								</div> <!-- /container -->
@@ -70,7 +73,7 @@
 									<br/>
 									<div class="form-inline">
 										<input type="text" class="form-control form-control-lg" id="myURL" name="testurl"></input>
-										<button type="submit" class="btn btn-primary">Valider</button>
+										<button type="submit" class="btn btn-primary">Simplifier</button>
 									</div>
 								</form>
                             </div>
