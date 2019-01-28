@@ -45,7 +45,7 @@
 									  <form action="traductionByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
 										<div class="form-inline">
 										  <div class="form-group">
-											<input type="file" name="fichier" id="js-upload-files" multiple aria-describedby="fileHelp" accept=".txt .pdf">
+											<input type="file" name="fichier" id="js-upload-files" multiple aria-describedby="fileHelp" accept=".txt,.pdf">
 										  </div>
 										  <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Simplifier</button>
 										</div>
