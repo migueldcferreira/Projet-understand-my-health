@@ -52,15 +52,10 @@
 									  </form>
 
 									  <!-- Drop Zone -->
-									  <form action="traductionByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
 									  <h4>Ou glisser-déposer ici</h4>
 									  <div class="upload-drop-zone" id="drop-zone">
 										Glisser-déposer ici
 									  </div>
-									  
-									  <input type="file" name="fichier" id="js-upload-files-dropfiles" multiple aria-describedby="fileHelp" accept=".txt .pdf">
-									  <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Simplifier</button>
-									 </form>
 									</div>
 								  </div>
 								</div> <!-- /container -->
