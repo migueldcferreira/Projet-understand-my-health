@@ -27,7 +27,7 @@
 								<form class="form col-md-6" action="traduction.php" method="post">
 									<br/>
 									<textarea class="form-control form-control-block" id="myText" name="testtext"></textarea>
-									<button type="submit" class="btn btn-primary">Traduire</button>
+									<button type="submit" class="btn btn-primary">Simplifier</button>
 									<button type="reset" class="btn btn-secondary">Effacer</button>
 								</form>
                             </div>
@@ -42,12 +42,12 @@
 
 									  <!-- Standar Form -->
 									
-									  <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+									  <form action="traductionByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
 										<div class="form-inline">
 										  <div class="form-group">
-											<input type="file" name="files[]" id="js-upload-files" multiple>
+											<input type="file" name="fichier" id="js-upload-files" multiple aria-describedby="fileHelp" accept=".txt,.pdf">
 										  </div>
-										  <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Importer</button>
+										  <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Simplifier</button>
 										</div>
 									  </form>
 
@@ -56,8 +56,6 @@
 									  <div class="upload-drop-zone" id="drop-zone">
 										Glisser-déposer ici
 									  </div>
-
-									 
 									</div>
 								  </div>
 								</div> <!-- /container -->
@@ -66,11 +64,11 @@
 								
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-								<form class="form">
+								<form class="form" action="traductionByURL.php" method="post">
 									<br/>
 									<div class="form-inline">
-										<input type="text" class="form-control form-control-lg" id="myURL"></input>
-										<button type="submit" class="btn btn-primary">Valider</button>
+										<input type="text" class="form-control form-control-lg" id="myURL" name="testurl"></input>
+										<button type="submit" class="btn btn-primary">Simplifier</button>
 									</div>
 								</form>
                             </div>
@@ -79,6 +77,8 @@
                 </div>
             </div>
     </section>
+	
+	<a href ="admin_liste_membres.php">Aller sur la page admin</a>
 
     
     <?php include("script_menu.php"); ?>
