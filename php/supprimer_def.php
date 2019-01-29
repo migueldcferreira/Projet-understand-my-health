@@ -1,7 +1,7 @@
 <?php
 
   require('Bdd.php');
-  
+
   try
   {
     $bdd = Bdd::connect("BDD_TRADOCTEUR");
@@ -19,9 +19,9 @@ $suppr = 'supprimer';
 if (isset($_GET['id'])) {
 	$supprimerID = is_int($_GET['id']) ? $_GET['id'] : false;
 	if($supprimerID){
-		
+
 	// sql to delete a record
-		$sql = 'DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = "'.$id.'"';
+		$sql = 'DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = "'.$supprimerID.'"';
 		$stmt= $bdd->prepare($sql);
 		$stmt->execute($sql);
 	}
@@ -29,7 +29,7 @@ if (isset($_GET['id'])) {
 header('location: admin_liste_def.php');
 
 
-  
+
 }
 else{header('location: admin_liste_def.php'); }
 ?>
