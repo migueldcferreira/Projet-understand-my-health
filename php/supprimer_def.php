@@ -15,22 +15,15 @@
 
 
 //Supprimer definition
-$suppr = 'supprimer';
-if (isset($_GET['id'])) {
-	$supprimerID = (int) $_GET['id'];
-  echo($supprimerID);
+$id = isset($_GET['id']) ? (int) $_GET['id'] : null;
+if (!$id) {
 
 
 	// sql to delete a record
-		$sql = 'DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = "'.$supprimerID.'"';
+		$sql = 'DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = "'.$id.'"';
 		$stmt= $bdd->prepare($sql);
 		$stmt->execute($sql);
-  
-
-
-
-
-
+    header('location: admin_liste_def.php');
 
 }
 else{header('location: register.php'); }
