@@ -61,4 +61,35 @@ if (isset($_POST['reg_user'])) {
 }
 
 
+
+
+// LOGIN USER
+if (isset($_POST['login_user'])) {
+  $ADRESSE_MAIL = $_POST['ADRESSE_MAIL'];
+  $MOT_DE_PASSE = $_POST['MOT_DE_PASSE'];
+
+  if (empty($ADRESSE_MAIL)) {
+    array_push($errors, "Entrer votre identifiant(adresse mail)");
+  }
+  if (empty($MOT_DE_PASSE)) {
+    array_push($errors, "Entrer un mot de passe");
+  }
+
+  if (count($errors) == 0) {
+    $MOT_DE_PASSE = md5($MOT_DE_PASSE);
+    $sts = "SELECT COUNT(*) FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL='$ADRESSE_MAIL' AND MOT_DE_PASSE='$MOT_DE_PASSE'";
+    
+    
+    if ($results = $db->query($sts)){
+      if ( $results->fetchColumn()>0 ) {
+         $_SESSION['username'] = $ADRESSE_MAIL;
+         $_SESSION['success'] = "vous etes connecté";
+         header('location: admin_liste_membres.php');
+    }else {
+
+      array_push($errors, "Mot de passe ou identifiant incorrect ");
+    }
+  }
+  }
+}
 ?>
