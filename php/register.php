@@ -17,7 +17,7 @@
   <?php include("menu.php"); ?>
 	
 	
-	  <div class="header form_head">
+	  <div class="header form_head bg-success">
 		<h2>S'inscrire</h2>
 	  </div>
 
@@ -51,7 +51,7 @@
 					  <span>j'accepte les termes et conditions</span>
 					</label>
 			<div class="input-group form-group">
-			  <button type="submit" class="btn1" name="reg_user">s'inscrire</button>
+			  <button type="submit" class="btn btn-success btn-sm" name="reg_user">S'inscrire</button>
 			</div>
 
 	  </form>
