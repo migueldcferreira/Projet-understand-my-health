@@ -33,7 +33,7 @@
 
 <br/>
 
-<form method="post" action="modifier.php">
+<form method="post" action="modifier.php" class= "formulaire_stylise">
   <div>
     <input type="hidden" value="<?php echo $row[0]; ?>" name="id"/>
   </div>
