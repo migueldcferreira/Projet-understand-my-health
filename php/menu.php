@@ -46,7 +46,7 @@
 						<a href="maj.php" class="nav-link">Mettre à jour</a>
 					</li>-->
 				</ul>
-				<form method="post" action="menu.php" class="form-inline my-2 my-lg-0">
+				<form method="post"  class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2 form-control-sm" type="text" name="IDENTIFIANT" placeholder="Identifiant">
 					<input class="form-control mr-sm-2 form-control-sm" type="password" name="MOT_DE_PASSE" placeholder="Mot de passe">
 					<button class="btn btn-secondary my-2 my-sm-0 btn-sm" type="submit"><i class="fas fa-user-md" name="login_user"></i> Se connecter</button>
