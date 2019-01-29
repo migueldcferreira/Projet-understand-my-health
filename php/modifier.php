@@ -31,18 +31,19 @@
       die('Erreur : ' . $e->getMessage());
   }?>
 
+<br/>
 
 <form method="post" action="modifier.php">
   <div>
     <input type="hidden" value="<?php echo $row[0]; ?>" name="id"/>
   </div>
-  <div class="input-group">
+  <div class="form-group">
     <label>mot</label>
     <input type="text" name="mot" value="<?php echo $row[1]; ?>">
   </div>
-  <div class="input-group">
-    <label>definition</label>
-    <input type="text" name="definition" value="<?php echo $row[2]; ?>">
+  <div class="form-group">
+    <label>Définition</label>
+    <textarea class="form-control" id="definition" value="<?php echo $row[2]; ?>" rows="3"></textarea>
   </div>
   <div class="input-group">
     <label>date d'ajout</label>
