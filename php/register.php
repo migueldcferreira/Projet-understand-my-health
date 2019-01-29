@@ -16,7 +16,6 @@
 <body>
   <?php include("menu.php"); ?>
 	
-	<div class="col-xs-12 col-lg-4">
 	  <div class="header form_head bg-success">
 		<h2>S'inscrire</h2>
 	  </div>
@@ -55,7 +54,6 @@
 			</div>
 
 	  </form>
-		  </div>
 	
 	<?php include("script_menu.php"); ?>
 </body>
