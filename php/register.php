@@ -16,7 +16,7 @@
 <body>
   <?php include("menu.php"); ?>
 	
-	<div class="col-xs-12 col-lg-4">
+	<div class="col-xs-12">
 	  <div class="header form_head bg-success">
 		<h2>S'inscrire</h2>
 	  </div>
