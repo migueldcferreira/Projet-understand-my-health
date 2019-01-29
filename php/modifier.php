@@ -1,11 +1,11 @@
-<?php include('head.php') ?>
+
 <?php include('server_definition.php') ?>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-
+<?php include('head.php') ?>
 <link rel="stylesheet" href="..\css/choosetrad.css">
 </head>
 <body>
@@ -32,7 +32,7 @@
   }?>
 
 
-<form method="post" action="modifier.php" class ="formulaire_stylise">
+<form method="post" action="modifier.php">
   <div>
     <input type="hidden" value="<?php echo $row[0]; ?>" name="id"/>
   </div>
