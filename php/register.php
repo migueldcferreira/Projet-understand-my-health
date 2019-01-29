@@ -22,7 +22,7 @@
 	  </div>
 
 
-	  <form method="post" action="register.php" class ="bg-success formulaire_stylise">
+	  <form method="post" action="register.php" class ="formulaire_stylise">
 		
 			<div class="input-group form-group">
 			  <label>Identifiant</label>
