@@ -47,10 +47,9 @@
   </div>
   <div class="form-group">
     <label>Définition</label>
-    <textarea class="form-control" id="definition" value="<?php echo $row[2]; ?>" rows="3"></textarea>
+    <textarea class="form-control" id="definition" rows="3"><?php echo $row[2]; ?></textarea>
   </div>
   <div>
-    <label>date d'ajout</label>
     <input type="hidden" name="date_ajout" value="<?php echo $row[3]; ?>">
   </div>
   <div class="input-group">
