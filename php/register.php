@@ -17,12 +17,12 @@
   <?php include("menu.php"); ?>
 	
 	
-	  <div class="header form_head">
+	  <div class="header form_head bg-success">
 		<h2>S'inscrire</h2>
 	  </div>
 
 
-	  <form method="post" action="register.php" class ="formulaire_stylise bg-success">
+	  <form method="post" action="register.php" class ="formulaire_stylise">
 		
 			<div class="input-group form-group">
 			  <label>Identifiant</label>
