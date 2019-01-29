@@ -1,4 +1,4 @@
-
+<?php include('head.php') ?>
 <?php include('server_definition.php') ?>
 
 
@@ -6,13 +6,14 @@
 <html>
 <head>
 
-
+<link rel="stylesheet" href="..\css/choosetrad.css">
+</head>
 <body>
 <?php include("menu_admin.php"); ?>
 <?php
 
 
-  
+
   try
   {
    if(isset($_GET['id']) AND !empty($_GET['id'])) {
