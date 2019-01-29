@@ -1,15 +1,17 @@
 
-<?php include('server_definition.php') ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
-<?php include('head.php') ?>
-<link rel="stylesheet" href="..\css/choosetrad.css">
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+ <?php include("head.php"); ?>
+  <link rel="stylesheet" href="..\css/choosetrad.css">
+
 </head>
 <body>
 <?php include("menu_admin.php"); ?>
+<?php include('server_definition.php') ?>
 <?php
 
 
