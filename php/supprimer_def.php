@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
 		$sql = 'DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = "'.$supprimerID.'"';
 		$stmt= $bdd->prepare($sql);
 		$stmt->execute($sql);
-    header('location: admin_liste_defs.php');
+    header('location: admin_liste_def.php');
 
 
 
