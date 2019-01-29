@@ -13,7 +13,7 @@
      <link rel="stylesheet" type="text/css" href="..\css/form_inscr.css">
 
 </head>
-<body>
+<body class="col-xs-12 col-lg-4">
   <?php include("menu.php"); ?>
 	
 	
