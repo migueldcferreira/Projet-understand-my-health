@@ -1,4 +1,4 @@
-<!--<?php// include('server.php') ?>-->
+<?php include('Bdd_inscription.php') //appel à la base de donnée?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,22 +23,27 @@
 
 
 	  <form method="post" action="register.php" class ="formulaire_stylise">
+	  		<?php include('errors.php');//pour gérer les erreurs lors de la vérification des champs insérés par l'utilisateur ?>
 		
 			<div class="input-group form-group">
-			  <label>Identifiant</label>
-			  <input type="text" name="username" value="">
+			  <label>Nom</label>
+			  <input type="text" name="NOM" value="<?php echo $NOM; ?>">
 			</div>
 			<div class="input-group form-group">
-			  <label>Email</label>
-			  <input type="email" name="email" value= "">
+			  <label>Prénom</label>
+			  <input type="text" name="PRENOM" value="<?php echo $PRENOM; ?>">
+			</div>
+			<div class="input-group form-group">
+			  <label>Adresse mail</label>
+			  <input type="ADRESSE_MAIL" name="ADRESSE_MAIL" value= "<?php echo $ADRESSE_MAIL; ?>">
 			</div>
 			<div class="input-group form-group">
 			  <label>Mot de passe</label>
-			  <input type="password" name="password_1">
+			  <input type="password" name="MOT_DE_PASSE_1">
 			</div>
 			<div class="input-group form-group">
 			  <label>Confirmer mot de passe</label>
-			  <input type="password" name="password_2">
+			  <input type="password" name="MOT_DE_PASSE_2">
 			</div>
 			<div class="wthree-text form-group">
 					<label class="anim">

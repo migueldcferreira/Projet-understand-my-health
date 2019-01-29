@@ -20,7 +20,7 @@
 							<a href="admin_liste_membres.php" class="nav-link">Gérer les membres<span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-							<a href="#" class="nav-link">Gérer les définitions</a>
+							<a href="admin_liste_def.php" class="nav-link">Gérer les définitions</a>
 						</li>
 						<!--<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 							<a href="maj.php" class="nav-link">Mettre à jour</a>
