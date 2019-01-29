@@ -17,7 +17,7 @@
 //Supprimer definition
 $suppr = 'supprimer';
 if (isset($_GET['id'])) {
-	$supprimerID = $_GET['id'];
+	$supprimerID = (int) $_GET['id'];
 
 
 	// sql to delete a record
