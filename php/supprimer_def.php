@@ -16,7 +16,7 @@
 
 //Supprimer definition
 $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
-if (!$id) {
+if ($id) {
 
 
 	// sql to delete a record
