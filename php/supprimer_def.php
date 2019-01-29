@@ -17,17 +17,17 @@
 //Supprimer definition
 $suppr = 'supprimer';
 if (isset($_GET['id'])) {
-	$supprimerID = is_int($_GET['id']) ? $_GET['id'] : false;
-	if($supprimerID){
+	$supprimerID = $_GET['id'];
+
 
 	// sql to delete a record
 		$sql = 'DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = "'.$supprimerID.'"';
 		$stmt= $bdd->prepare($sql);
 		$stmt->execute($sql);
-    header('location: accueil.php');
-	}
+    header('location: admin_liste_defs.php');
 
-header('location: admin_liste_def.php');
+
+
 
 
 
