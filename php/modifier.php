@@ -10,10 +10,9 @@
 
 </head>
 <body>
-
+<?php include("menu_admin.php"); ?>
+<?php include("server_definition.php"); ?>
 <?php
-include("menu_admin.php");
-include("server_definition.php");
 
 
 
@@ -50,7 +49,7 @@ include("server_definition.php");
   </div>
   <div class="form-group">
     <label>Définition</label>
-    <textarea class="form-control" name = "definition" id="definition" rows="3"><?php echo $row[2]; ?></textarea>
+    <textarea class="form-control" id="definition" rows="3"><?php echo $row[2]; ?></textarea>
   </div>
   <div>
     <input type="hidden" name="date_ajout" value="<?php echo $row[3]; ?>">
@@ -61,3 +60,5 @@ include("server_definition.php");
 </form>
 
 </body>
+
+<?php include("script_menu.php"); ?>
