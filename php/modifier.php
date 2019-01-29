@@ -33,6 +33,10 @@
 
 <br/>
 
+<div class="header">
+  <h2>Modifier la définition</h2>
+</div>
+
 <form method="post" action="modifier.php" class= "formulaire_stylise">
   <div>
     <input type="hidden" value="<?php echo $row[0]; ?>" name="id"/>
