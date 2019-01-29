@@ -19,6 +19,7 @@ if (isset($_POST['reg_user'])) {
   $NOM = $_POST['NOM'];
   $PRENOM = $_POST['PRENOM'];
   $ADRESSE_MAIL = $_POST['ADRESSE_MAIL'];
+  $DATE_NAISSANCE=$_POST['DATE_NAISSANCE'];
   $MOT_DE_PASSE_1 = $_POST['MOT_DE_PASSE_1'];
   $MOT_DE_PASSE_2 = $_POST['MOT_DE_PASSE_2'];
 
@@ -49,8 +50,8 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	$MOT_DE_PASSE = md5($MOT_DE_PASSE_1);//on crypte le mot de passe par sécurité
 
-  	$query = "INSERT INTO TABLE_UTILISATEUR (NOM,PRENOM, ADRESSE_MAIL, MOT_DE_PASSE) 
-  			  VALUES('$NOM','$PRENOM', '$ADRESSE_MAIL', '$MOT_DE_PASSE')";
+  	$query = "INSERT INTO TABLE_UTILISATEUR (NOM,PRENOM, ADRESSE_MAIL,DATE_NAISSANCE, MOT_DE_PASSE) 
+  			  VALUES('$NOM','$PRENOM', '$ADRESSE_MAIL', '$DATE_NAISSANCE' , '$MOT_DE_PASSE')";
   	$tmp=$db->prepare($query);
     $tmp->execute();
   	$_SESSION['PRENOM'] = $PRENOM;

@@ -17,6 +17,7 @@
   <?php include("menu.php"); ?>
 	
 	  <div class="header form_head bg-success">
+	  
 		<h2>S'inscrire</h2>
 	  </div>
 
@@ -34,7 +35,11 @@
 			</div>
 			<div class="input-group form-group">
 			  <label>Adresse mail</label>
-			  <input type="ADRESSE_MAIL" name="ADRESSE_MAIL" value= "<?php echo $ADRESSE_MAIL; ?>">
+			  <input type="email" name="ADRESSE_MAIL" value= "<?php echo $ADRESSE_MAIL; ?>">
+			</div>
+			<div class="input-group form-group">
+			  <label>Date de naissance</label>
+			  <input type="date" name="DATE_NAISSANCE" value= "<?php echo $DATE_NAISSANCE; ?>">
 			</div>
 			<div class="input-group form-group">
 			  <label>Mot de passe</label>
@@ -50,7 +55,8 @@
 					  <span>j'accepte les termes et conditions</span>
 					</label>
 			<div class="input-group form-group">
-			<button type="submit" class="btn btn-success btn-sm" name="reg_user">S'inscrire</button>
+				<button type="submit" class="btn btn-success btn-sm" name="reg_user">S'inscrire</button>
+			 
 			</div>
 
 	  </form>
