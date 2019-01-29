@@ -68,6 +68,7 @@
 																						<td> <?php printf ("%s", $row[3]); ?> </td>
 
 																								<td>
+																						<a href="ajouter.php?id=<?php echo $row[0] ?>"> <button class="btn btn-success btn-sm tooltipsAdmin" title="Ajouter la définition"><i class="fas fa-user-plus"></i></button>
 																						<a href="modifier.php?id=<?php echo $row[0] ?>">   <button class="btn btn-sm tooltipsAdmin enabled" title="Modifier cette définition"><i class="fa fa-edit"></i></button>      </a>
 																						<a href="supprimer_def.php?id=<?php echo $row[0] ?>"> <button class="btn btn-danger btn-sm tooltipsAdmin enabled" title="Supprimer cette définition"><i class="fas fa-minus-circle"></i></button> </a>
 																						</td>
