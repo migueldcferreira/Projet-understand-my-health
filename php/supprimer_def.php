@@ -32,5 +32,5 @@ header('location: admin_liste_def.php');
 
 
 }
-else{header('location: admin_liste_def.php'); }
+else{header('location: register.php'); }
 ?>
