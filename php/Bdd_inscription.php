@@ -59,4 +59,33 @@ if (isset($_POST['reg_user'])) {
   	header('location: accueil.php');//on revient à la page d'accueil
   }
 }
+
+
+
+
+// LOGIN USER
+if (isset($_POST['login_user'])) {
+  $IDENTIFIANT = $_POST['IDENTIFIANT'];
+  $MOT_DE_PASSE = $_POST['MOT_DE_PASSE'];
+
+  if (empty($IDENTIFIANT)) {
+    array_push($errors, "Entrer un identifiant");
+  }
+  if (empty($MOT_DE_PASSE)) {
+    array_push($errors, "Entrer un mot de passe");
+  }
+
+  if (count($errors) == 0) {
+    $password = md5($password);
+    $query = "SELECT * FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL='$ADRESSE_MAIL' AND MOT_DE_PASSE='$MOT_DE_PASSE";
+    $results = $db->query($query);
+    if ($results->fetchColumn()) == 1) {
+      $_SESSION['username'] = $IDENTIFIANT;
+      $_SESSION['success'] = "vous etes connecté";
+      header('location: accueil.php');
+    }else {
+      array_push($errors, "Mot de passe ou identifiant incorrect");
+    }
+  }
+}
 ?>

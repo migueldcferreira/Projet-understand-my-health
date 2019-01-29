@@ -1,5 +1,5 @@
 
-
+<?php include('Bdd_inscription.php') //appel à la base de donnée?>
 <div id="topheader">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-success " role="navigation">
 		<div class="container-fluid">
@@ -46,10 +46,10 @@
 						<a href="maj.php" class="nav-link">Mettre à jour</a>
 					</li>-->
 				</ul>
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2 form-control-sm" type="text" placeholder="Identifiant">
-					<input class="form-control mr-sm-2 form-control-sm" type="password" placeholder="Mot de passe">
-					<button class="btn btn-secondary my-2 my-sm-0 btn-sm" type="submit"><i class="fas fa-user-md"></i> Se connecter</button>
+				<form method="post" action="menu.php" class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2 form-control-sm" type="text" name="IDENTIFIANT" placeholder="Identifiant">
+					<input class="form-control mr-sm-2 form-control-sm" type="password" name="MOT_DE_PASSE" placeholder="Mot de passe">
+					<button class="btn btn-secondary my-2 my-sm-0 btn-sm" type="submit"><i class="fas fa-user-md" name="login_user"></i> Se connecter</button>
 				</form>
 
 			</div>
