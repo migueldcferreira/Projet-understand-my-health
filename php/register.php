@@ -1,4 +1,4 @@
-<?php include('Bdd_inscription.php') //appel à la base de donnée?>
+<?php include('Bdd_inscription.php'); //appel à la base de donnée?>
 <!DOCTYPE html>
 <html>
 <head>
