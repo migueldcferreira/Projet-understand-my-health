@@ -11,7 +11,7 @@
 </head>
 <body>
 <?php include("menu_admin.php"); ?>
-<?php include('server_definition.php'); ?>
+<?php include("server_definition.php"); ?>
 <?php
 
 
