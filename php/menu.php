@@ -1,5 +1,5 @@
 
-<?php include('Bdd_inscription.php'); ?>
+
 <div id="topheader">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-success " role="navigation">
 		<div class="container-fluid">
