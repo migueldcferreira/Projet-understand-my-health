@@ -22,7 +22,7 @@
 	  </div>
 
 
-	  <form method="post" action="register.php" class ="formulaire_stylise">
+	  <form method="post" action="register.php" class ="formulaire_stylise bg-success">
 		
 			<div class="input-group form-group">
 			  <label>Identifiant</label>
@@ -46,7 +46,7 @@
 					  <span>j'accepte les termes et conditions</span>
 					</label>
 			<div class="input-group form-group">
-			  <button type="submit" class="btn1" name="reg_user">s'inscrire</button>
+			  <button type="submit" class="btn btn-success btn-sm" name="reg_user">S'inscrire</button>
 			</div>
 
 	  </form>
