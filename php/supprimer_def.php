@@ -21,7 +21,7 @@ if ($id) {
 
 	// sql to delete a record
 		$sql = 'DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = "'.$id.'"';
-		$stmt= $bdd->prepare($sql);
+		$stmt= $bdd->query($sql);
 		$stmt->execute($sql);
     header('location: admin_liste_def.php');
 
