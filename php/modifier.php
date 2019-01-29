@@ -33,7 +33,7 @@
 
 <br/>
 
-<div class="header">
+<div class="header" style="background-color: purple">
   <h2>Modifier la définition</h2>
 </div>
 
