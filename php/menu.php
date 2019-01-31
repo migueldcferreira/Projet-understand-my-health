@@ -28,7 +28,7 @@
 						<a href="register.php" class="nav-link">Devenir membre</a>
 					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-						<a href="login.php" class="nav-link">se connecter</a>
+						<a href="login.php" class="nav-link">Se connecter</a>
 					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="#top" class="nav-link">À propos</a>
