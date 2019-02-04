@@ -1,4 +1,4 @@
-# Projet Docteur Traducteur
+# Projet Tradocteur
 
 # Première sauvegarde du projet (car la branche master est utilisée pour réaliser des tests grâce au site hébergé qui peut se mettre à jour )
 
