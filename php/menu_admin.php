@@ -33,7 +33,7 @@
 						<button class="btn btn-secondary my-2 my-sm-0 btn-sm" type="submit"><i class="fas fa-user-md"></i> Se connecter</button>
 					</form>
 			-->
-					<a href="accueil.php class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-caret-right"></i> Retour au site</a>
+					<a href="accueil.php" class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-caret-right"></i> Retour au site</a>
 				</div>
 			</div>
 		</nav>
