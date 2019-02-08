@@ -28,6 +28,9 @@
 						<a href="register.php" class="nav-link">Devenir membre</a>
 					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+						<a href="login.php" class="nav-link">Se connecter</a>
+					</li>
+					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="#top" class="nav-link">À propos</a>
 					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
@@ -49,11 +52,13 @@
 						<a href="maj.php" class="nav-link">Mettre à jour</a>
 					</li>-->
 				</ul>
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2 form-control-sm" type="text" placeholder="Identifiant">
-					<input class="form-control mr-sm-2 form-control-sm" type="password" placeholder="Mot de passe">
-					<button class="btn btn-secondary my-2 my-sm-0 btn-sm" type="submit"><i class="fas fa-user-md"></i> Se connecter</button>
+				<!--
+				<form method="post"  class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2 form-control-sm" type="text" name="IDENTIFIANT" placeholder="Identifiant">
+					<input class="form-control mr-sm-2 form-control-sm" type="password" name="MOT_DE_PASSE" placeholder="Mot de passe">
+					<button class="btn btn-secondary my-2 my-sm-0 btn-sm" type="submit"><i class="fas fa-user-md" name="login_user"></i> Se connecter</button>
 				</form>
+				-->
 
 			</div>
 		</div>

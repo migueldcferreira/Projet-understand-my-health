@@ -7,7 +7,6 @@
   <body>
 
     <!--Container principal-->
-    <div class="container-fluid">
       <?php include("menu.php"); ?>
 
 <?php
@@ -68,7 +67,6 @@
 	}
 ?>
 
-		</div>
 		<?php include("script_menu.php"); ?>
 		<script type="text/javascript" src="../javascript/afficherDefinition.js"></script>
 	</body>

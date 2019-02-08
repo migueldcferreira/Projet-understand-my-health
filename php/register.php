@@ -1,4 +1,4 @@
-<?php include('Bdd_inscription.php') //appel à la base de donnée?>
+<?php include('Bdd_inscription.php'); //appel à la base de donnée?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +15,6 @@
 </head>
 <body>
   <?php include("menu.php"); ?>
-	
-	
 	  <div class="header form_head bg-success">
 		<h2>S'inscrire</h2>
 	  </div>
@@ -24,7 +22,7 @@
 
 	  <form method="post" action="register.php" class ="formulaire_stylise">
 	  		<?php include('errors.php');//pour gérer les erreurs lors de la vérification des champs insérés par l'utilisateur ?>
-		
+
 			<div class="input-group form-group">
 			  <label>Nom</label>
 			  <input type="text" name="NOM" value="<?php echo $NOM; ?>">
@@ -35,7 +33,11 @@
 			</div>
 			<div class="input-group form-group">
 			  <label>Adresse mail</label>
-			  <input type="ADRESSE_MAIL" name="ADRESSE_MAIL" value= "<?php echo $ADRESSE_MAIL; ?>">
+			  <input type="email" name="ADRESSE_MAIL" value= "<?php echo $ADRESSE_MAIL; ?>">
+			</div>
+			<div class="input-group form-group">
+			  <label>Date de naissance</label>
+			  <input type="date" name="DATE_NAISSANCE" value= "<?php echo $DATE_NAISSANCE; ?>">
 			</div>
 			<div class="input-group form-group">
 			  <label>Mot de passe</label>
@@ -51,11 +53,11 @@
 					  <span>j'accepte les termes et conditions</span>
 					</label>
 			<div class="input-group form-group">
-			  <button type="submit" class="btn btn-success btn-sm" name="reg_user">S'inscrire</button>
+				<button type="submit" class="btn btn-success btn-sm" name="reg_user">S'inscrire</button>
 			</div>
 
 	  </form>
-	
+
 	<?php include("script_menu.php"); ?>
 </body>
 

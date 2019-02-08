@@ -1,13 +1,13 @@
 <?php
 session_start();
-require('Bdd.php'); 
+require('Bdd.php');
 
 
 // initialisation des variables
 $NOM = "";
 $PRENOM = "";
 $ADRESSE_MAIL    = "";
-$errors = array(); 
+$errors = array();
 
 // connection à la base de donnée
 $db = Bdd::connect("BDD_TRADOCTEUR");
@@ -19,6 +19,7 @@ if (isset($_POST['reg_user'])) {
   $NOM = $_POST['NOM'];
   $PRENOM = $_POST['PRENOM'];
   $ADRESSE_MAIL = $_POST['ADRESSE_MAIL'];
+  $DATE_NAISSANCE=$_POST['DATE_NAISSANCE'];
   $MOT_DE_PASSE_1 = $_POST['MOT_DE_PASSE_1'];
   $MOT_DE_PASSE_2 = $_POST['MOT_DE_PASSE_2'];
 
@@ -37,9 +38,9 @@ if (isset($_POST['reg_user'])) {
   $user_check_query = "SELECT * FROM TABLE_UTILISATEUR WHERE  ADRESSE_MAIL='$ADRESSE_MAIL' LIMIT 1";
   $result = $db->query($user_check_query);
   $user = $result->fetch();
-  
+
   if ($user) { // if user exists
-    
+
     if ($user['ADRESSE_MAIL'] === $ADRESSE_MAIL) {
       array_push($errors, "ADRESSE_MAIL déjà utilisé");
     }
@@ -49,13 +50,47 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	$MOT_DE_PASSE = md5($MOT_DE_PASSE_1);//on crypte le mot de passe par sécurité
 
-  	$query = "INSERT INTO TABLE_UTILISATEUR (NOM,PRENOM, ADRESSE_MAIL, MOT_DE_PASSE) 
-  			  VALUES('$NOM','$PRENOM', '$ADRESSE_MAIL', '$MOT_DE_PASSE')";
+  	$query = "INSERT INTO TABLE_UTILISATEUR (NOM,PRENOM, ADRESSE_MAIL,DATE_NAISSANCE, MOT_DE_PASSE)
+  			  VALUES('$NOM','$PRENOM', '$ADRESSE_MAIL', '$DATE_NAISSANCE' , '$MOT_DE_PASSE')";
+
   	$tmp=$db->prepare($query);
     $tmp->execute();
   	$_SESSION['PRENOM'] = $PRENOM;
   	$_SESSION['success'] = "Vous étes connecté";
   	header('location: accueil.php');//on revient à la page d'accueil
+  }
+}
+
+
+
+
+// LOGIN USER
+if (isset($_POST['login_user'])) {
+  $ADRESSE_MAIL = $_POST['ADRESSE_MAIL'];
+  $MOT_DE_PASSE = $_POST['MOT_DE_PASSE'];
+
+  if (empty($ADRESSE_MAIL)) {
+    array_push($errors, "Entrer votre identifiant(adresse mail)");
+  }
+  if (empty($MOT_DE_PASSE)) {
+    array_push($errors, "Entrer un mot de passe");
+  }
+
+  if (count($errors) == 0) {
+    $MOT_DE_PASSE = md5($MOT_DE_PASSE);
+    $sts = "SELECT COUNT(*) FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL='$ADRESSE_MAIL' AND MOT_DE_PASSE='$MOT_DE_PASSE'";
+
+
+    if ($results = $db->query($sts)){
+      if ( $results->fetchColumn()>0 ) {
+         $_SESSION['username'] = $ADRESSE_MAIL;
+         $_SESSION['success'] = "vous etes connecté";
+         header('location: admin_liste_membres.php');
+    }else {
+
+      array_push($errors, "Mot de passe ou identifiant incorrect ");
+    }
+  }
   }
 }
 ?>
