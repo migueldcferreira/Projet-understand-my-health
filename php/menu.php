@@ -34,6 +34,9 @@
 						<a href="#top" class="nav-link">À propos</a>
 					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+						<a href="admin_liste_membres.php" class="nav-link">Espace Admin</a>
+					</li>
+					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<div class="btn-group">
   							<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     								Mettre à jour
