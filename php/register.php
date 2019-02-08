@@ -15,16 +15,14 @@
 </head>
 <body>
   <?php include("menu.php"); ?>
-	
 	  <div class="header form_head bg-success">
-	  
 		<h2>S'inscrire</h2>
 	  </div>
 
 
 	  <form method="post" action="register.php" class ="formulaire_stylise">
 	  		<?php include('errors.php');//pour gérer les erreurs lors de la vérification des champs insérés par l'utilisateur ?>
-		
+
 			<div class="input-group form-group">
 			  <label>Nom</label>
 			  <input type="text" name="NOM" value="<?php echo $NOM; ?>">
@@ -56,11 +54,10 @@
 					</label>
 			<div class="input-group form-group">
 				<button type="submit" class="btn btn-success btn-sm" name="reg_user">S'inscrire</button>
-			 
 			</div>
 
 	  </form>
-	
+
 	<?php include("script_menu.php"); ?>
 </body>
 

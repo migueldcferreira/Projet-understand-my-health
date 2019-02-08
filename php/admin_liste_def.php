@@ -2,13 +2,11 @@
 <html lang="fr">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
 	 <?php include("head.php"); ?>
     <link rel="stylesheet" href="..\css/choosetrad.css">
 
 </head>
 <body>
-
 
 	<?php include("menu_admin.php"); ?>
 
@@ -29,7 +27,6 @@
 		$sql_prop = "SELECT ID_DEFINITION, MOT, DEFINITION, DATE_AJOUT FROM TABLE_DEFINITION WHERE A_CONFIRMER = 1"; //requête pour trouver les définitions non validées (propositions)
 		$res_prop = $bdd->query($sql_prop);
 
-
 	}
 	catch (Exception $e)
 	{
@@ -38,12 +35,10 @@
 
 
 <section id="tabs" class="project-tab">
-
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa fa-users"></i> Propositions de définitions</a>
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa fa-database"></i> Base de définitions</a>
-
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
@@ -78,7 +73,6 @@
 																	</table>
 																</div>
 															</div>
-
 
 
 
@@ -126,7 +120,6 @@
                             </div>
 
                         </div>
-
     </section>
 
 
