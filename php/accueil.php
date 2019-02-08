@@ -77,9 +77,6 @@
                 </div>
             </div>
     </section>
-	
-	<a href ="admin_liste_membres.php">Aller sur la page admin</a>
-
     
     <?php include("script_menu.php"); ?>
 
