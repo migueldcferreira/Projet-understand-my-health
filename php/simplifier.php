@@ -29,7 +29,7 @@
       }
       else
       {
-        if(strlen($mot) > 0)
+        /*if(strlen($mot) > 0)
         {
           $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot';";
       		$res = $bdd->query($sql); //On récupère (s'il en existe) les lignes de notre table "produits" qui répondent à notre requête $sql.
@@ -49,9 +49,9 @@
       		{
       			echo "$mot";
       		}
-        }
+        }*/
         $mot = "";
-        /*if($balise>0 and $lettre == "<")
+        if($balise>0 and $lettre == "<")
         {
           $nbBaliseOuvrante += 1;
         }
@@ -63,7 +63,7 @@
         {
           if(!($balise == 1) or $nbBaliseOuvrante==0)
             echo "$lettre";
-        }*/
+        }
       }
     }
     echo "$mot";
