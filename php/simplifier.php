@@ -64,6 +64,8 @@
         {
           if(!($balise == 1) or $nbBaliseOuvrante==0)
           {
+            if($lettre == "\n")
+              echo "\nn";
             echo "$lettre";
           }
         }
