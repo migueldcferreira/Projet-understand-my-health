@@ -1,4 +1,5 @@
-<?php include('Bdd_inscription.php'); ?>
+<?php include('Bdd_inscription.php'); 
+      include('verif_visiteur.php');?>
 <!DOCTYPE html>
 <html>
 <head>
