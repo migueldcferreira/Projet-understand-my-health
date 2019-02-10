@@ -23,7 +23,7 @@
     echo "Texte simplifié :";
     $mot = "";
     $nbBaliseOuvrante = 0;
-    foreach($text as $lettre)
+    /*foreach($text as $lettre)
     {
       if($nbBaliseOuvrante==0 && preg_match("[a-zA-Z]",$lettre) || (strlen($mot)>0 && $lettre=='-')))
       {
@@ -67,6 +67,6 @@
             echo "$lettre";
         }
       }
-    }
+    }*/
   }
 ?>
