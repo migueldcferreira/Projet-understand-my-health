@@ -14,10 +14,7 @@
 	{
 		die("Veuillez insérer du texte à simplifier");
 	}
-	$textForm=str_split($_POST["testtext"]);
-	include("simplifier.php");
-	simplifierTexteBrut($textForm,0);
-	/*require('Bdd.php');
+	require('Bdd.php');
 	
 	try
 	{
@@ -37,7 +34,7 @@
 									 	"Gastro-entérite désigne une inflammation simultanée de la muqueuse de l'estomac et de celle des intestins.",
 										" La pneumonie est une infection des poumons causée le plus souvent par un virus ou une bactérie.");
 	*/
-	/*$listeMotsTrouves=array();
+	$listeMotsTrouves=array();
 	$nbMotsTrouves=0;
 
 	$textform = str_replace( array( '?', ',', '.', ':', '!', '\'', ')', '(', '{', '}'), ' ', $textform );
@@ -54,7 +51,7 @@
 		{
 			/*while (!empty($row))
 			{*/
-				/*echo '<span class="vocabulaire">
+				echo '<span class="vocabulaire">
 							<span class="expression">'.$mot.'</span>
 							<span class="definition hidden">'.$row['DEFINITION'].'</span>
 						</span>';
@@ -66,7 +63,7 @@
 			echo "$mot ";
 		}
 		$mot = strtok(" \n\t");
-	}*/
+	}
 ?>
 
 		<?php include("script_menu.php"); ?>
