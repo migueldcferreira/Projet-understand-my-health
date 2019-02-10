@@ -23,10 +23,10 @@
     $nbBaliseOuvrante = 0;
     foreach($text as $lettre)
     {
-      //if($nbBaliseOuvrante==0 and preg_match("[a-zA-Z]",$lettre) or (strlen($mot)>0 and $lettre=='-')))
-      //{
+      if($nbBaliseOuvrante==0 /*and preg_match("[a-zA-Z]",$lettre)*/ or (strlen($mot)>0 and $lettre=='-')))
+      {
         $mot = $mot . "$lettre";
-      //}
+      }
       /*else
       {
         if(strlen($mot) > 0)
