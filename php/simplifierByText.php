@@ -9,15 +9,16 @@
     <!--Container principal-->
     <?php include("menu.php"); ?>
     <?php
-	echo '<pre>';
+	echo '<p>';
     	if(empty($_POST["testtext"]))
     	{
     		die("Veuillez insérer du texte à simplifier");
     	}
     	$textForm=str_split($_POST["testtext"]);
     	require_once("simplifier.php");
-    	echo simplifierTexteBrut($textForm,0);
-	echo '</pre>';
+    	$texteSimplifie = simplifierTexteBrut($textForm,0);
+	echo str_replace("\n","<br />",$texteSimplifie);
+	echo '</p>';
     ?>
 
 	  <?php include("script_menu.php"); ?>
