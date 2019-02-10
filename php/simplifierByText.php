@@ -9,7 +9,7 @@
     <!--Container principal-->
     <?php include("menu.php"); ?>
     <?php
-	echo '<p>';
+	echo '<pre>';
     	if(empty($_POST["testtext"]))
     	{
     		die("Veuillez insérer du texte à simplifier");
@@ -17,7 +17,7 @@
     	$textForm=str_split($_POST["testtext"]);
     	require_once("simplifier.php");
     	echo simplifierTexteBrut($textForm,0);
-	echo '</p>';
+	echo '</pre>';
     ?>
 
 	  <?php include("script_menu.php"); ?>
