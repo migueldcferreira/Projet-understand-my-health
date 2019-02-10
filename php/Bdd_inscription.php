@@ -80,7 +80,7 @@ if (isset($_POST['login_user'])) {
 
   if (count($errors) == 0) {
     $MOT_DE_PASSE = md5($MOT_DE_PASSE);
-    $sts = "SELECT * FROM table_utilisateur WHERE ADRESSE_MAIL='$ADRESSE_MAIL' AND MOT_DE_PASSE='$MOT_DE_PASSE'";
+    $sts = "SELECT * FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL='$ADRESSE_MAIL' AND MOT_DE_PASSE='$MOT_DE_PASSE'";
 
 
     if ($results = $db->query($sts))
