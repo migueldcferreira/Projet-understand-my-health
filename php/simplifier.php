@@ -1,23 +1,25 @@
 <?php
-//$balise =
-//0: on cherche des mots difficiles dans les balises (<>),
-//1: on supprime les balises et leur contenue,
-//2: on laisse les balises mais on ne cherche pas de mots difficiles dedans
+  require('Bdd.php');
+  //connexion a la base de donnees   
+  try
+  {
+    $bdd = Bdd::connect("BDD_TRADOCTEUR");
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //Permet de récuperer une exception lorsque il y a une erreur au niveau de la base de donnée.
+    //On pourra donc traiter l'erreur plus simplement avec un try et catch.
+  }
+  catch (Exception $e)
+  {
+      die('Erreur : ' . $e->getMessage());
+  }
+
+  //$balise =
+  //0: on cherche des mots difficiles dans les balises (<>),
+  //1: on supprime les balises et leur contenue,
+  //2: on laisse les balises mais on ne cherche pas de mots difficiles dedans
   function simplifierTexteBrut($text, $balise)
   {
-    //connexion a la base de donnees
-    require('Bdd.php');
-    try
-    {
-      $bdd = Bdd::connect("BDD_TRADOCTEUR");
-      $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //Permet de récuperer une exception lorsque il y a une erreur au niveau de la base de donnée.
-      //On pourra donc traiter l'erreur plus simplement avec un try et catch.
-    }
-    catch (Exception $e)
-    {
-        die('Erreur : ' . $e->getMessage());
-    }
+    
     echo "Texte simplifié :";
     $mot = "";
     $nbBaliseOuvrante = 0;
