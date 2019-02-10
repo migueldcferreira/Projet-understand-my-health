@@ -27,7 +27,7 @@
       {
         $mot = $mot . "$lettre";
       }
-      /*else
+      else
       {
         if(strlen($mot) > 0)
         {
@@ -51,7 +51,7 @@
       		}
         }
         $mot = "";
-        if($balise>0 and $lettre == "<")
+        /*if($balise>0 and $lettre == "<")
         {
           $nbBaliseOuvrante += 1;
         }
@@ -63,8 +63,8 @@
         {
           if(!($balise == 1) or $nbBaliseOuvrante==0)
             echo "$lettre";
-        }
-      }*/
+        }*/
+      }
     }
     echo "$mot";
   }
