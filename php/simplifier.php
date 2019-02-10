@@ -23,11 +23,11 @@
     $nbBaliseOuvrante = 0;
     foreach($text as $lettre)
     {
-      if($nbBaliseOuvrante==0 and preg_match("#[a-zA-Z]#",$lettre) or (strlen($mot)>0 and $lettre=='-'))
+      if($nbBaliseOuvrante==0 and preg_match("#[a-zA-Z]#",$lettre) or (strlen($mot)>0 and $lettre=="-"))
       {
         $mot = $mot . "$lettre";
       }
-      else
+      /*else
       {
         if(strlen($mot) > 0)
         {
@@ -51,20 +51,20 @@
       		}
         }
         $mot = "";
-        if($balise>0 and $lettre == '<')
+        if($balise>0 and $lettre == "<")
         {
           $nbBaliseOuvrante += 1;
         }
-        elseif($balise>0 and $nbBaliseOuvrante > 0 and $lettre == '>')
+        elseif($balise>0 and $nbBaliseOuvrante > 0 and $lettre == ">")
         {
           $nbBaliseOuvrante -= 1;
         }
         else
         {
-          if(!($balise == 1) or !($nbBaliseOuvrante>0)
+          if(!($balise == 1) or $nbBaliseOuvrante==0)
             echo "$lettre";
         }
-      }
+      }*/
     }
     echo "$mot";
   }
