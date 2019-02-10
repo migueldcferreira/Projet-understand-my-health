@@ -14,7 +14,7 @@
     		die("Veuillez insérer du texte à simplifier");
     	}
     	$textForm=str_split($_POST["testtext"]);
-    	include("simplifier.php");
+    	require_once("simplifier.php");
     	simplifierTexteBrut($textForm,0);
     ?>
 
