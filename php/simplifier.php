@@ -40,7 +40,7 @@
       		{
       			//while (!empty($row))
       			//{
-      				$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span class="definition hidden">'.$row['DEFINITION'].'</span></span>';
+      				$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
       			//$row = $res->fetch();
       			//}
       		}
@@ -76,7 +76,7 @@
       		{
       			//while (!empty($row))
       			//{
-      				$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span class="definition hidden">'.$row['DEFINITION'].'</span></span>';
+      				$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
       			//$row = $res->fetch();
       			//}
       		}
