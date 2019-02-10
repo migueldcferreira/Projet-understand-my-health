@@ -1,17 +1,5 @@
 <?php
   require('Bdd.php');
-  //connexion a la base de donnees   
-  try
-  {
-    $bdd = Bdd::connect("BDD_TRADOCTEUR");
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //Permet de récuperer une exception lorsque il y a une erreur au niveau de la base de donnée.
-    //On pourra donc traiter l'erreur plus simplement avec un try et catch.
-  }
-  catch (Exception $e)
-  {
-      die('Erreur : ' . $e->getMessage());
-  }
 
   //$balise =
   //0: on cherche des mots difficiles dans les balises (<>),
@@ -19,6 +7,19 @@
   //2: on laisse les balises mais on ne cherche pas de mots difficiles dedans
   function simplifierTexteBrut($text, $balise)
   {
+    //connexion a la base de donnees   
+    try
+    {
+      $bdd = Bdd::connect("BDD_TRADOCTEUR");
+      $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      //Permet de récuperer une exception lorsque il y a une erreur au niveau de la base de donnée.
+      //On pourra donc traiter l'erreur plus simplement avec un try et catch.
+    }
+    catch (Exception $e)
+    {
+        die('Erreur : ' . $e->getMessage());
+    }
+    
     $mot = "";
     $nbBaliseOuvrante = 0;
     foreach($text as $lettre)
@@ -29,7 +30,7 @@
       }
       else
       {
-        /*if(strlen($mot) > 0)
+        if(strlen($mot) > 0)
         {
           $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot';";
       		$res = $bdd->query($sql); //On récupère (s'il en existe) les lignes de notre table "produits" qui répondent à notre requête $sql.
@@ -49,7 +50,7 @@
       		{
       			echo "$mot";
       		}
-        }*/
+        }
         $mot = "";
         if($balise>0 and $lettre == "<")
         {
