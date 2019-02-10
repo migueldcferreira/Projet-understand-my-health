@@ -3,7 +3,9 @@
 <head>
 
 
-	 <?php include("head.php"); ?>
+	 <?php session_start();
+	 include ('verif_admin.php'); 
+	 include("head.php"); ?>
     <link rel="stylesheet" href="..\css/choosetrad.css">
 
 </head>
