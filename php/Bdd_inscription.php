@@ -55,8 +55,10 @@ if (isset($_POST['reg_user'])) {
 
   	$tmp=$db->prepare($query);
     $tmp->execute();
-  	$_SESSION['PRENOM'] = $PRENOM;
+	$_SESSION['username'] = $ADRESSE_MAIL;
   	$_SESSION['success'] = "Vous étes connecté";
+	$_SESSION['rang']="membre", 
+	$_SESSION['prenom'] = $PRENOM;
   	header('location: accueil.php');//on revient à la page d'accueil
   }
 }
@@ -78,19 +80,46 @@ if (isset($_POST['login_user'])) {
 
   if (count($errors) == 0) {
     $MOT_DE_PASSE = md5($MOT_DE_PASSE);
-    $sts = "SELECT COUNT(*) FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL='$ADRESSE_MAIL' AND MOT_DE_PASSE='$MOT_DE_PASSE'";
+    $sts = "SELECT * FROM table_utilisateur WHERE ADRESSE_MAIL='$ADRESSE_MAIL' AND MOT_DE_PASSE='$MOT_DE_PASSE'";
 
 
-    if ($results = $db->query($sts)){
-      if ( $results->fetchColumn()>0 ) {
-         $_SESSION['username'] = $ADRESSE_MAIL;
-         $_SESSION['success'] = "vous etes connecté";
-         header('location: admin_liste_membres.php');
-    }else {
-
-      array_push($errors, "Mot de passe ou identifiant incorrect ");
+    if ($results = $db->query($sts))
+    {
+	if (!empty($row = $results->fetch()))
+	{
+        	$_SESSION['username'] = $ADRESSE_MAIL;
+        	$_SESSION['success'] = "vous etes connecté";
+		$_SESSION['rang']=$row['RANG'];
+		$_SESSION['prenom']=$row['PRENOM'];
+         	header('location: accueil.php');
+    	}
+	else
+	{
+		array_push($errors, "Mot de passe ou identifiant incorrect ");
+  	}	
     }
   }
+}
+
+
+// Proposer un nouveau mot difficile dans la base de données des mots difficiles
+if (isset($_POST['proposerDef']))
+{
+  $NOUVEAU_MOT = $_POST['MOT'];
+  $DEFINITION = $_POST['DEFINITION'];
+  if (empty($NOUVEAU_MOT))
+  {
+    array_push($errors, "Entrer votre nouveau mot");
+  }
+  if (empty($DEFINITION))
+  {
+    array_push($errors, "Entrer une definition");
+  }
+
+  if (count($errors) == 0)
+  {
+	echo 'Vous voulez donc ajouter le mot ' . $NOUVEAU_MOT . ' avec la définition suivante : ' . $DEFINITION;
   }
 }
+
 ?>
