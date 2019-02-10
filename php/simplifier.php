@@ -19,13 +19,11 @@
   //2: on laisse les balises mais on ne cherche pas de mots difficiles dedans
   function simplifierTexteBrut($text, $balise)
   {
-    
-    echo "Texte simplifié :";
     $mot = "";
     $nbBaliseOuvrante = 0;
     foreach($text as $lettre)
     {
-      //if($nbBaliseOuvrante==0 && preg_match("[a-zA-Z]",$lettre) || (strlen($mot)>0 && $lettre=='-')))
+      //if($nbBaliseOuvrante==0 and preg_match("[a-zA-Z]",$lettre) or (strlen($mot)>0 and $lettre=='-')))
       //{
         $mot = $mot . "$lettre";
       //}
@@ -53,17 +51,17 @@
       		}
         }
         $mot = "";
-        if($balise>0 && $lettre == '<')
+        if($balise>0 and $lettre == '<')
         {
           $nbBaliseOuvrante += 1;
         }
-        elseif($balise>0 && $nbBaliseOuvrante > 0 && $lettre == '>')
+        elseif($balise>0 and $nbBaliseOuvrante > 0 and $lettre == '>')
         {
           $nbBaliseOuvrante -= 1;
         }
         else
         {
-          if(!($balise == 1) || !($nbBaliseOuvrante>0)
+          if(!($balise == 1) or !($nbBaliseOuvrante>0)
             echo "$lettre";
         }
       }*/
