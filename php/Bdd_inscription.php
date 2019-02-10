@@ -57,7 +57,7 @@ if (isset($_POST['reg_user'])) {
     $tmp->execute();
 	$_SESSION['username'] = $ADRESSE_MAIL;
   	$_SESSION['success'] = "Vous étes connecté";
-	$_SESSION['rang']="membre", 
+	$_SESSION['rang']="membre"; 
 	$_SESSION['prenom'] = $PRENOM;
   	header('location: accueil.php');//on revient à la page d'accueil
   }
