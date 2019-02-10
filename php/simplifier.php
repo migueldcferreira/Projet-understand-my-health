@@ -67,6 +67,26 @@
         }
       }
     }
-    echo "$mot";
+    if(strlen($mot) > 0)
+        {
+          $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot';";
+      		$res = $bdd->query($sql); //On récupère (s'il en existe) les lignes de notre table "produits" qui répondent à notre requête $sql.
+      								  //Ces lignes sont stockées dans la variables $res qui est un tableau du jeu de résultat de notre requête.
+      		if(!empty($row = $res->fetch())) //La méthode fetch() permet de récupérer la ligne suivante du résultat de notre requete qui sont stockés dans la variable $res.
+      		{
+      			//while (!empty($row))
+      			//{
+      				echo '<span class="vocabulaire">
+      							<span class="expression">'.$mot.'</span>
+      							<span class="definition hidden">'.$row['DEFINITION'].'</span>
+      						</span>';
+      			//$row = $res->fetch();
+      			//}
+      		}
+      		else
+      		{
+      			echo "$mot";
+      		}
+        }
   }
 ?>
