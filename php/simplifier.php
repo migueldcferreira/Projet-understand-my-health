@@ -65,7 +65,10 @@
         {
           if(!($balise == 1) or $nbBaliseOuvrante==0)
           {
-            $texteSimplifie .= "$lettre";
+            if($lettre == "\n"
+              $texteSimplifie .= "<br />";
+            else
+              $texteSimplifie .= "$lettre";
           }
         }
       }
