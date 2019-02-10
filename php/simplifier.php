@@ -40,7 +40,7 @@
       		{
       			//while (!empty($row))
       			//{
-      				texteSimplifie .= '<span class="vocabulaire">
+      				$texteSimplifie .= '<span class="vocabulaire">
       							<span class="expression">'.$mot.'</span>
       							<span class="definition hidden">'.$row['DEFINITION'].'</span>
       						</span>';
@@ -49,7 +49,7 @@
       		}
       		else
       		{
-      			texteSimplifie .= "$mot";            
+      			$texteSimplifie .= "$mot";            
       		}
         }
         $mot = "";
@@ -65,7 +65,7 @@
         {
           if(!($balise == 1) or $nbBaliseOuvrante==0)
           {
-            texteSimplifie .= "$lettre";
+            $texteSimplifie .= "$lettre";
           }
         }
       }
@@ -79,7 +79,7 @@
       		{
       			//while (!empty($row))
       			//{
-      				texteSimplifie .= '<span class="vocabulaire">
+      				$texteSimplifie .= '<span class="vocabulaire">
       							<span class="expression">'.$mot.'</span>
       							<span class="definition hidden">'.$row['DEFINITION'].'</span>
       						</span>';
@@ -88,10 +88,10 @@
       		}
       		else
       		{
-      			texteSimplifie .= "$mot";
+      			$texteSimplifie .= "$mot";
       		}
         }
     
-    return texteSimplifie;
+    return $texteSimplifie;
   }
 ?>
