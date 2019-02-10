@@ -20,6 +20,7 @@
         die('Erreur : ' . $e->getMessage());
     }
     
+    $texteSimplifie = "";
     $mot = "";
     $nbBaliseOuvrante = 0;
     foreach($text as $lettre)
@@ -39,7 +40,7 @@
       		{
       			//while (!empty($row))
       			//{
-      				echo '<span class="vocabulaire">
+      				texteSimplifie .= '<span class="vocabulaire">
       							<span class="expression">'.$mot.'</span>
       							<span class="definition hidden">'.$row['DEFINITION'].'</span>
       						</span>';
@@ -48,7 +49,7 @@
       		}
       		else
       		{
-      			echo "$mot";            
+      			texteSimplifie .= "$mot";            
       		}
         }
         $mot = "";
@@ -64,9 +65,7 @@
         {
           if(!($balise == 1) or $nbBaliseOuvrante==0)
           {
-            if($lettre == "\n")
-              echo "\nn";
-            echo "$lettre";
+            texteSimplifie .= "$lettre";
           }
         }
       }
@@ -80,7 +79,7 @@
       		{
       			//while (!empty($row))
       			//{
-      				echo '<span class="vocabulaire">
+      				texteSimplifie .= '<span class="vocabulaire">
       							<span class="expression">'.$mot.'</span>
       							<span class="definition hidden">'.$row['DEFINITION'].'</span>
       						</span>';
@@ -89,8 +88,10 @@
       		}
       		else
       		{
-      			echo "$mot";
+      			texteSimplifie .= "$mot";
       		}
         }
+    
+    return texteSimplifie;
   }
 ?>
