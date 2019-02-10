@@ -17,7 +17,7 @@
     	$textForm=str_split($_POST["testtext"]);
     	require_once("simplifier.php");
     	echo simplifierTexteBrut($textForm,0);
-	echo "<\p>";
+	echo "<\\p>";
     ?>
 
 	  <?php include("script_menu.php"); ?>
