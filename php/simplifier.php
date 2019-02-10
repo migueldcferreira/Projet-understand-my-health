@@ -27,7 +27,7 @@
     {
       if($nbBaliseOuvrante==0 && preg_match("[a-zA-Z]",$lettre) || (strlen($mot)>0 && $lettre=='-')))
       {
-        $mot .= $lettre;
+        $mot = $mot . "$lettre";
       }
       /*else
       {
@@ -68,6 +68,5 @@
         }
       }*/
     }
-    echo "$mot";
   }
 ?>
