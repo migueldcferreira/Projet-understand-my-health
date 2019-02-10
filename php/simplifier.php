@@ -18,7 +18,7 @@
     {
         die('Erreur : ' . $e->getMessage());
     }
-
+    echo "Texte simplifié :";
     $mot = "";
     $nbBaliseOuvrante = 0;
     foreach($text as $lettre)
