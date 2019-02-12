@@ -47,6 +47,24 @@
           </tr>
     </thead>
     <tbody>
+            <tr>
+                 <td> test </td>
+                 <td> test </td>
+                 <td> 2018-11-11</td>
+            </tr>
+    </tbody>
+  </table>
+
+
+  <table id = "table" class="display">
+    <thead>
+        <tr>
+            <th scope="col">Mot</th>
+            <th scope="col">Définition</th>
+            <th scope="col">Date_ajout</th>
+          </tr>
+    </thead>
+    <tbody>
           <?php while ($row = $res_base->fetch()) { ?>
             <tr>
                  <td> <?php printf ("%s", $row[1]); ?> </td>
