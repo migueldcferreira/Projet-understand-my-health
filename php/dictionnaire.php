@@ -3,7 +3,14 @@
   <head>
     <?php session_start();
     include("head.php"); ?>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script src="jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready( function () {
+    $('#table_data').DataTable();
+    } ); </script>
+
+    
     <link rel="stylesheet" href="..\css/choosetrad.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   
@@ -46,11 +53,6 @@
                  <td> <?php printf ("%s", $row[1]); ?> </td>
                  <td> <?php printf ("%s", $row[2]); ?> </td>
                  <td> <?php printf ("%s", $row[3]); ?> </td>
-
-                 <td>
-                    <a href="modifier.php?id=<?php echo $row[0] ?>">   <button class="btn btn-sm tooltipsAdmin enabled" title="Modifier cette définition"><i class="fa fa-edit"></i></button>      </a>
-                    <a href="supprimer_def.php?id=<?php echo $row[0] ?>"> <button class="btn btn-danger btn-sm tooltipsAdmin enabled" title="Supprimer cette définition"><i class="fas fa-minus-circle"></i></button> </a>
-                 </td>
             </tr>
           <?php } ?>
     </tbody>
@@ -59,8 +61,8 @@
 
   
 
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-  <script type="text/javascript" src="..\javascript/dataTable.js"></script>
+  
+
  
 	<?php include("script_menu.php"); ?>
 
