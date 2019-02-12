@@ -30,7 +30,7 @@
 
   ?>
 	
-  <table class="display">
+  <table id = "table_data" class="display">
     <thead>
         <tr>
             <th scope="col">Mot</th>
@@ -59,6 +59,7 @@
   
 
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="..\javascript/dataTable.js"></script>
  
 	<?php include("script_menu.php"); ?>
 
