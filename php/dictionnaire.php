@@ -3,6 +3,7 @@
   <head>
     <?php session_start();
     include("head.php"); ?>
+    <script src="jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="..\css/choosetrad.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   
