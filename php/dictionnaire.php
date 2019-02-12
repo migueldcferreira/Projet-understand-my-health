@@ -21,7 +21,9 @@
   <body>
 
 
-	
+
+  <?php include("menu.php"); ?>
+
 <table id="table_id" class="display">
     <thead>
         <tr>
@@ -40,8 +42,7 @@
         </tr>
     </tbody>
 </table>
-
-  <?php include("menu.php"); 
+  <?php
 
     require('Bdd.php');
 
