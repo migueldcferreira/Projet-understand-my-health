@@ -22,7 +22,7 @@
 						<a href="accueil.php" class="nav-link">Traduire un contenu médical<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-						<a href="#top" class="nav-link">Dictionnaire</a>
+						<a href="dictionnaire.php" class="nav-link">Dictionnaire</a>
 					</li>
 					
 					
