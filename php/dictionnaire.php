@@ -7,7 +7,7 @@
     <script src="jquery-3.3.1.min.js"></script>
     <script>
     $(document).ready( function () {
-    $('#table_data').DataTable();
+    $('#table_id').DataTable();
     } ); </script>
 
     
@@ -38,13 +38,12 @@
 
   ?>
 	
-  <table id = "table_data" class="display">
+  <table id = "table_id" class="display">
     <thead>
         <tr>
             <th scope="col">Mot</th>
             <th scope="col">Définition</th>
             <th scope="col">Date_ajout</th>
-            <th scope="col"></th>
           </tr>
     </thead>
     <tbody>
