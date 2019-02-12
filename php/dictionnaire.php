@@ -31,7 +31,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 1 a</td>
             <td>Row 1 Data 2</td>
         </tr>
         <tr>
@@ -42,46 +42,6 @@
 </table>
 
  
-
-  <?php
-
-    require('Bdd.php');
-
-    try
-    {
-      $bdd = Bdd::connect("BDD_TRADOCTEUR");
-      $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Permet de récuperer une exception lorsque il y a une erreur au niveau de la base de donnée.
-                                       //On pourra donc traiter l'erreur plus simplement avec un try et catch.
-
-      $sql_base = "SELECT ID_DEFINITION, MOT, DEFINITION, DATE_AJOUT FROM TABLE_DEFINITION WHERE A_CONFIRMER = 0"; //requête pour trouver les définitions validées
-      $res_base = $bdd->query($sql_base);
-    }
-    catch (Exception $e)
-    {
-        die('Erreur : ' . $e->getMessage());
-    }
-
-  ?>
-
-  <table id = "table" class="display">
-    <thead>
-        <tr>
-            <th scope="col">Mot</th>
-            <th scope="col">Définition</th>
-            <th scope="col">Date_ajout</th>
-          </tr>
-    </thead>
-    <tbody>
-          <?php while ($row = $res_base->fetch()) { ?>
-            <tr>
-                 <td> <?php printf ("%s", $row[1]); ?> </td>
-                 <td> <?php printf ("%s", $row[2]); ?> </td>
-                 <td> <?php printf ("%s", $row[3]); ?> </td>
-            </tr>
-          <?php } ?>
-    </tbody>
-  </table>
-
 
   
 
