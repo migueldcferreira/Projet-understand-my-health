@@ -3,8 +3,9 @@
   <head>
     <?php session_start();
     include("head.php"); ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script src="jquery-3.3.1.min.js"></script>
     <script>
     $(document).ready( function () {
     $('#table_id').DataTable();
@@ -12,7 +13,7 @@
 
     
     <link rel="stylesheet" href="..\css/choosetrad.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
   
 
   </head>
