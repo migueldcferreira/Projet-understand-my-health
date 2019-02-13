@@ -21,7 +21,7 @@
   
     	require_once("simplifier.php");
     	$texteSimplifie = simplifierTexteBrut($textBrut,0);
-	echo preg_replace("\n","<br />",$texteSimplifie);
+	echo str_replace("\n","<br />",$texteSimplifie);
     ?>
 
 	  <?php include("script_menu.php"); ?>
