@@ -21,7 +21,7 @@
 	//echo $textForm;
   
     	require_once("simplifier.php");
-    	$texteSimplifie = simplifierTexteBrut($textForm,1);
+    	$texteSimplifie = simplifierTexteBrut($textForm,0);
 	echo str_replace("\n","<br />",$texteSimplifie);
 	echo '</p>';
     ?>
