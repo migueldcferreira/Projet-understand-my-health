@@ -15,13 +15,13 @@
     		die("Veuillez insérer une URL");
     	}
 	//on recupere le texte a l'URL
-	$textform = file_get_contents($_POST["testurl"]);
+	$textURL = file_get_contents($_POST["testurl"]);
 	//on garde seulement le body de la page
-      	$textForm = str_replace("#^.*<body[^>]*>|</body>.*$#s" , " ", $textform);
-	//echo $textForm;
+      	$textBrut = str_replace("#^.*<body[^>]*>|</body>.*$#s" , " ", $textURL);
+	echo $textBorm;
   
     	require_once("simplifier.php");
-    	$texteSimplifie = simplifierTexteBrut($textForm,0);
+    	$texteSimplifie = simplifierTexteBrut($textBrut,0);
 	echo str_replace("\n","<br />",$texteSimplifie);
 	echo '</p>';
     ?>
