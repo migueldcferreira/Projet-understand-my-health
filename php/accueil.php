@@ -43,7 +43,7 @@
 
 									  <!-- Standar Form -->
 									
-									  <form action="simplifierByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
+									  <form action="traductionByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
 										<div class="form-inline">
 										  <div class="form-group">
 											<input type="file" name="fichier" id="js-upload-files" multiple aria-describedby="fileHelp" accept=".txt,.pdf">
@@ -65,7 +65,7 @@
 								
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-								<form class="form" action="traductionByURL.php" method="post">
+								<form class="form" action="simplifierByURL.php" method="post">
 									<br/>
 									<div class="form-inline">
 										<input type="text" class="form-control form-control-lg" id="myURL" name="testurl"></input>
