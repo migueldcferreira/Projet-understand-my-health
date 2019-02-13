@@ -19,7 +19,7 @@
     {
         die('Erreur : ' . $e->getMessage());
     }
-    
+    echo $text;
     $texteSimplifie = "";
     $mot = "";
     $nbBaliseOuvrante = 0;
