@@ -23,6 +23,7 @@
     $texteSimplifie = "";
     $mot = "";
     $nbBaliseOuvrante = 0;
+    echo gettype($text);
     foreach($text as $lettre)
     {
       echo $lettre;
