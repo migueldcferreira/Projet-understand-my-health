@@ -14,10 +14,11 @@
     	{
     		die("Veuillez insérer une URL");
     	}
-      $textForm = str_replace(array("#.*<body>#","#</body>.*#") , "", file_get_contents($_POST["testurl"]);
-    	require_once("simplifier.php");
+      	$textForm = str_replace(array("#.*<body>#","#</body>.*#") , "", file_get_contents($_POST["testurl"]);
+	echo $textForm;
+    	/*require_once("simplifier.php");
     	$texteSimplifie = simplifierTexteBrut($textForm,2);
-	echo str_replace("\n","<br />",$texteSimplifie);
+	echo str_replace("\n","<br />",$texteSimplifie);*/
 	echo '</p>';
     ?>
 
