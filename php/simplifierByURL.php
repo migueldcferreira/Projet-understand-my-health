@@ -17,7 +17,7 @@
 	//on recupere le texte a l'URL
 	$textform = file_get_contents($_POST["testurl"]);
 	//on garde seulement le body de la page
-      	$textForm = str_replace("#^[^ø]*<body[^>]*>|</body>[^ø]*$#" , "", $textform);
+      	$textForm = str_replace("#^.*<body[^>]*>|</body>.*$#s" , "", $textform);
 	echo $textForm;
   
     	require_once("simplifier.php");
