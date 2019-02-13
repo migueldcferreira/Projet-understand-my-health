@@ -23,11 +23,11 @@
 	//supprime la balise header et son contenu
   	$textBrut = preg_replace("#<header[^>]*>.*</header>#s" , "", $textBrut);	  
 	//permet de supprimer les <div> en relation avec la navigation et leur contenu
-	//$textBrut = preg_replace("#<div[^>]*navigation[^>]*>(((?!<div).)*<div[^>]*>((?!</div).)*</div>((?!</*div).)*)*</div>#s" , "", $textBrut);
+	$textBrut = preg_replace("#<div[^>]*navigation[^>]*>(((?!<div).)*<div[^>]*>((?!</div).)*</div>((?!</*div).)*)*</div>#s" , "", $textBrut);
 	  
     	require_once("simplifier.php");
     	$texteSimplifie = simplifierTexteBrut($textBrut,0);
-	//echo str_replace("\n","<br />",$texteSimplifie);
+	echo str_replace("\n","<br />",$texteSimplifie);
     ?>
 
 	  <?php include("script_menu.php"); ?>
