@@ -18,7 +18,7 @@
 	$textURL = file_get_contents($_POST["testurl"]);
 	//on garde seulement le body de la page
       	$textBrut = str_replace("#^.*<body[^>]*>|</body>.*$#s" , " ", $textURL);
-	echo $textBorm;
+	echo $textBrut;
   
     	require_once("simplifier.php");
     	$texteSimplifie = simplifierTexteBrut($textBrut,0);
