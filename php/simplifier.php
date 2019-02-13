@@ -23,10 +23,11 @@
     $texteSimplifie = "";
     $mot = "";
     $nbBaliseOuvrante = 0;
-    echo gettype($text);
+    //le text doit etre sous la forme d'un tableau
+    if(gettype($text) == "string")
+      $text = str_split($text);
     foreach($text as $lettre)
     {
-      echo $lettre;
       if($nbBaliseOuvrante==0 and preg_match("#[a-zA-Z]#",$lettre) or (strlen($mot)>0 and $lettre=="-"))
       {
         $mot = $mot . "$lettre";
