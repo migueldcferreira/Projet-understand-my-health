@@ -18,6 +18,7 @@
 	//on garde seulement le body de la page
       	$textBrut = preg_replace("#^.*<body[^>]*>|</body>.*$#s" , "", $textURL);
 	$textBrut = preg_replace("#<script[^>]*>.*</script>#s" , "", $textBrut);
+	$textBrut = preg_replace("#<a[^>]*>|</a>#s" , "", $textBrut);
 	echo $textBrut;
   
     	require_once("simplifier.php");
