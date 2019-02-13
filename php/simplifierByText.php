@@ -17,7 +17,7 @@
     	$textForm=str_split($_POST["testtext"]);
     	require_once("simplifier.php");
     	$texteSimplifie = simplifierTexteBrut($textForm,0);
-	echo preg_replace("\n","<br />",$texteSimplifie);
+	echo str_replace("\n","<br />",$texteSimplifie);
 	echo '</p>';
     ?>
 
