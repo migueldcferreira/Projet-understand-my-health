@@ -63,10 +63,8 @@
 			die('Erreur : ' . $e->getMessage());
 	}?>
 
-
 <section id="tabs" class="project-tab">
-
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+		<div class="container">
 
 
 															<div class="row">
