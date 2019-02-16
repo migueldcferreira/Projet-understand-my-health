@@ -67,7 +67,7 @@
                       </div>
                     </div>
                   </div>
-                </div>'
+                </div>';
               $numModal += 1;
           }
       		else
