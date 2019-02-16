@@ -5,7 +5,7 @@
   //0: on cherche des mots difficiles dans les balises (<>),
   //1: on supprime les balises et leur contenue,
   //2: on laisse les balises mais on ne cherche pas de mots difficiles dedans
-  function simplifierTexteBrut($text, $balise)
+  function simplifierTexteBrut($text, $balise, $sautLigne = false)
   {
     //connexion a la base de donnees   
     try
@@ -65,7 +65,10 @@
         {
           if(!($balise == 1) or $nbBaliseOuvrante==0)
           {
-            $texteSimplifie .= "$lettre";
+            if($sautLigne == true && $lettre == '\n')
+              $texteSimplifie .= "<br />";
+            else
+              $texteSimplifie .= "$lettre";
           }
         }
       }
