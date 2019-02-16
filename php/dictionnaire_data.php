@@ -25,14 +25,14 @@ $columns = array(
 
 // getting total number records without any search
 $sql = "SELECT mot, definition";
-$sql.=" FROM table_definition";
+$sql.=" FROM TABLE_DEFINITION";
 $query=mysqli_query($conn, $sql) or die("employee-grid-data.php: get employees 1");
 $totalData = mysqli_num_rows($query);
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
 
 
 $sql = "SELECT MOT, DEFINITION";
-$sql.=" FROM table_definition WHERE a_confirmer=0";
+$sql.=" FROM TABLE_DEFINITION WHERE a_confirmer=0";
 if( !empty($requestData['search']['value']) ) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
 	$sql.=" AND MOT LIKE '".$requestData['search']['value']."%' ";    
 	
