@@ -23,6 +23,8 @@
     $texteSimplifie = "";
     $mot = "";
     $nbBaliseOuvrante = 0;
+    $numModal = 0;
+    
     //le text doit etre sous la forme d'un tableau
     if(gettype($text) == "string")
       $text = str_split($text);
@@ -36,17 +38,38 @@
       {
         if(strlen($mot) > 0)
         {
-          $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot';";
+          $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot' AND CLASSEMENT = 1;";
       		$res = $bdd->query($sql); //On récupère (s'il en existe) les lignes de notre table "produits" qui répondent à notre requête $sql.
       								  //Ces lignes sont stockées dans la variables $res qui est un tableau du jeu de résultat de notre requête.
       		if(!empty($row = $res->fetch())) //La méthode fetch() permet de récupérer la ligne suivante du résultat de notre requete qui sont stockés dans la variable $res.
       		{
-      			//while (!empty($row))
-      			//{
-      				$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
-      			//$row = $res->fetch();
-      			//}
-      		}
+      				//$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
+      		    $texteSimplifie .= '<!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNb'.$numModal.'">
+                  '.$mot.'
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modalNb'.$numModal.'" tabindex="-1" role="dialog" aria-labelledby="modalNb'.$numModal.'Label" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modalNb'.$numModal.'Label">'.$mot.'</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        '.$row['DEFINITION'].'
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>'
+              $numModal += 1;
+          }
       		else
       		{
       			$texteSimplifie .= "$mot";            
@@ -75,16 +98,12 @@
     }
     if(strlen($mot) > 0)
         {
-          $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot';";
+          $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot' AND CLASSEMENT = 1;";
       		$res = $bdd->query($sql); //On récupère (s'il en existe) les lignes de notre table "produits" qui répondent à notre requête $sql.
       								  //Ces lignes sont stockées dans la variables $res qui est un tableau du jeu de résultat de notre requête.
       		if(!empty($row = $res->fetch())) //La méthode fetch() permet de récupérer la ligne suivante du résultat de notre requete qui sont stockés dans la variable $res.
       		{
-      			//while (!empty($row))
-      			//{
-      				$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
-      			//$row = $res->fetch();
-      			//}
+      				//$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
       		}
       		else
       		{
