@@ -1,113 +1,68 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <?php session_start();
-    include("head.php"); ?>
+<html>
+	<title>Datatable Demo1 | CoderExample</title>
+	<head>
+  	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script src="jquery-3.3.1.min.js"></script>
-    <script>
-    $(document).ready( function () {
-    $('#table_id').DataTable();
-    } ); </script>
-
     
-    <link rel="stylesheet" href="..\css/choosetrad.css">
-
-  
-
-  </head>
-  <body>
-
- <?php include("menu.php"); ?>
-	
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Row 1 Data 1 a</td>
-            <td>Row 1 Data 2</td>
-        </tr>
-        <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
-        </tr>
-    </tbody>
-</table>
-	  
-	  <?php
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+   
+    <script type="text/javascript" language="javascript" >
+			$(document).ready(function() {
+				var dataTable = $('#employee-grid').DataTable( {
+					"processing": true,
+					"serverSide": true,
 
 
-	require('Bdd.php');
-
-	try
-	{
-		$bdd = Bdd::connect("BDD_TRADOCTEUR");
-		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Permet de récuperer une exception lorsque il y a une erreur au niveau de la base de donnée.
-																	   //On pourra donc traiter l'erreur plus simplement avec un try et catch.
-		$sql_base = "SELECT ID_DEFINITION, MOT, DEFINITION, DATE_AJOUT FROM TABLE_DEFINITION WHERE A_CONFIRMER = 0"; //requête pour trouver les définitions validées
-		$res_base = $bdd->query($sql_base);
-
-		$sql_prop = "SELECT ID_DEFINITION, MOT, DEFINITION, DATE_AJOUT FROM TABLE_DEFINITION WHERE A_CONFIRMER = 1"; //requête pour trouver les définitions non validées (propositions)
-		$res_prop = $bdd->query($sql_prop);
-
-	}
-	catch (Exception $e)
-	{
-			die('Erreur : ' . $e->getMessage());
-	}?>
-
-<section id="tabs" class="project-tab">
+					"ajax":{
+						url :"dictionnaire_data.php", // json datasource
+						type: "post",  // method  , by default get
+						dataFilter: function(reps) {
+				                console.log(reps);
+				                return reps;
+		           			 },
+		           		error:function(err){
+			                  console.log(err);
+			            },
+						error: function(){  // error handling
+							$(".employee-grid-error").html("");
+							$("#employee-grid").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+							$("#employee-grid_processing").css("display","none");
+							
+						}
+					}
+				} );
+			} );
+		</script>
+		<style>
+			div.container {
+			    margin: 0 auto;
+			    max-width:760px;
+			}
+			div.header {
+			    margin: 100px auto;
+			    line-height:30px;
+			    max-width:760px;
+			}
+			body {
+			    background: #f7f7f7;
+			    color: #333;
+			    font: 90%/1.45em "Helvetica Neue",HelveticaNeue,Verdana,Arial,Helvetica,sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header"><h1>DataTable demo (Server side) in Php,Mysql and Ajax </h1></div>
 		<div class="container">
-
-
-															<div class="row">
-																<div class="col-md-12 table-responsive-sm">
-																	<table class="table">
-																		<thead>
-																			<tr>
-																				<th scope="col">Mot</th>
-																				<th scope="col">Définition</th>
-										
-																			</tr>
-																		</thead>
-																		<tbody>
-																			<?php while ($row = $res_base->fetch()) { ?>
-																				<tr>
-																						<td> <?php printf ("%s", $row[1]); ?> </td>
-																						<td> <?php printf ("%s", $row[2]); ?> </td>
-																					
-
-					        														
-																				</tr>
-																			<?php } ?>
-																		</tbody>
-																	</table>
-																</div>
-															</div>
-
-
-
-
-
-
-                            </div>
-    </section>
-
- 
-
-  
-
-  
-
- 
-	<?php include("script_menu.php"); ?>
-
-  </body>
+			<table id="employee-grid"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+					<thead>
+						<tr>
+							<th>mot</th>
+							<th>definition</th>
+						</tr>
+					</thead>
+			</table>
+		</div>
+	</body>
 </html>
