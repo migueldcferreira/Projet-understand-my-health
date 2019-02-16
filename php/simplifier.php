@@ -65,7 +65,7 @@
         {
           if(!($balise == 1) or $nbBaliseOuvrante==0)
           {
-            if($sautLigne == true and $lettre == '\n')
+            if($lettre == '\n')
               $texteSimplifie .= "<br />";
             else
               $texteSimplifie .= "$lettre";
