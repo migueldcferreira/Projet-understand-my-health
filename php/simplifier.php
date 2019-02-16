@@ -44,7 +44,9 @@
       		if(!empty($row = $res->fetch())) //La méthode fetch() permet de récupérer la ligne suivante du résultat de notre requete qui sont stockés dans la variable $res.
       		{
       				//$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
-      		    $texteSimplifie .= '<!-- Button trigger modal -->
+      		    $texteSimplifie .= '
+              <div class="vocabulaireSpecifique">
+                <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNb'.$numModal.'">
                   '.$mot.'
                 </button>
@@ -67,7 +69,8 @@
                       </div>
                     </div>
                   </div>
-                </div>';
+                </div>
+              </div>';
               $numModal += 1;
           }
       		else
