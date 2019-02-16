@@ -30,7 +30,7 @@
 	  
     	require_once("simplifier.php");
     	$texteSimplifie = simplifierTexteBrut($textBrut,0);
-	echo str_replace("\n","<br />",$texteSimplifie);
+	echo $texteSimplifie;
     ?>
 
 	  <?php include("script_menu.php"); ?>
