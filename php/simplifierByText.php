@@ -9,7 +9,7 @@
     <!--Container principal-->
     <?php include("menu.php"); ?>
     <?php
-	echo '<p>';
+	echo '<div>';
     	if(empty($_POST["testtext"]))
     	{
     		die("Veuillez insérer du texte à simplifier");
@@ -19,7 +19,7 @@
     	$texteSimplifie = simplifierTexteBrut($textForm,0,true);
 	//echo str_replace("\n","<br />",$texteSimplifie);
 	echo $texteSimplifie;
-	echo '</p>';
+	echo '</div>';
     ?>
 
 	  <?php include("script_menu.php"); ?>
