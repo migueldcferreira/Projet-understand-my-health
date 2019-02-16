@@ -45,7 +45,7 @@
       		{
       				//$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
       		    $texteSimplifie .= '
-              <div class="vocabulaireSpecifique">
+              <span class="vocabulaireSpecifique">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNb'.$numModal.'">
                   '.$mot.'
@@ -70,7 +70,7 @@
                     </div>
                   </div>
                 </div>
-              </div>';
+              </span>';
               $numModal += 1;
           }
       		else
