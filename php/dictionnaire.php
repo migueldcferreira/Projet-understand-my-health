@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <html>
-	<title>Datatable Demo1 | CoderExample</title>
 	<head>
 
   	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
@@ -70,6 +69,6 @@
 			</table>
 		</div>
 
-		<?php include("script_menu.php"); ?>
+		
 	</body>
 </html>
