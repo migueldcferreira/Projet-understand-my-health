@@ -71,4 +71,5 @@
 
 		
 	</body>
+	<?php include("menu.php"); ?>
 </html>
