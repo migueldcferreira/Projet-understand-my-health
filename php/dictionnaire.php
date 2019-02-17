@@ -38,27 +38,12 @@
 		</script>
 			<?php session_start();
 	 		 include("head.php"); ?>
-		<style>
-			div.container {
-			    margin: 0 auto;
-			    max-width:760px;
-			}
-			div.header {
-			    margin: 100px auto;
-			    line-height:30px;
-			    max-width:760px;
-			}
-			body {
-			    background: #f7f7f7;
-			    color: #333;
-			    font: 90%/1.45em "Helvetica Neue",HelveticaNeue,Verdana,Arial,Helvetica,sans-serif;
-			}
-		</style>
+
 	</head>
 	<body>
 		<?php include("menu.php"); ?>
 
-		
+		</br>
 		<div class="container">
 			<table id="employee-grid"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
 					<thead>
