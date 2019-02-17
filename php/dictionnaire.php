@@ -3,6 +3,8 @@
 <html>
 	<title>Datatable Demo1 | CoderExample</title>
 	<head>
+	 <?php session_start();
+	  include("head.php"); ?>
   	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
@@ -53,6 +55,7 @@
 		</style>
 	</head>
 	<body>
+		<?php include("menu.php"); ?>
 		<div class="header"><h1>DataTable demo (Server side) in Php,Mysql and Ajax </h1></div>
 		<div class="container">
 			<table id="employee-grid"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
@@ -64,5 +67,7 @@
 					</thead>
 			</table>
 		</div>
+
+		<?php include("script_menu.php"); ?>
 	</body>
 </html>
