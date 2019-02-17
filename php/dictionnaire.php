@@ -10,7 +10,7 @@
    
     <script type="text/javascript" language="javascript" >
 			$(document).ready(function() {
-				var dataTable = $('#employee-grid').DataTable( {
+				var dataTable = $('#dictionnaire').DataTable( {
 					"processing": true,
 					"serverSide": true,
 
@@ -26,9 +26,9 @@
 			                  console.log(err);
 			            },
 						error: function(){  // error handling
-							$(".employee-grid-error").html("");
-							$("#employee-grid").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
-							$("#employee-grid_processing").css("display","none");
+							$(".dictionnaire-error").html("");
+							$("#dictionnaire").append('<tbody class="dictionnaire-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+							$("#dictionnaire_processing").css("display","none");
 							
 						}
 					}
@@ -45,7 +45,7 @@
 
 		</br>
 		<div class="container">
-			<table id="employee-grid"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+			<table id="dictionnaire"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
 					<thead>
 						<tr>
 							<th>mot</th>
