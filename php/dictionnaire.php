@@ -3,8 +3,7 @@
 <html>
 	<title>Datatable Demo1 | CoderExample</title>
 	<head>
-	<?php session_start();
-	  include("head.php"); ?>
+
   	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
@@ -36,7 +35,10 @@
 					}
 				} );
 			} );
+		
 		</script>
+			<?php session_start();
+	 		 include("head.php"); ?>
 		<style>
 			div.container {
 			    margin: 0 auto;
