@@ -55,7 +55,7 @@ while( $row= $query->fetch_array(MYSQLI_ASSOC) ) {  // preparing an array
 	printf("\n");
 	$nestedData=array(); 
 
-	$nestedData[] = [$row["MOT"], $row["DEFINITION"];
+	$nestedData = [$row["MOT"], $row["DEFINITION"];
 	
 	$data[] = json_encode($nestedData);
 
