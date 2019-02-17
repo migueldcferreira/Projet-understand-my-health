@@ -37,7 +37,8 @@
 			} );
 		
 		</script>
-			
+			<?php session_start();
+	 		 include("head.php"); ?>
 		<style>
 			div.container {
 			    margin: 0 auto;
