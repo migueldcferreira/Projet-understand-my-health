@@ -71,5 +71,5 @@
 
 		
 	</body>
-	<?php include("menu.php"); ?>
+	<?php include("script_menu.php"); ?>
 </html>
