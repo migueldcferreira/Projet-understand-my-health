@@ -47,12 +47,7 @@ $query=mysqli_query($conn, $sql) or die("employee-grid-data.php: get employees 3
 
 $data = array();
 while( $row= $query->fetch_array(MYSQLI_ASSOC) ) {  // preparing an array
-	printf("yes");
-	printf(" ");
-	printf($row["MOT"]);
-	printf(" ");
-	printf($row["DEFINITION"]);
-	printf("\n");
+
 	$nestedData=array(); 
 
 	$nestedData[] = $row["MOT"];
@@ -70,7 +65,7 @@ $json_data = array(
 			"data"            => $data   // total data array
 			);
 
-printf("thenwhat");
+
 echo json_encode($json_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);  // send data as json format
 
 ?>
