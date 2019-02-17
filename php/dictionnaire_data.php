@@ -8,7 +8,7 @@ $password = "BDDTradocteur";
 $dbname = "BDD_TRADOCTEUR";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
-mysqli_set_charset($conn,'utf8');
+
 /* Database connection end */
 
 
@@ -58,7 +58,7 @@ while( $row= $query->fetch_array(MYSQLI_ASSOC) ) {  // preparing an array
 	$nestedData[] = $row["MOT"];
 	$nestedData[] = $row["DEFINITION"];
 	
-	$data[] = json_encode(utf8_decode($nestedData));
+	$data[] = json_encode($nestedData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 }
 
@@ -71,6 +71,6 @@ $json_data = array(
 			);
 
 printf("thenwhat");
-echo json_encode($json_data);  // send data as json format
+echo json_encode($json_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);  // send data as json format
 
 ?>
