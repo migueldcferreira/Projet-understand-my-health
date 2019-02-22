@@ -124,7 +124,7 @@ if (isset($_POST['proposerDef']))
 
       $query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ID_UTILISATEUR = "'.$SESSION['username'].'"';
       $res = $bdd->query($query);
-      $row = res->fetch();
+      $row = $res->fetch();
       $id = $row[0];
 
 
