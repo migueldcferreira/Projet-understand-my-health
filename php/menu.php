@@ -73,8 +73,10 @@
 						<a href="maj.php" class="nav-link">Mettre à jour</a>
 					</li>-->
 				</ul>
+			<p style="color:white; opacity:0.75">
 				Bonjour <?php if(!empty($_SESSION['prenom'])) {echo $_SESSION['prenom'];}
 							      else {echo "Visiteur";}?>
+			</p>
 				<?php if (!empty($_SESSION['username'])): ?>
 					<a href="deconnexion.php" class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-caret-right"></i> Se déconnecter</a>
 				<?php endif ?>
