@@ -4,14 +4,14 @@
 
 
 	 <?php session_start();
-	 include ('verif_admin.php'); 
+	 include ('verif_admin.php');
 	 include("head.php"); ?>
     <link rel="stylesheet" href="..\css/choosetrad.css">
 
 </head>
 <body>
 
-	
+
 	<?php include("menu_admin.php"); ?>
 	<?php
 
@@ -23,7 +23,7 @@
 		$bdd = Bdd::connect("BDD_TRADOCTEUR");
 		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Permet de récuperer une exception lorsque il y a une erreur au niveau de la base de donnée.
 																	   //On pourra donc traiter l'erreur plus simplement avec un try et catch.
-		
+
 
 		$sql_adm = "SELECT  ID_UTILISATEUR,NOM, PRENOM, ADRESSE_MAIL,RANG,DATE_DERNIERE_CONNEXION FROM TABLE_UTILISATEUR WHERE ACTIF = 1 AND RANG LIKE '%admin' " ; //requête pour trouver les définitions non validées (propositions)
 		$res_adm = $bdd->query($sql_adm);
@@ -41,7 +41,10 @@
 	<section id="tabs" class="project-tab">
 		<div class="container">
 			<div class="row">
-				
+			<?php
+					if($_SESSION['rang']=="super-admin")
+			{
+				?>
 				<div class="col-md-12 table-responsive-sm">
 					<table class="table">
 						<thead>
@@ -69,10 +72,14 @@
 																				</tr>
 																			<?php $i++;} ?>
 																		</tbody>
-					
+
 					</table>
 				</div>
 			</div>
+			<?php
+				}
+
+			?>
 			<div class="row">
               			<div class="col-md-12 table-responsive-sm">
                 			<table class="table">
@@ -107,13 +114,14 @@
 																								<a href="supprimer_us.php?id=<?php echo $row[0] ?>">
 																								<button class="btn btn-danger btn-sm tooltipsAdmin" title="Supprimer ce membre"><i class="fas fa-minus-circle"></i></button></a>
 																							</td>
-																					
+
 																				</tr>
 																			<?php $i++;} ?>
 						</tbody>
-						
+
 					</table>
                 </div>
+
             </div>
 		</div>
 	</section>
