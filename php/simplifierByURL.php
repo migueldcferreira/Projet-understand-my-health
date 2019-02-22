@@ -4,8 +4,6 @@
     <?php include("head.php"); ?>
 		<link rel="stylesheet" href="../css/traduction.css" />
   </head>
-  <body>
-
     <!--Container principal-->
     <?php include("menu.php"); ?>
     <?php
@@ -18,7 +16,8 @@
 	$textURL = file_get_contents($_POST["testurl"]);
 	//on garde seulement le body de la page
       	//$textBrut = preg_replace("#^.*<body[^>]*>|</body>.*$#s" , "", $textURL);
-	preg_match('#<body[^>]*>'.$textBrut.'</body>#s',$textURL);
+	preg_match("#<body[^>]*>.*</body>#s",$textURL,$textBrut);
+	preg_replace("#<body[^>]*>#s","<body>",$textBrut,1);
 	//$textBrut = preg_replace("#<script[^>]*>.*</script>#s" , "", $textBrut);
 	//$textBrut = preg_replace("#<a[^>]*>|</a>#s" , "", $textBrut);
 	//supprime la balise header et son contenu
@@ -37,5 +36,4 @@
 
 	  <?php include("script_menu.php"); ?>
 		<script type="text/javascript" src="../javascript/afficherDefinition.js"></script>
-	</body>
 </html>
