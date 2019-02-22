@@ -11,7 +11,6 @@
   </head>
   <body>
 	<?php include("menu.php"); ?>
-  <?php include("server_definition.php"); ?>
 	<div class="header form_head bg-success">
   		<h2> Proposer l'ajout d'un nouveau mot</h2>
 	</div>
