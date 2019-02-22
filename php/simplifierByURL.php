@@ -30,11 +30,11 @@
 	$textBrut = preg_replace("#<((a[^>]*>)|(/a>)|(header[^>]*>.*</header>)|(footer[^>]*>.*</footer>))#s" , "", $textBrut);
     	require_once("simplifier.php");
 	
-	$time_start = microtime_float();	
+	$time_start = microtime();	
     	$texteSimplifie = simplifierTexteBrut($textBrut,0);
-	$time_end = microtime_float();
+	$time_end = microtime();
 	$time = $time_end - $time_start;
-	echo $time ."secondes";
+	echo $time;
 	echo $texteSimplifie;
     ?>
 
