@@ -1,7 +1,7 @@
 <?php
 
   require('Bdd.php');
-  
+
   try
   {
     $bdd = Bdd::connect("BDD_TRADOCTEUR");
@@ -29,11 +29,33 @@ if (isset($_POST['modifier'])) {
     $stmt= $bdd->prepare($query);
     $stmt->execute([$mot, $definition]);
 
-    
+
 
     header('location: accueil.php');
-  
+
 }
 
+
+else {
+  if (isset($_POST['proposerDef'])) {
+    $mot = $_POST['MOT'];
+    $definition = $_POST['DEFINITION'];
+
+      $query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ID_UTILISATEUR = "'.$SESSION['username'].'"';
+      $res = $bdd->query($query);
+      $row = res->fetch();
+      $id = $row[0];
+
+
+      $query = 'insert into TABLE_DEFINITION (MOT, DEFINITION, METHODE, DATE_AJOUT, A_CONFIRMER, ID_UTILISATEUR_AJOUT) values ($mot ,$definition, 'def', sysdate, 1, $id);'
+      $stmt= $bdd->prepare($query);
+      $stmt->execute([$mot, $definition, $id]);
+
+
+
+      header('location: accueil.php');
+
+  }
+}
 
 ?>
