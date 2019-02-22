@@ -17,9 +17,9 @@
 	//on garde seulement le body de la page
       	//$textBrut = preg_replace("#^.*<body[^>]*>|</body>.*$#s" , "", $textURL);
 	echo strlen($textURL);
-	preg_match("#<body[^>]*>.*</body>#s",$textURL,$textBrut);
-	echo strlen($textBrut);
-	$textBrut = preg_replace("#<body[^>]*>#s","<body>",$textBrut,1);
+	preg_match("#<body[^>]*>.*</body>#s",$textURL,$match);
+	echo strlen($match[0]);
+	$textBrut = preg_replace("#<body[^>]*>#s","<body>",$match[0],1);
 	echo strlen($textBrut);
 	//$textBrut = preg_replace("#<script[^>]*>.*</script>#s" , "", $textBrut);
 	//$textBrut = preg_replace("#<a[^>]*>|</a>#s" , "", $textBrut);
