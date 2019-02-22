@@ -57,7 +57,7 @@ if (isset($_POST['reg_user'])) {
     $tmp->execute();
 	$_SESSION['username'] = $ADRESSE_MAIL;
   	$_SESSION['success'] = "Vous étes connecté";
-	$_SESSION['rang']="membre";
+	$_SESSION['rang']="membre"; z
 	$_SESSION['prenom'] = $PRENOM;
   	header('location: accueil.php');//on revient à la page d'accueil
   }
@@ -103,38 +103,23 @@ if (isset($_POST['login_user'])) {
 
 
 // Proposer un nouveau mot difficile dans la base de données des mots difficiles
+if (isset($_POST['proposerDef']))
+{
+  $NOUVEAU_MOT = $_POST['MOT'];
+  $DEFINITION = $_POST['DEFINITION'];
+  if (empty($NOUVEAU_MOT))
+  {
+    array_push($errors, "Entrer votre nouveau mot");
+  }
+  if (empty($DEFINITION))
+  {
+    array_push($errors, "Entrer une definition");
+  }
 
-if (isset($_POST['proposerDef'])) {
-    $mot = $_POST['MOT'];
-    $definition = $_POST['DEFINITION'];
-
-    if (empty($NOUVEAU_MOT))
-    {
-      array_push($errors, "Entrer votre nouveau mot");
-    }
-    if (empty($DEFINITION))
-    {
-      array_push($errors, "Entrer une definition");
-    }
-
-    if (count($errors) == 0)
-    {
-
-
-      $query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ID_UTILISATEUR = "'.$SESSION['username'].'"';
-      $res = $bdd->query($query);
-      $row = res->fetch();
-      $id = $row[0];
-
-
-      $query = 'insert into TABLE_DEFINITION (MOT, DEFINITION, METHODE, DATE_AJOUT, A_CONFIRMER, ID_UTILISATEUR_AJOUT) values ($mot ,$definition, 'def', sysdate, 1, $id);'
-      $stmt= $bdd->prepare($query);
-      $stmt->execute([$mot, $definition, $id]);
-
-
-
-      header('location: dictionnaire.php');
-    }
+  if (count($errors) == 0)
+  {
+	echo 'Vous voulez donc ajouter le mot ' . $NOUVEAU_MOT . ' avec la définition suivante : ' . $DEFINITION;
+  }
 }
 
 ?>
