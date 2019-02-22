@@ -16,8 +16,11 @@
 	$textURL = file_get_contents($_POST["testurl"]);
 	//on garde seulement le body de la page
       	//$textBrut = preg_replace("#^.*<body[^>]*>|</body>.*$#s" , "", $textURL);
+	echo strlen($textURL);
 	preg_match("#<body[^>]*>.*</body>#s",$textURL,$textBrut);
+	echo strlen($textBrut);
 	$textBrut = preg_replace("#<body[^>]*>#s","<body>",$textBrut,1);
+	echo strlen($textBrut);
 	//$textBrut = preg_replace("#<script[^>]*>.*</script>#s" , "", $textBrut);
 	//$textBrut = preg_replace("#<a[^>]*>|</a>#s" , "", $textBrut);
 	//supprime la balise header et son contenu
@@ -28,7 +31,7 @@
 	//$textBrut = preg_replace("#<div[^>]*navigation[^>]*>(((?!<div).)*<div[^>]*>((?!</div).)*</div>((?!</*div).)*)*</div>#s","",$textBrut);
 	
 	$textBrut = preg_replace("#<((a[^>]*>)|(/a>)|(header[^>]*>.*</header>)|(footer[^>]*>.*</footer>))#s" , "", $textBrut);
-	  
+	echo strlen($textBrut);  
     	require_once("simplifier.php");
     	$texteSimplifie = simplifierTexteBrut($textBrut,0);
 	echo $texteSimplifie;
