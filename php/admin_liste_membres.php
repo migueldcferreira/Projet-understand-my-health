@@ -68,7 +68,9 @@
 																						<td> <?php printf ("%s", $row[3]); ?> </td>
 																						<td> <?php printf ("%s", $row[4]); ?> </td>
 																						<td> <?php printf ("%s", $row[5]); ?> </td>
-																						<td><button class="btn btn-danger btn-sm tooltipsAdmin disabled" title="Supprimer cet administrateur"><i class="fas fa-minus-circle"></i></button></td>
+																						<td><a href="supprimer_us.php?id=<?php echo $row[0] ?>">
+																							<button class="btn btn-danger btn-sm tooltipsAdmin disabled" title="Supprimer cet administrateur"><i class="fas fa-minus-circle"></i></button></td>
+																						</a></td>
 																				</tr>
 																			<?php $i++;} ?>
 																		</tbody>
