@@ -13,7 +13,7 @@
     	}
 	  
 	//on recupere le texte a l'URL
-	$time_start = microtime();
+	$time_start = time();
 	$textURL = file_get_contents($_POST["testurl"]);
 	//on garde seulement le body de la page
       	//$textBrut = preg_replace("#^.*<body[^>]*>|</body>.*$#s" , "", $textURL);
@@ -32,9 +32,9 @@
     	require_once("simplifier.php");
 		
     	$texteSimplifie = simplifierTexteBrut($textBrut,0);
-	$time_end = microtime();
-	$time = $time_end - $time_start;
-	echo $time;
+	$time_end = time();
+	$timer = $time_end - $time_start;
+	echo $timer;
 	echo $texteSimplifie;
     ?>
 
