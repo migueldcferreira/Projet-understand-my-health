@@ -41,7 +41,8 @@
 	<section id="tabs" class="project-tab">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				
+				<div class="col-md-12 table-responsive-sm">
 					<table class="table">
 						<thead>
 							<tr>
@@ -73,9 +74,9 @@
 				</div>
 			</div>
 			<div class="row">
-                <div class="col-md-12">
-                	<table class="table">
-                		<thead>
+              			<div class="col-md-12 table-responsive-sm">
+                			<table class="table">
+                				<thead>
 							<tr>
 								<th scope="col">Membres</th>
 								<th scope="col">Nom</th>
