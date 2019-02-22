@@ -69,22 +69,16 @@
   							</div>
 						</div>
 					</li>
-				
-					<li>
-						Bonjour <?php if(!empty($_SESSION['prenom'])) {echo $_SESSION['prenom'];}
-							      else {echo "Visiteur";}?>
-					</li>
-					
-					<?php if (!empty($_SESSION['username'])): ?>
-					<li>
-						<a href="deconnexion.php" class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-caret-right"></i> Se déconnecter</a>
-					</li>
-					<?php endif ?>
 					<!--<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="maj.php" class="nav-link">Mettre à jour</a>
 					</li>-->
 				</ul>
-				<!--
+				Bonjour <?php if(!empty($_SESSION['prenom'])) {echo $_SESSION['prenom'];}
+							      else {echo "Visiteur";}?>
+				<?php if (!empty($_SESSION['username'])): ?>
+					<a href="deconnexion.php" class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-caret-right"></i> Se déconnecter</a>
+				<?php endif ?>
+			<!--
 				<form method="post"  class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2 form-control-sm" type="text" name="IDENTIFIANT" placeholder="Identifiant">
 					<input class="form-control mr-sm-2 form-control-sm" type="password" name="MOT_DE_PASSE" placeholder="Mot de passe">
