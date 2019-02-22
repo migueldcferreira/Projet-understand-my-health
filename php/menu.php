@@ -73,7 +73,7 @@
 						<a href="maj.php" class="nav-link">Mettre à jour</a>
 					</li>-->
 				</ul>
-			<p class="my-2 my-sm-0" style="color:white">
+			<p class="mx-1 my-2 my-sm-0" style="color:white padding-left">
 				Bonjour <?php if(!empty($_SESSION['prenom'])) {echo $_SESSION['prenom'];}
 							      else {echo "Visiteur";}?>
 			</p>
