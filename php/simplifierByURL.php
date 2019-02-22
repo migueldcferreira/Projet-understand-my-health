@@ -17,7 +17,7 @@
 	//on garde seulement le body de la page
       	//$textBrut = preg_replace("#^.*<body[^>]*>|</body>.*$#s" , "", $textURL);
 	preg_match("#<body[^>]*>.*</body>#s",$textURL,$textBrut);
-	preg_replace("#<body[^>]*>#s","<body>",$textBrut,1);
+	$textBrut = preg_replace("#<body[^>]*>#s","<body>",$textBrut,1);
 	//$textBrut = preg_replace("#<script[^>]*>.*</script>#s" , "", $textBrut);
 	//$textBrut = preg_replace("#<a[^>]*>|</a>#s" , "", $textBrut);
 	//supprime la balise header et son contenu
