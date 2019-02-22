@@ -118,7 +118,19 @@ if (isset($_POST['proposerDef']))
 
   if (count($errors) == 0)
   {
-	echo 'Vous voulez donc ajouter le mot ' . $NOUVEAU_MOT . ' avec la définition suivante : ' . $DEFINITION;
+    $query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ID_UTILISATEUR = "'.$SESSION['username'].'"';
+    $res = $bdd->query($query);
+    $row = res->fetch();
+    $id = $row[0];
+
+
+    $query = 'insert into TABLE_DEFINITION (MOT, DEFINITION, METHODE, DATE_AJOUT, A_CONFIRMER, ID_UTILISATEUR_AJOUT) values ("'.$NOUVEAU_MOT.'" ,"'.$DEFINITION.'", 'def', sysdate, 1, "'.$id.'");'
+    $stmt= $bdd->prepare($query);
+    $stmt->execute();
+
+
+
+    header('location: dictionnaire.php');
   }
 }
 
