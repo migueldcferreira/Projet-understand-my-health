@@ -73,7 +73,7 @@
 						<a href="maj.php" class="nav-link">Mettre à jour</a>
 					</li>-->
 				</ul>
-			<p style="color:white; opacity:0.75">
+			<p class="my-2 my-sm-0" style="color:white">
 				Bonjour <?php if(!empty($_SESSION['prenom'])) {echo $_SESSION['prenom'];}
 							      else {echo "Visiteur";}?>
 			</p>
