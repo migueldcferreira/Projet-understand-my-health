@@ -119,8 +119,7 @@ if (isset($_POST['proposerDef'])) {
 
     if (count($errors) == 0)
     {
-    echo 'Vous voulez donc ajouter le mot ' . $NOUVEAU_MOT . ' avec la définition suivante : ' . $DEFINITION;
-    }
+
 
       $query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ID_UTILISATEUR = "'.$SESSION['username'].'"';
       $res = $bdd->query($query);
@@ -135,6 +134,7 @@ if (isset($_POST['proposerDef'])) {
 
 
       header('location: dictionnaire.php');
+    }
 }
 
 ?>
