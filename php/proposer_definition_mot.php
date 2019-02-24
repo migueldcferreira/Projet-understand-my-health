@@ -25,6 +25,9 @@
   		<label>Definition : </label>
   		<input type="text" name="DEFINITION">
   	</div>
+    <div class="input-group">
+      <input type="hidden" name="username" value= "<?php echo $_SESSION['username']; ?>">
+    </div>
   	<div class="input-group form-group">
   		<button type="submit" class="btn btn-success btn-sm"  name="proposerDef">Proposer</button>
   	</div>
@@ -36,3 +39,4 @@
 
   </body>
 </html>
+

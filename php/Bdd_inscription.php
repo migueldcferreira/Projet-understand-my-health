@@ -105,6 +105,7 @@ if (isset($_POST['login_user'])) {
 // Proposer un nouveau mot difficile dans la base de données des mots difficiles
 if (isset($_POST['proposerDef']))
 {
+  $USERNAME = $_POST['username'];
   $NOUVEAU_MOT = $_POST['MOT'];
   $DEFINITION = $_POST['DEFINITION'];
   if (empty($NOUVEAU_MOT))
@@ -118,8 +119,22 @@ if (isset($_POST['proposerDef']))
 
   if (count($errors) == 0)
   {
-	echo 'Vous voulez donc ajouter le mot ' . $NOUVEAU_MOT . ' avec la définition suivante : ' . $DEFINITION;
+ 
+   $query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL = "'.$USERNAME.'"'; 
+      $res = $db->query($query); 
+      $row = $res->fetch(); 
+      $id = $row[0]; 
+
+ 
+      $query = 'insert into TABLE_DEFINITION (MOT, DEFINITION, A_CONFIRMER, ID_UTILISATEUR_AJOUT) values ("'.$NOUVEAU_MOT.'" ,"'.$DEFINITION.'", 1, '.$id.') '; 
+      $stmt= $db->prepare($query); 
+      $stmt->execute(); 
+ 
+ 
+ 
+     
   }
+
 }
 
 ?>
