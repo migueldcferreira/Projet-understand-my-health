@@ -13,30 +13,18 @@
       die('Erreur : ' . $e->getMessage());
   }
 
-//Modifier definition
 
-if (isset($_POST['modifier'])) {
-  $id = $_POST['id'];
-  $mot = $_POST['mot'];
-  $definition = $_POST['definition'];
+//Promouvoir
+$id = isset($_GET['id']) ? (int) $_GET['id'] : null;
+if ($id) {
 
 
-
-
-
-
-    $query = 'UPDATE TABLE_DEFINITION SET MOT= "'.$mot.'", DEFINITION = "'.$definition.'" WHERE ID_DEFINITION = "'.$id.'"';
-    $stmt= $bdd->prepare($query);
-    $stmt->execute([$mot, $definition]);
-
-
-
-    header('location: accueil.php');
+	// sql to delete a record
+		$sql = 'UPDATE TABLE_DEFINITION SET A_CONFIRMER = 0 WHERE ID_DEFINITION= "'.$id.'"';
+		$stmt= $bdd->query($sql);
+		$stmt->execute($sql);
+    header('location: admin_liste_def.php');
 
 }
-
-
-
-
-
+else{header('location: register.php'); }
 ?>

@@ -8,7 +8,6 @@
 
     <!--Container principal-->
       <?php include("menu.php"); ?>
-
 <?php
 
 	if(empty($_POST["testtext"]))

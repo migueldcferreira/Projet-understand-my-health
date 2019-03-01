@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="fr">
   <head>
-    <?php include("head.php"); ?>
+    <?php session_start();
+	  include("head.php"); ?>
     <link rel="stylesheet" href="..\css/choosetrad.css">
   </head>
   <body>
@@ -24,7 +25,7 @@
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-								<form class="form col-md-6" action="traduction.php" method="post">
+								<form class="form col-md-6" action="simplifierByText.php" method="post">
 									<br/>
 									<textarea class="form-control form-control-block" id="myText" name="testtext"></textarea>
 									<button type="submit" class="btn btn-primary">Simplifier</button>
@@ -42,7 +43,7 @@
 
 									  <!-- Standar Form -->
 									
-									  <form action="traductionByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
+									  <form action="simplifierByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
 										<div class="form-inline">
 										  <div class="form-group">
 											<input type="file" name="fichier" id="js-upload-files" multiple aria-describedby="fileHelp" accept=".txt,.pdf">
@@ -64,7 +65,7 @@
 								
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-								<form class="form" action="traductionByURL.php" method="post">
+								<form class="form" action="simplifierByURL.php" method="post">
 									<br/>
 									<div class="form-inline">
 										<input type="text" class="form-control form-control-lg" id="myURL" name="testurl"></input>

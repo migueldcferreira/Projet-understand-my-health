@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <?php include("head.php"); ?>
+		<link rel="stylesheet" href="../css/traduction.css" />
+  </head>
+  <body>
+
+    <!--Container principal-->
+    <?php include("menu.php"); ?>
+    <?php
+	echo '<div>';
+    	if(empty($_POST["testtext"]))
+    	{
+    		die("Veuillez insérer du texte à simplifier");
+    	}
+    	$textForm=str_split($_POST["testtext"]);
+    	require_once("simplifier.php");
+    	$texteSimplifie = simplifierTexteBrut($textForm,0,true);
+	//echo str_replace("\n","<br />",$texteSimplifie);
+	echo $texteSimplifie;
+	echo '</div>';
+    ?>
+
+	  <?php include("script_menu.php"); ?>
+		<script type="text/javascript" src="../javascript/afficherDefinition.js"></script>
+	</body>
+</html>
