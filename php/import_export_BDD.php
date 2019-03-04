@@ -28,11 +28,17 @@
                                 <div class="panel panel-default">
                                   <div class="panel-heading"><strong>Sélectionnez des fichiers dans votre ordinateur</strong></div>
                                   <div class="panel-body">									
-                                    <form action="simplifierByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
-                                      <div class="form-inline">
+                                    <form action="importerBDD.php" method="post" enctype="multipart/form-data" id="js-upload-form">
+                                      <br/>
+																			<div class="form-inline">
                                         <div class="form-group">
                                           <input type="file" name="fichier" id="js-upload-files" multiple aria-describedby="fileHelp" accept=".txt,.csv">
                                         </div>
+																				<br/>
+																				<div class="form-check">
+																					<input type="checkbox" class="form-check-input" id="formeCompacte">
+																					<label class="form-check-label" for="formeCompacte">Importer définitions sous forme compacte</label>
+																				</div>
                                         <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Importer</button>
                                       </div>
                                     </form>
@@ -43,11 +49,16 @@
                           
                           
                           <div class="tab-pane fade" id="nav-export" role="tabpanel" aria-labelledby="nav-export-tab">
-                            <form class="form" action="simplifierByURL.php" method="post">
+                            <form class="form" action="exporterBDD.php" method="post">
                               <br/>
+															<div class="form-check">
+																<input type="checkbox" class="form-check-input" id="formeCompacte">
+																<label class="form-check-label" for="formeCompacte">Exporter définitions sous forme compacte</label>
+															</div>
+															<br/>
                               <div class="form-inline">
                                 <input type="text" class="form-control form-control-lg" id="myURL" name="testurl"></input>
-                                <button type="submit" class="btn btn-primary">Simplifier</button>
+                                <button type="submit" class="btn btn-primary">Exporter</button>
                               </div>
                             </form>
                           </div>
