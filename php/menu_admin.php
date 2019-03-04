@@ -2,7 +2,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: purple" role="navigation">
 			<div class="container-fluid">
 
-				<a class="navbar-brand" href="accueil.php"><i class="fas fa-file-medical-alt"></i> Tradocteur - Administration</a>
+				<a class="navbar-brand" href="admin_liste_membres.php"><i class="fas fa-file-medical-alt"></i> Tradocteur - Administration</a>
 				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
 
 					<span class="icon-bar top-bar"></span>
@@ -33,7 +33,7 @@
 						<button class="btn btn-secondary my-2 my-sm-0 btn-sm" type="submit"><i class="fas fa-user-md"></i> Se connecter</button>
 					</form>
 			-->
-					<a href="admin_liste_membres.php" class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-caret-right"></i> Retour au site</a>
+					<a href="accueil.php" class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-caret-right"></i> Retour au site</a>
 				</div>
 			</div>
 		</nav>
