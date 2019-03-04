@@ -23,7 +23,7 @@
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
                             
-                            <div class="tab-pane fade" id="nav-import" role="tabpanel" aria-labelledby="nav-import-tab">
+                            <div class="tab-pane fade show active" id="nav-import" role="tabpanel" aria-labelledby="nav-import-tab">
 															<form action="importerBDD.php" method="post" enctype="multipart/form-data" id="js-upload-form">
 																<br/>
 																<div class="container">
