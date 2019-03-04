@@ -22,9 +22,9 @@
 						<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 							<a href="admin_liste_def.php" class="nav-link">Gérer les définitions</a>
 						</li>
-						<!--<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-							<a href="maj.php" class="nav-link">Mettre à jour</a>
-						</li>-->
+						<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+							<a href="import_export_BDD.php" class="nav-link">Import/Export BDD</a>
+						</li>
 					</ul>
 					<!--
 					<form class="form-inline my-2 my-lg-0">
@@ -33,7 +33,7 @@
 						<button class="btn btn-secondary my-2 my-sm-0 btn-sm" type="submit"><i class="fas fa-user-md"></i> Se connecter</button>
 					</form>
 			-->
-					<a href="accueil.php" class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-caret-right"></i> Retour au site</a>
+					<a href="admin_liste_membres.php" class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-caret-right"></i> Retour au site</a>
 				</div>
 			</div>
 		</nav>
