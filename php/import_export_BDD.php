@@ -17,7 +17,7 @@
                     <div class="col-md-12">
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-import-tab" data-toggle="tab" href="#nav-import" role="tab" aria-controls="nav-import" aria-selected="true"><i class="fas fa-file-upload"></i> Importez des définitions</a>
+                                <a class="nav-item nav-link active show" id="nav-import-tab" data-toggle="tab" href="#nav-import" role="tab" aria-controls="nav-import" aria-selected="true"><i class="fas fa-file-upload"></i> Importez des définitions</a>
                                 <a class="nav-item nav-link" id="nav-export-tab" data-toggle="tab" href="#nav-export" role="tab" aria-controls="nav-export" aria-selected="false"><i class="fas fa-file-csv"></i> Exportez des définitions</a>
                             </div>
                         </nav>
