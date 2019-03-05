@@ -65,7 +65,11 @@
 				}
 				else
 				{
-					echo "$nbLigne : $ligne";
+					$sql = "SELECT COUNT(*) AS NB FROM TABLE_DEFINITION WHERE MOT=='".$champs[0]."' AND DEFINITION=='".$champs[1]."';";
+					$res = $bdd->query($sql);
+					$row = $res->fetch();
+					echo $row['NB'];
+					echo "<br />";				
 				}
 			}
 			else
@@ -77,7 +81,6 @@
 				}
 				else
 				{
-					echo "$nbLigne : $ligne";
 				}
 			}	
 			
