@@ -49,12 +49,10 @@
     	die('Erreur : ' . $e->getMessage());
     }
 	
-		$query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL = "'.$_POST['username'].'"'; 
-		$res = $db->query($query); 
+		$sdl = "select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL = '".$_POST['username']."';"; 
+		$res = $db->query($sdl); 
 		$row = $res->fetch(); 
-		$id = $row; 
-	
-		echo "Mon id : $id";
+		$id = $row['ID_UTILISATEUR']; 
 	
 		$nbLigne = 0;
 		$presentTable = 0;
@@ -107,6 +105,7 @@
 			$ligne = strtok("\r\n");			
 		}
 
+		echo "Mon id : $id <br/>";
 		echo "Nombre de lignes traitées : $nbLigne <br/>";
 		echo "Nombre de défitions ajoutées à la table : $ajoutTable <br/>";
 		echo "Nombre de définitions déjà présentes dans la table : $presentTable <br/>";
