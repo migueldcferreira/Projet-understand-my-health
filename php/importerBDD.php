@@ -83,7 +83,7 @@
 						$tailleDef = strlen($champs[1]);
 						
 						//on determine le classement de la definition selon sa taille
-						$sql = "SELECT NVL(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$champs[0]."' AND TAILLE_DEFINITION<=".$tailleDef.";";
+						$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$champs[0]."' AND TAILLE_DEFINITION<=".$tailleDef.";";
 						$res = $bdd->query($sql);
 						$row = $res->fetch();
 						$classement = $row['CLA']+1;
