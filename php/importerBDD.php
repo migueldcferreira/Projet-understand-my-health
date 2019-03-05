@@ -49,45 +49,62 @@
     	die('Erreur : ' . $e->getMessage());
     }
 	
-		$nbLigne = 1;
-	
+		$nbLigne = 0;
+		$presentTable = 0;
+		$ajoutTable = 0;
+		$nbErreurSep = 0;
+		$text = "";
 		while ($ligne !== false)
 		{
-    	//echo "Ligne to add= $ligne<br />";
+			$nbLigne += 1;
 			$champs = preg_split("#[|]#",$ligne);
+			
 			if($compacte == 1)
 			{
 				if(count($champs)!= 3)
 				{
-					echo "Erreur separateurs ligne $nbLigne : $ligne";
-					echo "<br />";
+					$text .= "Erreur separateurs ligne $nbLigne : $ligne";
+					$text .= "<br />";
+					$nbErreurSep += 1;
 				}
 				else
 				{
 					$sql = "SELECT COUNT(*) AS NB FROM TABLE_DEFINITION WHERE MOT='".$champs[0]."' AND DEFINITION='".str_replace("'","''",$champs[1])."';";
-					echo $sql;
 					$res = $bdd->query($sql);
 					$row = $res->fetch();
-					echo $row['NB'];
-					echo "<br />";				
+					if($row['NB'] == 0)
+					{
+						$ajoutTable += 1;
+					}
+					else
+					{
+						$presentTable += 1;
+					}
 				}
 			}
 			else
 			{
 				if(count($champs)!= 8)
 				{
-					echo "Erreur separateurs ligne $nbLigne : $ligne";
-					echo "<br />";
+					$text .= "Erreur separateurs ligne $nbLigne : $ligne";
+					$text .= "<br />";
+					$nbErreurSep += 1;
+
 				}
 				else
 				{
 				}
 			}	
 			
-			$ligne = strtok("\r\n");
-			$nbLigne += 1;
+			$ligne = strtok("\r\n");			
 		}
 
+		echo "Nombre de lignes : $nbLigne <br/>";
+		echo "Nombre de défitions ajoutées à la table : $ajoutTable <br/>";
+		echo "Nombre de définitions déjà présentes dans la table : $presentTable <br/>";
+		echo "Nnombre de lignes ayant une erreur de syntaxe : $nbErreurSep <br/><br/>"; 
+		echo $text;
+	
 		include("script_menu.php");
 	?>
 </body>
