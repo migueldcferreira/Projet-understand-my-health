@@ -1,12 +1,6 @@
-<!doctype html>
-<html lang="fr">
-<head>
 	<?php
 		session_start();
 		include ('verif_admin.php');
-	?>
-</head>
-	<?php
     require('Bdd.php');
     
     $file = "../../export.csv";
