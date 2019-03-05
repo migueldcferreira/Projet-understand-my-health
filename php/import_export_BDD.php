@@ -40,8 +40,8 @@
 																</div> <!-- /container -->
 																<div class="form-check">
 																	<br/>
-																	<input type="checkbox" class="form-check-input" id="formeCompacte">
-																	<label class="form-check-label" for="formeCompacte">Importer définitions sous forme compacte</label>
+																	<input type="checkbox" name="formeCompacte" class="form-check-input" id="formeCompacte1">
+																	<label class="form-check-label" for="formeCompacte1">Importer définitions sous forme compacte</label>
 																	<br/>
 																	<button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Importer</button>
 																</div>		
@@ -53,8 +53,8 @@
                             <form class="form" action="exporterBDD.php" method="post">
                               <br/>
 															<div class="form-check">
-																<input type="checkbox" class="form-check-input" id="formeCompacte">
-																<label class="form-check-label" for="formeCompacte">Exporter définitions sous forme compacte</label>
+																<input type="checkbox" name="formeCompacte" class="form-check-input" id="formeCompacte2">
+																<label class="form-check-label" for="formeCompacte2">Exporter définitions sous forme compacte</label>
 																<br/>
 																<button type="submit" class="btn btn-primary">Exporter</button>	
 															</div>
