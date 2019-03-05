@@ -43,8 +43,12 @@
 		while ($ligne !== false)
 		{
     	//echo "Ligne to add= $ligne<br />";
-			$champs = preg_split("|",$ligne);
-			echo count($champs);
+			$champs = preg_split("#|#",$ligne);
+			foreach($champs as $c)
+			{
+				echo "$c-";
+			}
+			echo "<br />";
 			$ligne = strtok("\r\n");
 		}
 
