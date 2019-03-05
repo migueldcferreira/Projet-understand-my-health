@@ -11,9 +11,9 @@
 <body>
 
   <?php
-    php include("menu_admin.php");
+    include("menu_admin.php");
     require('Bdd.php');
-    /*
+    
     $file = "../../export.csv";
     $myfile = fopen($file, "w") or die("Unable to open file!");   
     
@@ -64,7 +64,7 @@
     header('Cache-Control: must-revalidate');
     header('Pragma: public');
     header('Content-Length: ' . filesize($file));
-    readfile($file);*/
+    readfile($file);
   ?>
 
 </body>
