@@ -17,11 +17,10 @@
 
   if (isset($_POST['modifier']))
   {
-    echo "coucou bb";
-    /*$id = $_POST['id'];
+    $id = $_POST['id'];
     $mot = $_POST['mot'];
     $definition = $_POST['definition'];
-
+/*
     //on determine l'id de l'utilisateur qui modifie la definition
     $query = "SELECT ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL = '".$_SESSION['username']."';"; 
     $res = $bdd->query($query); 
