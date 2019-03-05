@@ -42,7 +42,9 @@
 	
 		while ($ligne !== false)
 		{
-    	echo "Ligne to add= $ligne<br />";
+    	//echo "Ligne to add= $ligne<br />";
+			$champs = preg_split("|",$ligne);
+			echo count($champs);
 			$ligne = strtok("\r\n");
 		}
 
