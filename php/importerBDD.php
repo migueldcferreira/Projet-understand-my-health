@@ -17,7 +17,7 @@
 		$extension = substr($_FILES['fichier']['name'], -3, 3);
 		if ($extension == 'txt' OR $extension == 'csv' OR $extension == 'sql') 
 		{
-			$textImport = strtok(file_get_contents($_FILES["fichier"]["tmp_name"]), "\n");
+			$textImport = preg_split("\n",file_get_contents($_FILES["fichier"]["tmp_name"]));
 		}
 		else
 		{
@@ -37,10 +37,9 @@
     	die('Erreur : ' . $e->getMessage());
     }
 	
-		while ($textImport !== false)
+		foreach($textImport as $ligne)
 		{
-    	echo "Ligne to add= $textImport<br />";
-    	$textImport = strtok("\n");
+    	echo "Ligne to add= $ligne<br />";
 		}
 
 		php include("script_menu.php");
