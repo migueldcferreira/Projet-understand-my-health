@@ -49,11 +49,19 @@
     	die('Erreur : ' . $e->getMessage());
     }
 	
+		$query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL = "'.$_POST['username'].'"'; 
+		$res = $db->query($query); 
+		$row = $res->fetch(); 
+		$id = $row; 
+	
+		echo "Mon id : $id";
+	
 		$nbLigne = 0;
 		$presentTable = 0;
 		$ajoutTable = 0;
 		$nbErreurSep = 0;
 		$text = "";
+		
 		while ($ligne !== false)
 		{
 			$nbLigne += 1;
@@ -99,10 +107,10 @@
 			$ligne = strtok("\r\n");			
 		}
 
-		echo "Nombre de lignes : $nbLigne <br/>";
+		echo "Nombre de lignes traitées : $nbLigne <br/>";
 		echo "Nombre de défitions ajoutées à la table : $ajoutTable <br/>";
 		echo "Nombre de définitions déjà présentes dans la table : $presentTable <br/>";
-		echo "Nnombre de lignes ayant une erreur de syntaxe : $nbErreurSep <br/><br/>"; 
+		echo "Nombre de lignes ayant une erreur de syntaxe : $nbErreurSep <br/><br/>"; 
 		echo $text;
 	
 		include("script_menu.php");
