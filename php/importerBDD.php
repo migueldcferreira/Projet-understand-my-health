@@ -90,13 +90,11 @@
 						
 						//on met a jour les classements des definitions du meme mot de taille superieur a cette definition
 						$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".$champs[0]."' AND CLASSEMENT >=".$classement.";";
-						$stmt= $bdd->prepare($sql); 
-      			$stmt->execute();
+						$res = $bdd->query($sql);
 						
 						//on insere dans la table la nouvelle definition
 						$sql = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, METHODE, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT) VALUES ('".$champs[0]."' ,'".str_replace("'","''",$champs[1])."', '".$champs[2]."', ".$id.", ".$tailleDef.", ".$classement.") ;";
-						$stmt= $bdd->prepare($sql); 
-      			$stmt->execute();	
+						$res = $bdd->query($sql);
 						
 						$ajoutTable += 1;
 					}
