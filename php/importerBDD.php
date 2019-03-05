@@ -17,7 +17,8 @@
 
 		//verification de l'extension du fichier en entre
 		$extension = substr($_FILES['fichier']['name'], -3, 3);
-		$ligne = "Erreur lors de l'importation du fichier";
+		echo $extension		
+		/*$ligne = "Erreur lors de l'importation du fichier";
 		if ($extension == 'txt' OR $extension == 'csv' OR $extension == 'sql') 
 		{
 			$ligne = strtok(file_get_contents($_FILES["fichier"]["tmp_name"]),"\r\n");
@@ -44,7 +45,7 @@
 		{
     	echo "Ligne to add= $ligne<br />";
 			$ligne = strtok("\r\n");
-		}
+		}*/
 
 		php include("script_menu.php");
 	?>
