@@ -21,16 +21,17 @@ if (isset($_POST['modifier'])) {
   $definition = $_POST['definition'];
 
   //on determine l'id de l'utilisateur qui modifie la definition
-  $query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL = "'.$_SESSION['username'].'"'; 
+  $query = "select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL = '".$_SESSION['username']."';"; 
   $res = $bdd->query($query); 
   $row = $res->fetch(); 
-  $idU = $row[0]; 
+  $idU = $row['ID_UTILISATEUR']; 
 
   $tailleDef = strlen($definition);
   
   $query = "UPDATE TABLE_DEFINITION SET MOT= '".$mot."', DEFINITION ='".str_replace("'","''",$definition)."', DATE_MODIF = NOW(), ID_UTILISATEUR_MODIF =".$idU.", TAILLE_DEFINITION=".$tailleDef." WHERE ID_DEFINITION = ".$id.";";
-  $stmt= $bdd->prepare($query);
-  $stmt->execute([$mot, $definition]);
+  $res = $bdd->query($query); 
+  /*$stmt= $bdd->prepare($query);
+  $stmt->execute([$mot, $definition]);*/
 
 
 
