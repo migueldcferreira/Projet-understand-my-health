@@ -2,9 +2,11 @@
 <html lang="fr">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<?php session_start();
-	include ('verif_admin.php'); 
-	include("head.php"); ?>
+	<?php
+		session_start();
+		include('verif_admin.php'); 
+		include("head.php");
+	?>
   <link rel="stylesheet" href="..\css/choosetrad.css">
 </head>
 
@@ -15,7 +17,7 @@
 
 		//verification de l'extension du fichier en entre
 		$extension = substr($_FILES['fichier']['name'], -3, 3);
-		$textImport = "Erreur lors de l'importation du fichier";
+		$ligne = "Erreur lors de l'importation du fichier";
 		if ($extension == 'txt' OR $extension == 'csv' OR $extension == 'sql') 
 		{
 			$ligne = strtok(file_get_contents($_FILES["fichier"]["tmp_name"]),"\r\n");
