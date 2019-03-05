@@ -65,6 +65,7 @@
 				else
 				{
 					$sql = "SELECT COUNT(*) AS NB FROM TABLE_DEFINITION WHERE MOT='".$champs[0]."' AND DEFINITION='".$champs[1]."';";
+					echo $sql;
 					$res = $bdd->query($sql);
 					$row = $res->fetch();
 					echo $row['NB'];
