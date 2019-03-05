@@ -11,7 +11,6 @@
 </head>
 
 <body>
-	<div>
 	<?php 
 		include("menu_admin.php");
 		require('Bdd.php');
@@ -65,7 +64,7 @@
 				}
 				else
 				{
-					$sql = "SELECT COUNT(*) AS NB FROM TABLE_DEFINITION WHERE MOT=='".$champs[0]."' AND DEFINITION=='".$champs[1]."';";
+					$sql = "SELECT COUNT(*) AS NB FROM TABLE_DEFINITION WHERE MOT='".$champs[0]."' AND DEFINITION='".$champs[1]."';";
 					$res = $bdd->query($sql);
 					$row = $res->fetch();
 					echo $row['NB'];
@@ -90,6 +89,5 @@
 
 		include("script_menu.php");
 	?>
-	</div>
 </body>
 </html>
