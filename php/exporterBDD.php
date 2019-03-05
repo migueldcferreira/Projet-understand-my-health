@@ -13,7 +13,7 @@
   <?php
     php include("menu_admin.php");
     require('Bdd.php');
-    
+    /*
     $file = "../../export.csv";
     $myfile = fopen($file, "w") or die("Unable to open file!");   
     
@@ -57,7 +57,7 @@
     
     fclose($myfile);
     
-    /*header('Content-Description: File Transfer');
+    header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
     header('Content-Disposition: attachment; filename="'.basename($file).'"');
     header('Expires: 0');
