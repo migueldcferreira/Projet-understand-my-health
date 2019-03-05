@@ -58,7 +58,7 @@
 			$champs = preg_split("#[|]#",$ligne);
 			if(compacte == 1)
 			{
-				if(count($champs != 3))
+				if(count($champs)!= 3)
 				{
 					echo "Erreur separateurs ligne $nbLigne : $ligne";
 					echo "<br />";
@@ -70,7 +70,7 @@
 			}
 			else
 			{
-				if(count($champs != 8))
+				if(count($champs)!= 8)
 				{
 					echo "Erreur separateurs ligne $nbLigne : $ligne";
 					echo "<br />";
