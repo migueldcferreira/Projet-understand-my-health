@@ -30,7 +30,7 @@
     $tailleDef = strlen($definition);
 
     $query = "UPDATE TABLE_DEFINITION SET MOT= '".$mot."', DEFINITION ='".str_replace("'","''",$definition)."', DATE_MODIF = NOW(), ID_UTILISATEUR_MODIF =".$idU.", TAILLE_DEFINITION=".$tailleDef." WHERE ID_DEFINITION = ".$id.";";
-    /*$res = $bdd->query($query); */
+    $res = $bdd->query($query);
     /*$stmt= $bdd->prepare($query);
     $stmt->execute([$mot, $definition]);*/
 
