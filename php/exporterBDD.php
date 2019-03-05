@@ -53,5 +53,4 @@
     header('Pragma: public');
     header('Content-Length: ' . filesize($file));
     readfile($file);
-		header('location:import_export_BDD.php');
   ?>
