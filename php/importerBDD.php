@@ -15,13 +15,14 @@
 
 		//verification de l'extension du fichier en entre
 		$extension = substr($_FILES['fichier']['name'], -3, 3);
+		$textImport = "Erreur lors de l'importation du fichier";
 		if ($extension == 'txt' OR $extension == 'csv' OR $extension == 'sql') 
 		{
-			$textImport = preg_split("\n",file_get_contents($_FILES["fichier"]["tmp_name"]));
+			$ligne = strtok(file_get_contents($_FILES["fichier"]["tmp_name"]),"\r\n");
 		}
 		else
 		{
-			die("Veuillez insérer un fichier avec une extension valide (.txt, .csv, .sql");
+			die("Veuillez insérer un fichier avec une extension valide (.txt, .csv, .sql)");
 		}
 
 		//connexion a la base de donnees   
@@ -37,9 +38,10 @@
     	die('Erreur : ' . $e->getMessage());
     }
 	
-		foreach($textImport as $ligne)
+		while ($ligne !== false)
 		{
     	echo "Ligne to add= $ligne<br />";
+			$ligne = strtok("\r\n");
 		}
 
 		php include("script_menu.php");
