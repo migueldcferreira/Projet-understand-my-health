@@ -11,6 +11,7 @@
 </head>
 
 <body>
+	<div>
 	<?php 
 		include("menu_admin.php");
 		require('Bdd.php');
@@ -27,6 +28,15 @@
 			die("Veuillez insérer un fichier avec une extension valide (.txt, .csv, .sql)");
 		}
 
+		if(isset($_POST["formeCompacte"]))
+		{
+			$compacte = 1;
+		}
+		else
+		{
+			$compacte = 0;
+		}
+	
 		//connexion a la base de donnees   
     try
     {
@@ -40,20 +50,43 @@
     	die('Erreur : ' . $e->getMessage());
     }
 	
+		$nbLigne = 1;
+	
 		while ($ligne !== false)
 		{
     	//echo "Ligne to add= $ligne<br />";
 			$champs = preg_split("#[|]#",$ligne);
-			echo 'nb champs :'.count($champs).'>>> ';
-			foreach($champs as $c)
+			if(compacte == 1)
 			{
-				echo "$c-";
+				if(count($champs != 3))
+				{
+					echo "Erreur separateurs ligne $nbLigne : $ligne";
+					echo "<br />";
+				}
+				else
+				{
+					echo "$nbLigne : $ligne";
+				}
 			}
-			echo "<br />";
+			else
+			{
+				if(count($champs != 8))
+				{
+					echo "Erreur separateurs ligne $nbLigne : $ligne";
+					echo "<br />";
+				}
+				else
+				{
+					echo "$nbLigne : $ligne";
+				}
+			}	
+			
 			$ligne = strtok("\r\n");
+			$nbLigne += 1;
 		}
 
 		include("script_menu.php");
 	?>
+	</div>
 </body>
 </html>
