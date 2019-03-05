@@ -80,6 +80,24 @@
 					$row = $res->fetch();
 					if($row['NB'] == 0)
 					{
+						$tailleDef = strlen($champs[1]);
+						
+						//on determine le classement de la definition selon sa taille
+						$sql = "SELECT NVL(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$champs[0]."' AND TAILLE_DEFINITION<=".$tailleDef.";";
+						$res = $bdd->query($sql);
+						$row = $res->fetch();
+						$classement = $row['CLA']+1;
+						
+						//on met a jour les classements des definitions du meme mot de taille superieur a cette definition
+						$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".$champs[0]."' AND CLASSEMENT >=".$classement.";";
+						$stmt= $bdd->prepare($sql); 
+      			$stmt->execute();
+						
+						//on insere dans la table la nouvelle definition
+						$sql = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, METHODE, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT) VALUES ('".$champs[0]."' ,'".str_replace("'","''",$champs[1])."', '".$champs[2]."', ".$id.", ".$tailleDef.", ".$classement.") ;";
+						$stmt= $bdd->prepare($sql); 
+      			$stmt->execute();	
+						
 						$ajoutTable += 1;
 					}
 					else
@@ -105,7 +123,7 @@
 			$ligne = strtok("\r\n");			
 		}
 
-		echo "Mon id : $id <br/>";
+		//echo "Mon id : $id <br/>";
 		echo "Nombre de lignes traitées : $nbLigne <br/>";
 		echo "Nombre de défitions ajoutées à la table : $ajoutTable <br/>";
 		echo "Nombre de définitions déjà présentes dans la table : $presentTable <br/>";
