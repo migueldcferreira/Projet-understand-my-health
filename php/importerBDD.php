@@ -50,7 +50,7 @@
     }
 	
 		$sdl = "select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL = '".$_SESSION['username']."';"; 
-		$res = $db->query($sdl); 
+		$res = $bdd->query($sdl); 
 		$row = $res->fetch(); 
 		$id = $row['ID_UTILISATEUR']; 
 	
