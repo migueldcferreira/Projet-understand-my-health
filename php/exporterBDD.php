@@ -26,6 +26,18 @@
       $sql = "SELECT * FROM TABLE_DEFINITION;";
     }
     
+		//connexion a la base de donnees   
+    try
+    {
+      $bdd = Bdd::connect("BDD_TRADOCTEUR");
+      $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      //Permet de récuperer une exception lorsque il y a une erreur au niveau de la base de donnée.
+      //On pourra donc traiter l'erreur plus simplement avec un try et catch.
+    }
+    catch (Exception $e)
+    {
+        die('Erreur : ' . $e->getMessage());
+    }
     
     $res = $bdd->query($sql); //On récupère (s'il en existe) les lignes de notre table "produits" qui répondent à notre requête $sql.
                     //Ces lignes sont stockées dans la variables $res qui est un tableau du jeu de résultat de notre requête.
