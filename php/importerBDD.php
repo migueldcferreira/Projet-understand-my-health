@@ -43,7 +43,8 @@
 		while ($ligne !== false)
 		{
     	//echo "Ligne to add= $ligne<br />";
-			$champs = preg_split("#|#",$ligne);
+			$champs = preg_split("#[|]#",$ligne);
+			echo 'nb champs :'.count($champs).'>>> ';
 			foreach($champs as $c)
 			{
 				echo "$c-";
