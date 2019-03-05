@@ -22,7 +22,7 @@ if (isset($_POST['modifier'])) {
 
   //on determine l'id de l'utilisateur qui modifie la definition
   $query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL = "'.$_SESSION['username'].'"'; 
-  $res = $db->query($query); 
+  $res = $bdd->query($query); 
   $row = $res->fetch(); 
   $idU = $row[0]; 
 
