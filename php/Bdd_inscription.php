@@ -130,7 +130,7 @@ if (isset($_POST['proposerDef']))
 		$confirmation = 1;
 		if($_SESSION['rang'] == "membre spécialisé" OR $_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
 		{
-			$confirmation = 0
+			$confirmation = 0;
 		}
 
 		$tailleDef = strlen($DEFINITION);
