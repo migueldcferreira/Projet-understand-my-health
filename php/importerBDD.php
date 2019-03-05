@@ -56,7 +56,7 @@
 		{
     	//echo "Ligne to add= $ligne<br />";
 			$champs = preg_split("#[|]#",$ligne);
-			if(compacte == 1)
+			if($compacte == 1)
 			{
 				if(count($champs)!= 3)
 				{
