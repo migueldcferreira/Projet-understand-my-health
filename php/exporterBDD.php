@@ -33,11 +33,11 @@
     {
       if(isset($_POST["formeCompacte"]))
       {
-        $txt = $row['MOT']."|".$row['DEFINITION')]."|".$row['METHODE']."\r\n";
+        $txt = $row['MOT']."|".$row['DEFINITION']."|".$row['METHODE']."\r\n";
       }
       else
       {
-        $txt = $row['ID_DEFINITION'].'|'.$row['MOT'].'|'.$row['DEFINITION')].'|'.$row['METHODE']."\r\n";
+        $txt = $row['ID_DEFINITION']."|".$row['MOT']."|".$row['DEFINITION']."|".$row['METHODE']."\r\n";
       }
       
       fwrite($myfile, $txt);
