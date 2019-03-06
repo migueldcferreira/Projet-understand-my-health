@@ -10,6 +10,7 @@
       <?php include("menu.php"); ?>
 
 <?php
+	  //fichier a supprimer
 	$textform = file_get_contents($_POST["testurl"]);
 
 	/*****

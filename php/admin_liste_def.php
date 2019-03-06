@@ -23,10 +23,10 @@
 		$bdd = Bdd::connect("BDD_TRADOCTEUR");
 		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Permet de récuperer une exception lorsque il y a une erreur au niveau de la base de donnée.
 																	   //On pourra donc traiter l'erreur plus simplement avec un try et catch.
-		$sql_base = "SELECT ID_DEFINITION, MOT, DEFINITION, DATE_AJOUT FROM TABLE_DEFINITION WHERE A_CONFIRMER = 0"; //requête pour trouver les définitions validées
+		$sql_base = "SELECT ID_DEFINITION, MOT, DEFINITION, DATE_MODIF FROM TABLE_DEFINITION WHERE A_CONFIRMER = 0"; //requête pour trouver les définitions validées
 		$res_base = $bdd->query($sql_base);
 
-		$sql_prop = "SELECT ID_DEFINITION, MOT, DEFINITION, DATE_AJOUT FROM TABLE_DEFINITION WHERE A_CONFIRMER = 1"; //requête pour trouver les définitions non validées (propositions)
+		$sql_prop = "SELECT ID_DEFINITION, MOT, DEFINITION, DATE_MODIF FROM TABLE_DEFINITION WHERE A_CONFIRMER = 1"; //requête pour trouver les définitions non validées (propositions)
 		$res_prop = $bdd->query($sql_prop);
 
 	}

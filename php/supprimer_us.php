@@ -20,7 +20,7 @@ if ($id) {
 
 
 	// sql to delete a record
-		$sql = 'DELETE FROM TABLE_UTILISATEUR WHERE ID_UTILISATEUR = "'.$id.'"';
+		$sql = 'UPDATE TABLE_UTILISATEUR SET ACTIF=0 WHERE ID_UTILISATEUR = "'.$id.'"';
 		$stmt= $bdd->query($sql);
 		$stmt->execute($sql);
     header('location: admin_liste_membres.php');
