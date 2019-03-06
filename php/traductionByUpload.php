@@ -10,6 +10,7 @@
       <?php include("menu.php"); ?>
 
 <?php
+	//fichier a supprimer
 	/*****
 		Copyright (c) 2016, Christian Vigh.
 		All rights reserved.
