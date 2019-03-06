@@ -9,7 +9,7 @@
     <!--Container principal-->
       <?php include("menu.php"); ?>
 <?php
-
+	//fichier a supprimer
 	if(empty($_POST["testtext"]))
 	{
 		die("Veuillez insérer du texte à simplifier");
