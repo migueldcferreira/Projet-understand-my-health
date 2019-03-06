@@ -21,7 +21,7 @@
   		<label>Mot : </label>
   		<input type="text" name="MOT" >
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   		<label>Definition : </label>
   		<textarea class="form-control" type="text" name="DEFINITION" rows="3"></textarea>
   	</div>
