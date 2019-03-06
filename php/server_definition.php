@@ -1,5 +1,5 @@
 <?php
-
+  //fichier a supprimer
   require('Bdd.php');
 
   try
