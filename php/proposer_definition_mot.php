@@ -23,7 +23,7 @@
   	</div>
   	<div class="input-group">
   		<label>Definition : </label>
-  		<textarea type="text" name="DEFINITION"></textarea>
+  		<textarea class="form-control" type="text" name="DEFINITION" rows="3"></textarea>
   	</div>
     <div class="input-group">
       <input type="hidden" name="username" value= "<?php echo $_SESSION['username']; ?>">
