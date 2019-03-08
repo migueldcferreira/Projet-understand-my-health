@@ -38,11 +38,44 @@
     $res = $bdd->query($query); 
     $row = $res->fetch(); 
     $idU = $row['ID_UTILISATEUR']; 
-    $tailleDef = strlen($definition);
-    $query = "UPDATE TABLE_DEFINITION SET MOT='".$mot."', DEFINITION='".str_replace("'","''",$definition)."', DATE_MODIF=NOW(), ID_UTILISATEUR_MODIF=".$idU.", TAILLE_DEFINITION=".$tailleDef." WHERE ID_DEFINITION=".$id.";";
-    $res = $bdd->query($query);
-    /*$stmt= $bdd->prepare($query);
-    $stmt->execute([$mot, $definition]);*/
+    
+		$tailleDef = strlen($definition);
+		
+		
+		
+		//on met a jour les classements des definitions reliées a l'ancien mot defini (le nouveau mot pouvant etre le meme ou non que l'ancien)
+		
+		//on recupere le classement et le mot associe a l'ID_DEFINITION
+		$sql = "SELECT MOT, CLASSEMENT FROM TABLE_DEFINITION WHERE ID_DEFINITION = ".$id.";";
+		$res = $bdd->query($sql);
+		$row = $res->fetch();
+		$ancienMot = $row['MOT'];
+		$classement = $row['CLASSEMENT'];
+		
+		//on met a jour les classements des autres definitions de cet ancienMot		
+		$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT-1 WHERE MOT='".$ancienMot."' AND CLASSEMENT >".$classement.";";
+		$stmt= $bdd->query($sql);
+		$stmt->execute($sql);
+		
+		//on met a jour les classements des definitions reliées au nouveau mot
+		
+		//on determine le classement de la definition selon sa nouvelle taille
+		$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$mot."' AND TAILLE_DEFINITION<=".$tailleDef.";";
+		$res = $bdd->query($sql);
+		$row = $res->fetch();
+		$classement = $row['CLA']+1;
+		
+		//on met a jour les classements des definitions de ce meme nouveau mot de taille superieur a cette definition
+		$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".$mot."' AND CLASSEMENT >=".$classement.";";
+		$stmt= $bdd->prepare($sql); 
+		$stmt->execute(); 
+		
+		
+		
+    $sql = "UPDATE TABLE_DEFINITION SET MOT='".$mot."', DEFINITION='".str_replace("'","''",$definition)."', DATE_MODIF=NOW(), ID_UTILISATEUR_MODIF=".$idU.", TAILLE_DEFINITION=".$tailleDef.", CLASSEMENT=".$classement." WHERE ID_DEFINITION=".$id.";";
+    $stmt= $bdd->prepare($sql); 
+		$stmt->execute(); 
+		
     header('location: accueil.php');
   }
  
