@@ -8,6 +8,8 @@
 
     <!--Container principal-->
     <?php include("menu.php"); ?>
+    <br/>
+    <h1 class="title"><span> Texte Simplifié </span></h1>
     <?php
       /*****
         Copyright (c) 2016, Christian Vigh.
@@ -38,14 +40,16 @@
       $texteSimplifieArray = simplifierTexteBrut($textForm,0,true);
       $texteSimplifie = $texteSimplifieArray["retour"];
       $textePDF = $texteSimplifieArray["PDF"];
-      echo $texteSimplifie;
-	    echo '</div>';
     ?>
-  <form method = "post" action="export_pdf.php" target="_blank">
+  <form method = "post" class = "export" action="export_pdf.php" target="_blank">
     <input type="hidden" id="texte" name="texte" value="<?php echo htmlspecialchars($textePDF["texte"]);?>">
     <input type="hidden" id="traduction" name="traduction" value="<?php echo $textePDF["traduction"];?>">
     <input type="submit" name="simplifier" value="Export PDF">
   </form>
+  <?php
+      echo $texteSimplifie;
+      echo '</div>';
+  ?>
 	  <?php include("script_menu.php"); ?>
 		<script type="text/javascript" src="../javascript/afficherDefinition.js"></script>
 	</body>

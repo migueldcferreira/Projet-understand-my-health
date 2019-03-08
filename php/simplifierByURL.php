@@ -2,12 +2,13 @@
 <html lang="fr">
   <head>
     <?php include("head.php"); ?>
-   
-   
 		<link rel="stylesheet" href="../css/traduction.css" />
+		<link rel="stylesheet" href="../css/simplifier.css" />
   </head>
     <!--Container principal-->
     <?php include("menu.php"); ?>
+    <br/>
+    <h1 class="title"><span> Texte Simplifié </span></h1>
     <?php
     	if(empty($_POST["testurl"]))
     	{
@@ -38,13 +39,15 @@
 	$time_end = time();
 	$timer = $time_end - $time_start;
 	echo $timer;
-	echo $texteSimplifie;
-    ?>
-	<form method = "post" action="export_pdf.php" target="_blank">
+	?>
+	<form method = "post" class = "export" action="export_pdf.php" target="_blank">
 	  <input type="hidden" id="texte" name="texte" value="<?php echo htmlspecialchars($textePDF["texte"]);?>">
 	  <input type="hidden" id="traduction" name="traduction" value="<?php echo $textePDF["traduction"];?>">
 	  <input type="submit" name="simplifier" value="Export PDF">
 	</form>
+	<?php
+	echo $texteSimplifie;
+    ?>
 
    
 	  <?php include("script_menu.php"); ?>

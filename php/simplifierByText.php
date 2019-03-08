@@ -3,13 +3,17 @@
   <head>
     <?php include("head.php"); ?>
 		<link rel="stylesheet" href="../css/traduction.css" />
+        <link rel="stylesheet" href="../css/simplifier.css" />
   </head>
   <body>
 
     <!--Container principal-->
     <?php include("menu.php"); ?>
+    <br/>
+   <h1 class="title"><span> Texte Simplifié </span></h1>
 
-   
+
+
 
     <?php
 	echo '<div>';
@@ -23,17 +27,22 @@
     	$texteSimplifie = $texteSimplifieArray["retour"];
         $textePDF = $texteSimplifieArray["PDF"];
 	//echo str_replace("\n","<br />",$texteSimplifie);
-
-	echo $texteSimplifie;
-	echo '</div>';
-    //echo htmlspecialchars($textePDF["texte"]);
+    ?>   
     
-    ?>
-    <form method = "post" action="export_pdf.php" target="_blank">
+
+    <form method = "post" class= "export" action="export_pdf.php" target="_blank">
       <input type="hidden" id="texte" name="texte" value="<?php echo htmlspecialchars($textePDF["texte"]);?>">
       <input type="hidden" id="traduction" name="traduction" value="<?php echo $textePDF["traduction"];?>">
       <input type="submit" name="simplifier" value="Export PDF">
     </form>
+
+
+    <?php
+        echo $texteSimplifie;
+        echo '</div>';
+        //echo htmlspecialchars($textePDF["texte"]);
+    ?>
+
 
 	  <?php include("script_menu.php"); ?>
 		<script type="text/javascript" src="../javascript/afficherDefinition.js"></script>
