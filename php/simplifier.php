@@ -41,12 +41,12 @@
             </div>
           </div>
         </span>';
-
-        $textePdf["texte"] .= '<a href="#'.$mot.'">'.$mot.'</a>';
-        if (!in_array($mot, $motDejaSimplifies))
+        $mot_lower = strtolower($mot);
+        $textePdf["texte"] .= '<a href="#'.$mot_lower.'">'.$mot.'</a>';
+        if (!in_array($mot_lower, $motDejaSimplifies))
         {
-          $textePdf["traduction"] .= '<div><a name='.$mot.'>'.$mot.' : '.$row['DEFINITION'].' <br/> </a></div>';
-          $motDejaSimplifies[] = $mot;
+          $textePdf["traduction"] .= '<div><a name='.$mot_lower.'>'.$mot.' : '.$row['DEFINITION'].' <br/> </a></div>';
+          $motDejaSimplifies[] = $mot_lower;
         }
 
 
