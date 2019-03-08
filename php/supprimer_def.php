@@ -27,13 +27,11 @@ if ($id) {
 
 	//on met a jour les classements des autres definitions de ce mot		
 	$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT-1 WHERE MOT='".$mot."' AND CLASSEMENT >".$classement.";";
-	$stmt= $bdd->prepare($sql);
-	$stmt->execute($sql);
+	$res = $bdd->query($sql);
 
 	//on supprime la defintion de la table
 	$sql = "DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = ".$id.";";
-	$stmt= $bdd->prepare($sql);
-	$stmt->execute($sql);
+	$res = $bdd->query($sql);
 
 	//on cherche l'id de l'utilisateur qui avait propose cette definition
 	$sql = "SELECT ID_UTILISATEUR_MODIF FROM TABLE_DEFINITION WHERE ID_DEFINITION=".$id.";";
@@ -43,8 +41,7 @@ if ($id) {
 
 	//on augmente de 1 son nombre de definition refusee
 	$sql = "UPDATE TABLE_UTILISATEUR SET NB_DEF_REFUSEE = NB_DEF_REFUSEE+1 WHERE ID_UTILISATEUR=".$idU.";";
-	$stmt= $bdd->prepare($sql);
-	$stmt->execute($sql);
+	$res = $bdd->query($sql);
 
 	header('location: admin_liste_def.php');
 }
