@@ -8,7 +8,7 @@
       "texte" => "",
       "traduction" => "",
     ];
-    $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot' ORDER BY CLASSEMENT;";
+    $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot' AND CLASSEMENT = 1;";
     $res = $bdd->query($sql); //On récupère (s'il en existe) les lignes de notre table "produits" qui répondent à notre requête $sql.
                   //Ces lignes sont stockées dans la variables $res qui est un tableau du jeu de résultat de notre requête.
     if(!empty($row = $res->fetch())) //La méthode fetch() permet de récupérer la ligne suivante du résultat de notre requete qui sont stockés dans la variable $res.
@@ -60,8 +60,6 @@
     $arrayRetour = [
       "retour" => $texteRetour,
       "PDF" => $textePdf,
-      "motDejaSimplifies" => $motDejaSimplifies,
-
     ];
     return $arrayRetour;
   }
@@ -110,7 +108,6 @@
         if(strlen($mot) > 0)
         {
           $texteArray = chercherMotBDD($mot, $bdd, $numModal,$motDejaSimplifies);
-          $motDejaSimplifies = $texteArray["motDejaSimplifies"];
           $texteSimplifie .= $texteArray["retour"];
           $textePDF["texte"] .= $texteArray["PDF"]["texte"];
           $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
@@ -145,7 +142,6 @@
     if(strlen($mot) > 0)
         {
           $texteArray = chercherMotBDD($mot, $bdd, $numModal,$motDejaSimplifies);
-          $motDejaSimplifies = $texteArray["motDejaSimplifies"];
           $texteSimplifie .= $texteArray["retour"];
           $textePDF["texte"] .= $texteArray["PDF"]["texte"];
           $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
