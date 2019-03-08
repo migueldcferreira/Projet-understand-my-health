@@ -120,7 +120,14 @@
 			
 			$ligne = strtok("\r\n");			
 		}
-
+	
+		//incrementation du compteur de def acceptee
+		if($compacte == 1)
+		{
+			$sql = "UPDATE TABLE_UTILISATEUR SET NB_DEF_ACCEPTEE = NB_DEF_ACCEPTEE+".$ajoutTable." WHERE ID_UTILISATEUR=".$id.";";
+			$res = $bdd->query($sql);
+		}
+	
 		//echo "Mon id : $id <br/>";
 		echo "Nombre de lignes traitées : $nbLigne <br/>";
 		echo "Nombre de défitions ajoutées à la table : $ajoutTable <br/>";
