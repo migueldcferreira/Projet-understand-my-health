@@ -30,11 +30,21 @@ if ($id) {
 		$stmt= $bdd->query($sql);
 		$stmt->execute($sql);
 			
-		//sql to delete a record
-		$sql = 'DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = "'.$id.'"';
+		//on supprime la defintion de la table
+		$sql = "DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = ".$id.";";
 		$stmt= $bdd->query($sql);
 		$stmt->execute($sql);
 		header('location: admin_liste_def.php');
+	
+		//on cherche l'id de l'utilisateur qui avait propose cette definition
+		$sql = "SELECT ID_UTILISATEUR_MODIF FROM TABLE_DEFINITION WHERE ID_DEFINITION=".$id.";";
+		$res = $bdd->query($sql);
+		$row = $res->fetch();
+		$idU = $row['ID_UTILISATEUR_MODIF'];
+
+		//on augmente de 1 son nombre de definition refusee
+		$sql = "UPDATE TABLE_UTILISATEUR SET NB_DEF_REFUSEE = NB_DEF_REFUSEE+1 WHERE ID_UTILISATEUR=".$idU.";";
+		$res = $bdd->query($sql);
 
 }
 else{header('location: register.php'); }
