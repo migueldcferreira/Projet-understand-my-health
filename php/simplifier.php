@@ -42,10 +42,10 @@
           </div>
         </span>';
 
-        $textePdf["texte"] .= '<b>'.$mot.'</b>';
+        $textePdf["texte"] .= '<a href="#'.$mot.'">'.$mot.'</a>';
         if (!in_array($mot, $motDejaSimplifies))
         {
-          $textePdf["traduction"] .= ''.$mot.' : '.$row['DEFINITION'].' <br/>';
+          $textePdf["traduction"] .= '<div><a name='.$mot.'>'.$mot.' : '.$row['DEFINITION'].' <br/> </a></div>';
           $motDejaSimplifies[] = $mot;
         }
 
