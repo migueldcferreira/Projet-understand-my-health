@@ -40,8 +40,8 @@ if ($id) {
 	$idU = $row['ID_UTILISATEUR_MODIF'];
 
 	//on augmente de 1 son nombre de definition refusee
-	$sql = "UPDATE TABLE_UTILISATEUR SET NB_DEF_REFUSEE = NB_DEF_REFUSEE+1 WHERE ID_UTILISATEUR=".$idU.";";
-	$res = $bdd->query($sql);
+	/*$sql = "UPDATE TABLE_UTILISATEUR SET NB_DEF_REFUSEE = NB_DEF_REFUSEE+1 WHERE ID_UTILISATEUR=".$idU.";";
+	$res = $bdd->query($sql);*/
 
 	header('location: admin_liste_def.php');
 }
