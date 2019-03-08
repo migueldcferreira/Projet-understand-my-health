@@ -35,11 +35,17 @@
     	}
       
     	require_once("simplifier.php");
-    	$texteSimplifie = simplifierTexteBrut($textForm,0,true);
-	    echo $texteSimplifie;
+      $texteSimplifieArray = simplifierTexteBrut($textForm,0,true);
+      $texteSimplifie = $texteSimplifieArray["retour"];
+      $textePDF = $texteSimplifieArray["PDF"];
+      echo $texteSimplifie;
 	    echo '</div>';
     ?>
-
+  <form method = "post" action="export_pdf.php" target="_blank">
+    <input type="hidden" id="texte" name="texte" value="<?php echo htmlspecialchars($textePDF["texte"]);?>">
+    <input type="hidden" id="traduction" name="traduction" value="<?php echo $textePDF["traduction"];?>">
+    <input type="submit" name="simplifier" value="Export PDF">
+  </form>
 	  <?php include("script_menu.php"); ?>
 		<script type="text/javascript" src="../javascript/afficherDefinition.js"></script>
 	</body>
