@@ -17,9 +17,20 @@
 //Supprimer definition
 $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
 if ($id) {
-
-
-	// sql to delete a record
+		
+		//on recupere le classement et le mot associe a l'ID_DEFINITION
+		$sql = "SELECT MOT, CLASSEMENT FROM TABLE_DEFINITION WHERE ID_DEFINITION = ".$id.";";
+		$res = $bdd->query($sql);
+		$row = $res->fetch();
+		$mot = $row['MOT'];
+		$classement = $row['CLASSEMENT'];
+		
+		//on met a jour les classements des autres definitions de ce mot		
+		$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT-1 WHERE MOT='".$mot."' AND CLASSEMENT >".$classement.";";
+		$stmt= $bdd->query($sql);
+		$stmt->execute($sql);
+			
+		//sql to delete a record
 		$sql = 'DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = "'.$id.'"';
 		$stmt= $bdd->query($sql);
 		$stmt->execute($sql);
