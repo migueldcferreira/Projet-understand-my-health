@@ -131,6 +131,9 @@ if (isset($_POST['proposerDef']))
 		if($_SESSION['rang'] == "membre spécialisé" OR $_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
 		{
 			$confirmation = 0;
+			//incrementation de son nombre de definitions acceptees
+			$sql = "UPDATE TABLE_UTILISATEUR SET NB_DEF_ACCEPTEE = NB_DEF_ACCEPTEE+1 WHERE ID_UTILISATEUR=".$id.";";
+			$res = $db->query($sql);
 		}
 
 		$tailleDef = strlen($DEFINITION);
