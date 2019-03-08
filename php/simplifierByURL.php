@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="fr">
   <head>
-    <?php include("head.php"); ?>
+  	<?php session_start();
+     include("head.php"); ?>
 		<link rel="stylesheet" href="../css/traduction.css" />
 		<link rel="stylesheet" href="../css/simplifier.css" />
   </head>
