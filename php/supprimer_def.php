@@ -24,6 +24,7 @@ if ($id) {
 		$row = $res->fetch();
 		$mot = $row['MOT'];
 		$classement = $row['CLASSEMENT'];
+		echo "$mot et $classement";
 		
 		//on met a jour les classements des autres definitions de ce mot		
 		$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT-1 WHERE MOT='".$mot."' AND CLASSEMENT >".$classement.";";
@@ -34,7 +35,7 @@ if ($id) {
 		$sql = 'DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = "'.$id.'"';
 		$stmt= $bdd->query($sql);
 		$stmt->execute($sql);
-    header('location: admin_liste_def.php');
+		//header('location: admin_liste_def.php');
 
 }
 else{header('location: register.php'); }
