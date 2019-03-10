@@ -85,7 +85,7 @@
 				//on ajoute l'image a la bdd
 				try
 				{
-					$sql = "INSERT INTO TABLE_IMAGE (MOT, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF, CLASSEMENT, A_CONFIRMER) VALUES ('".$mot."' ,".$image.", ".$taille.", '".$type."', ".$id.", ".$classement.", ".$confirmation.") ;";
+					$sql = "INSERT INTO TABLE_IMAGE (MOT, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF, CLASSEMENT, A_CONFIRMER) VALUES ('".$mot."' ,'".$image."', ".$taille.", '".$type."', ".$id.", ".$classement.", ".$confirmation.") ;";
 					$res = $bdd->query($sql);		
 				}
 				catch(EXCEPTION $e)
