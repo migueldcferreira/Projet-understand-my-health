@@ -64,7 +64,7 @@
       {
 			  $idImage = $row['ID_IMAGE'];
         echo "Image $compteur : <br/>";
-				echo '<img class=img-responsive src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/>';
+				echo '<img style="max-width: 50%; height: auto;" src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/>';
         echo "<br/><br/>";
 				$compteur += 1;
       }
