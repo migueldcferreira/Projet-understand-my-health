@@ -22,10 +22,10 @@
     }
   ?>
   
-  <br/>
-	<br/>
+	<br/><br/>
   <h1 class="title"><span> <?php echo $mot; ?> </span></h1>
-
+	<br/><br/>
+	
   <div>
     <?php
       require("Bdd.php");
@@ -42,7 +42,7 @@
         die('Erreur : ' . $e->getMessage());
       }
       
-      $sdl = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '".$mot."' ORDER BY CLASSEMENT;"; 
+			$sdl = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '".$mot."' ORDER BY CLASSEMENT;"; 
 			$res = $bdd->query($sdl);
       
       $compteur = 1;
@@ -50,8 +50,21 @@
       while(!empty($row = $res->fetch()))
       {
 			  $definition = $row['DEFINITION'];
-        echo "Définition $compteur: $definition";
-        echo "<br /><br />";
+        echo "Définition $compteur : $definition";
+        echo "<br/><br/>";
+      }
+		
+			$sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE WHERE MOT = '".$mot."' ORDER BY CLASSEMENT;"; 
+			$res = $bdd->query($sdl);
+      
+      $compteur = 1;
+      
+      while(!empty($row = $res->fetch()))
+      {
+			  $idImage = $row['ID_IMAGE'];
+        echo "Image $compteur : <br/>";
+				echo '<img src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/>'
+        echo "<br/><br/>";
       }
       
     ?>
