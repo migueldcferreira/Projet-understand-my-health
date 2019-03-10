@@ -26,15 +26,6 @@
 		{
 			die("Veuillez insérer un fichier avec une extension valide (.txt, .csv, .sql)");
 		}
-
-		if(isset($_POST["formeCompacte"]))
-		{
-			$compacte = 1;
-		}
-		else
-		{
-			$compacte = 0;
-		}
 	
 		//connexion a la base de donnees   
     try
@@ -54,6 +45,7 @@
 		$row = $res->fetch(); 
 		$id = $row['ID_UTILISATEUR']; 
 	
+		$compacte = -1;
 		$nbLigne = 0;
 		$presentTable = 0;
 		$ajoutTable = 0;
@@ -64,6 +56,16 @@
 		{
 			$nbLigne += 1;
 			$champs = preg_split("#[|]#",$ligne);
+			
+			if($compacte == -1)
+			{
+				if(count($champs) == 3)
+					$compacte = 1;
+				elseif(count($champs) == 9)
+					$compacte = 0;
+				else
+					die("Le format des séparateurs du fichier en entrée n'est pas reconnu");
+			}
 			
 			if($compacte == 1)
 			{
@@ -106,15 +108,41 @@
 			}
 			else
 			{
-				if(count($champs)!= 8)
+				if(count($champs)!= 9)
 				{
 					$text .= "Erreur separateurs ligne $nbLigne : $ligne";
 					$text .= "<br />";
 					$nbErreurSep += 1;
-
 				}
 				else
 				{
+					$sql = "SELECT COUNT(*) AS NB FROM TABLE_DEFINITION WHERE MOT='".$champs[1]."' AND DEFINITION='".str_replace("'","''",$champs[2])."';";
+					$res = $bdd->query($sql);
+					$row = $res->fetch();
+					if($row['NB'] == 0)
+					{
+						$tailleDef = $champs[7];
+						
+						//on determine le classement de la definition selon sa taille
+						$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$champs[1]."' AND TAILLE_DEFINITION<=".$tailleDef.";";
+						$res = $bdd->query($sql);
+						$row = $res->fetch();
+						$classement = $row['CLA']+1;
+						
+						//on met a jour les classements des definitions du meme mot de taille superieur a cette definition
+						$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".$champs[1]."' AND CLASSEMENT >=".$classement.";";
+						$res = $bdd->query($sql);
+						
+						//on insere dans la table la nouvelle definition
+						$sql = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, METHODE, DATE_MODIF, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES ('".$champs[1]."' ,'".str_replace("'","''",$champs[2])."', '".$champs[3]."', '".$champs[4]."', ".$champs[5].", ".$tailleDef.", ".$classement.", ".$champs[8].") ;";
+						$res = $bdd->query($sql);
+						
+						$ajoutTable += 1;
+					}
+					else
+					{
+						$presentTable += 1;
+					}
 				}
 			}	
 			
