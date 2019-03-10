@@ -12,7 +12,7 @@
   <body>
 	<?php include("menu.php"); ?>
 	<div class="header form_head bg-success">
-  		<h2> Proposer l'ajout d'un nouveau mot</h2>
+  		<h2> Proposer l'ajout d'une nouvelle définition</h2>
 	</div>
 
 	<form method="post" action="proposer_definition_mot.php" class = "formulaire_stylise">
@@ -21,9 +21,9 @@
   		<label>Mot : </label>
   		<input type="text" name="MOT" >
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   		<label>Definition : </label>
-  		<input type="text" name="DEFINITION">
+  		<textarea class="form-control" type="text" name="DEFINITION" rows="3"></textarea>
   	</div>
     <div class="input-group">
       <input type="hidden" name="username" value= "<?php echo $_SESSION['username']; ?>">

@@ -1,15 +1,9 @@
 
 <?php
 /* Database connection start */
+require('Bdd.php');
+$db = Bdd::connect("BDD_TRADOCTEUR");
 
-$servername = "localhost";
-$username = "root";
-$password = "BDDTradocteur";
-$dbname = "BDD_TRADOCTEUR";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
-
-/* Database connection end */
 
 
 // storing  request (ie, get/post) global array to a variable  
@@ -26,8 +20,9 @@ $columns = array(
 // getting total number records without any search
 $sql = "SELECT mot, definition";
 $sql.=" FROM TABLE_DEFINITION";
-$query=mysqli_query($conn, $sql) or die("dictionnaire_data.php: get defs 1");
-$totalData = mysqli_num_rows($query);
+$query=  $db->prepare($sql) ;
+$query ->execute() or die("dictionnaire_data.php: get defs 1");
+$totalData = $query->rowCount();
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
 
 
@@ -39,14 +34,16 @@ if( !empty($requestData['search']['value']) ) {   // if there is a search parame
 
 	
 }
-$query=mysqli_query($conn, $sql) or die("dictionnaire_data.php: get defs 2");
-$totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result. 
+$query= $db->prepare($sql) ;
+$query ->execute() or die("dictionnaire_data.php: get defs 2");
+$totalFiltered = $query->rowCount(); // when there is a search parameter then we have to modify total number filtered rows as per search result. 
 $sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start']." ,".$requestData['length']."   ";
 /* $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc  */	
-$query=mysqli_query($conn, $sql) or die("dictionnaire_data.php: get defs 3");
+$query= $db->prepare($sql);
+$query ->execute() or die("dictionnaire_data.php: get defs 3");
 
 $data = array();
-while( $row= $query->fetch_array(MYSQLI_ASSOC) ) {  // preparing an array
+while( $row= $query->fetch() ) {  // preparing an array
 
 	$nestedData=array(); 
 

@@ -13,7 +13,27 @@
 				var dataTable = $('#dictionnaire').DataTable( {
 					"processing": true,
 					"serverSide": true,
+					"language": { 
 
+					    "sProcessing": "Traitement en cours ...",
+					    "sLengthMenu": "Afficher _MENU_ lignes",
+					    "sZeroRecords": "Aucun résultat trouvé",
+					    "sEmptyTable": "Aucune donnée disponible",
+					    "sInfo": "Lignes _START_ à _END_ sur _TOTAL_",
+					    "sInfoEmpty": "Aucune ligne affichée",
+					    "sInfoFiltered": "(Filtrer un maximum de_MAX_)",
+					    "sInfoPostFix": "",
+					    "sSearch": "Chercher:",
+					    "sUrl": "",
+					    "sInfoThousands": ",",
+					    "sLoadingRecords": "Chargement...",
+					    "oPaginate": {
+					      "sFirst": "Premier", "sLast": "Dernier", "sNext": "Suivant", "sPrevious": "Précédent"
+					    },
+					    "oAria": {
+					      "sSortAscending": ": Trier par ordre croissant", "sSortDescending": ": Trier par ordre décroissant"
+					    }
+					} ,
 
 					"ajax":{
 						url :"dictionnaire_data.php", // json datasource
@@ -27,7 +47,7 @@
 			            },
 						error: function(){  // error handling
 							$(".dictionnaire-error").html("");
-							$("#dictionnaire").append('<tbody class="dictionnaire-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+							$("#dictionnaire").append('<tbody class="dictionnaire-error"><tr><th colspan="3">Pas de données trouvées sur le serveur</th></tr></tbody>');
 							$("#dictionnaire_processing").css("display","none");
 							
 						}

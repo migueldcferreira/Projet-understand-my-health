@@ -80,7 +80,7 @@ if (isset($_POST['login_user'])) {
 
   if (count($errors) == 0) {
     $MOT_DE_PASSE = md5($MOT_DE_PASSE);
-    $sts = "SELECT * FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL='$ADRESSE_MAIL' AND MOT_DE_PASSE='$MOT_DE_PASSE'";
+    $sts = "SELECT * FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL='$ADRESSE_MAIL' AND MOT_DE_PASSE='$MOT_DE_PASSE' AND ACTIF=1";
 
 
     if ($results = $db->query($sts))
@@ -120,15 +120,39 @@ if (isset($_POST['proposerDef']))
   if (count($errors) == 0)
   {
  
-   $query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL = "'.$USERNAME.'"'; 
-      $res = $db->query($query); 
-      $row = $res->fetch(); 
-      $id = $row[0]; 
+		//on determine l'id de l'utilisateur qui ajoute la definition
+   	$query = 'select ID_UTILISATEUR FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL = "'.$USERNAME.'"'; 
+		$res = $db->query($query); 
+		$row = $res->fetch(); 
+		$id = $row[0]; 
+		
+		//on cherche le rang de l'utilisateur pour savoir si la definition doit etre confirmee ou non
+		$confirmation = 1;
+		if($_SESSION['rang'] == "membre spécialisé" OR $_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
+		{
+			$confirmation = 0;
+			//incrementation de son nombre de definitions acceptees
+			$sql = "UPDATE TABLE_UTILISATEUR SET NB_DEF_ACCEPTEE = NB_DEF_ACCEPTEE+1 WHERE ID_UTILISATEUR=".$id.";";
+			$res = $db->query($sql);
+		}
 
+		$tailleDef = strlen($DEFINITION);
  
-      $query = 'insert into TABLE_DEFINITION (MOT, DEFINITION, A_CONFIRMER, ID_UTILISATEUR_AJOUT) values ("'.$NOUVEAU_MOT.'" ,"'.$DEFINITION.'", 1, '.$id.') '; 
-      $stmt= $db->prepare($query); 
-      $stmt->execute(); 
+		//on determine le classement de la definition selon sa taille
+		$query = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$NOUVEAU_MOT."' AND TAILLE_DEFINITION<=".$tailleDef.";";
+		$res = $db->query($query);
+		$row = $res->fetch();
+		$classement = $row['CLA']+1;
+		
+		//on met a jour les classements des definitions du meme mot de taille superieur a cette definition
+		$query = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".$NOUVEAU_MOT."' AND CLASSEMENT >=".$classement.";";
+		$stmt= $db->prepare($query); 
+		$stmt->execute(); 
+		
+		//on insere dans la table la nouvelle definition
+		$query = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES ('".$NOUVEAU_MOT."' ,'".str_replace("'","''",$DEFINITION)."', ".$id.", ".$tailleDef.", ".$classement.", ".$confirmation.") ;";
+		$stmt= $db->prepare($query); 
+		$stmt->execute(); 
  
  
  

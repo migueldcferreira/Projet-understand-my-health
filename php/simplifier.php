@@ -1,9 +1,13 @@
 <?php
   require('Bdd.php');
   
-  function chercherMotBDD($mot, &$bdd, &$numModal)
+  function chercherMotBDD($mot, &$bdd, &$numModal,&$motDejaSimplifies)
   {
     $texteRetour = "";
+    $textePdf = [
+      "texte" => "",
+      "traduction" => "",
+    ];
     $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot' AND CLASSEMENT = 1;";
     $res = $bdd->query($sql); //On récupère (s'il en existe) les lignes de notre table "produits" qui répondent à notre requête $sql.
                   //Ces lignes sont stockées dans la variables $res qui est un tableau du jeu de résultat de notre requête.
@@ -37,13 +41,27 @@
             </div>
           </div>
         </span>';
+        $mot_lower = strtolower($mot);
+        $textePdf["texte"] .= '<a href="#'.$mot_lower.'">'.$mot.'</a>';
+        if (!in_array($mot_lower, $motDejaSimplifies))
+        {
+          $textePdf["traduction"] .= '<div><a name='.$mot_lower.'>'.$mot.' : '.$row['DEFINITION'].' <br/> </a></div>';
+          $motDejaSimplifies[] = $mot_lower;
+        }
+
+
         $numModal += 1;
     }
     else
     {
+      $textePdf["texte"] .= "$mot";
       $texteRetour .= "$mot";            
     }
-    return $texteRetour;
+    $arrayRetour = [
+      "retour" => $texteRetour,
+      "PDF" => $textePdf,
+    ];
+    return $arrayRetour;
   }
 
   //$balise =
@@ -65,7 +83,13 @@
         die('Erreur : ' . $e->getMessage());
     }
 
+
+    $motDejaSimplifies = [];
     $texteSimplifie = "";
+    $textePDF = [
+      "texte" => "",
+      "traduction" => "",
+    ];
     $mot = "";
     $nbBaliseOuvrante = 0;
     $numModal = 0;
@@ -83,7 +107,10 @@
       {
         if(strlen($mot) > 0)
         {
-          $texteSimplifie .= chercherMotBDD($mot, $bdd, $numModal);
+          $texteArray = chercherMotBDD($mot, $bdd, $numModal,$motDejaSimplifies);
+          $texteSimplifie .= $texteArray["retour"];
+          $textePDF["texte"] .= $texteArray["PDF"]["texte"];
+          $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
         }
         $mot = "";
         if($balise>0 and $lettre == "<")
@@ -99,18 +126,32 @@
           if(!($balise == 1) or $nbBaliseOuvrante==0)
           {
             if($sautLigne == true and $lettre == "\n")
+            {
               $texteSimplifie .= "<br />";
+              $textePDF["texte"] .= "<br />";
+            }
             else
+            {
               $texteSimplifie .= "$lettre";
+              $textePDF["texte"] .= "$lettre";
+            }
           }
         }
       }
     }
     if(strlen($mot) > 0)
         {
-          $texteSimplifie .= chercherMotBDD($mot, $bdd, $numModal);
+          $texteArray = chercherMotBDD($mot, $bdd, $numModal,$motDejaSimplifies);
+          $texteSimplifie .= $texteArray["retour"];
+          $textePDF["texte"] .= $texteArray["PDF"]["texte"];
+          $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
+
         }
-    
-    return $texteSimplifie;
+    $arrayRetour = [
+      "retour" => $texteSimplifie,
+      "PDF" => $textePDF,
+
+    ];
+    return $arrayRetour;
   }
 ?>

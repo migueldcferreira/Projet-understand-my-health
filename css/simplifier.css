@@ -1,0 +1,24 @@
+.title{
+    position:relative;
+    text-align:center;
+    color: white;
+}
+.title::before{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:0;
+    width:100%;
+    background:#28A745;
+    height:2px;
+    z-index:-1;
+}
+.title span{
+    background:#28A745;
+    padding:4px 8px;
+}
+
+.export{
+    text-align: right;
+    padding-right: 8px;
+}
