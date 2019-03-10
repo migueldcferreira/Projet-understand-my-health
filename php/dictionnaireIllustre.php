@@ -27,7 +27,7 @@
   <h1 class="title"><span> <?php echo $mot; ?> </span></h1>
 	<br/><br/>
 	
-  <div>
+  <div class="panel-group">
     <?php
       require("Bdd.php");
       //connexion a la base de donnees   
@@ -68,8 +68,12 @@
       while(!empty($row = $res->fetch()))
       {
 			  $idImage = $row['ID_IMAGE'];
-        echo "Image $compteur : <br/>";
-				echo '<img style="max-width: 50%; height: auto;" src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/>';
+				echo '<div class="panel panel-primary">
+      					<div class="panel-heading">Image '.$compteur.'</div>
+      					<div class="panel-body"><img style="max-width: 100%; height: auto;" src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/></div>
+    					</div>';
+        //echo "Image $compteur : <br/>";
+				//echo '<img style="max-width: 50%; height: auto;" src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/>';
         echo "<br/><br/>";
 				$compteur += 1;
       }
