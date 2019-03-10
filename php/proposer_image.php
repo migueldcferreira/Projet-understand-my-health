@@ -3,7 +3,7 @@
 <head>
 	<?php
 		session_start();
-		include('verif_membre.php');
+		include("verif_membre.php");
 		include("head.php");
 	?>
 
@@ -24,7 +24,7 @@
 			//on verifie si on a bien recupere l'image
 			$verifImage = false;
 			$verifImage = is_uploaded_file($_FILES['IMAGE']['tmp_name']);
-			if(!verifImage)
+			if(!$verifImage)
 			{
 				array_push($errors, "Erreur lors de l'upload de l'image");
 			}
@@ -93,7 +93,7 @@
 	</div>
 
 	<form enctype="multipart/form-data" method="post" action="proposer_image.php" class = "formulaire_stylise">
-		<?php include('errors.php');?>
+		<?php include("errors.php");?>
 		<div class="input-group">
 			<label>Mot : </label>
 			<input type="text" name="MOT" >
