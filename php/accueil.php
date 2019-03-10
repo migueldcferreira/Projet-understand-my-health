@@ -26,7 +26,6 @@
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 								<form class="form col-md-6" action="simplifierByText.php" method="post">
-									<br/>
 									<textarea class="form-control form-control-block my-2" id="myText" name="testtext"></textarea>
 									<button type="submit" class="btn btn-primary my-2">Simplifier</button>
 									<button type="reset" class="btn btn-secondary my-2">Effacer</button>
@@ -69,7 +68,7 @@
 									<br/>
 									<div class="form-inline">
 										<input type="text" class="form-control form-control-lg" id="myURL" name="testurl"></input>
-										<button type="submit" class="btn btn-primary">Simplifier</button>
+										<button type="submit" class="btn btn-primary mx-2">Simplifier</button>
 									</div>
 								</form>
                             </div>
