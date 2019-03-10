@@ -40,8 +40,6 @@
 																</div> <!-- /container -->
 																<div class="form-check">
 																	<br/>
-																	<input type="checkbox" name="formeCompacte" class="form-check-input" id="formeCompacte1">
-																	<label class="form-check-label" for="formeCompacte1">Importer définitions sous forme compacte</label>
 																	<br/>
 																	<button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Importer</button>
 																</div>		
