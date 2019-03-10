@@ -81,10 +81,18 @@
 				$res = $bdd->query($sql);
 				$row = $res->fetch();
 				$classement = $row['CLA']+1;
-				echo "Id utilisateur : $id, Classement : $classement, A_CONFIRMER : $confirmation, Image: $image";
+				//echo "Id utilisateur : $id, Classement : $classement, A_CONFIRMER : $confirmation, Image: $image";
 				//on ajoute l'image a la bdd
-				/*$sql = "INSERT INTO TABLE_IMAGE (MOT, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF, CLASSEMENT, A_CONFIRMER) VALUES ('".$mot."' ,".$image.", ".$taille.", '".$type."', ".$id.", ".$classement.", ".$confirmation.") ;";
-				$res = $bdd->query($sql);*/
+				try
+				{
+					$sql = "INSERT INTO TABLE_IMAGE (MOT, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF, CLASSEMENT, A_CONFIRMER) VALUES ('".$mot."' ,".$image.", ".$taille.", '".$type."', ".$id.", ".$classement.", ".$confirmation.") ;";
+					$res = $bdd->query($sql);*		
+				}
+				catch(EXCEPTION $e)
+				{
+						/* on affiche les erreur éventuelles en développement */
+					die('Erreur : '.$e->getMessage());
+				}
 			}
 		}
 	?>
