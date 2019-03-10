@@ -12,7 +12,7 @@
   <body>
 	<?php include("menu.php"); ?>
 	<div class="header form_head bg-success">
-  		<h2> Proposer l'ajout d'un nouveau mot</h2>
+  		<h2> Proposer l'ajout d'une nouvelle définition</h2>
 	</div>
 
 	<form method="post" action="proposer_definition_mot.php" class = "formulaire_stylise">
