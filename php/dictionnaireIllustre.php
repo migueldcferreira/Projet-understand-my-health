@@ -23,6 +23,7 @@
   ?>
   
   <br/>
+	<br/>
   <h1 class="title"><span> <?php echo $mot; ?> </span></h1>
 
   <div>
@@ -41,7 +42,7 @@
         die('Erreur : ' . $e->getMessage());
       }
       
-      $sdl = "SELECT DEFINTION FROM TABLE_DEFINITION WHERE MOT = '".$mot."' ORDER BY CLASSEMENT;"; 
+      $sdl = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '".$mot."' ORDER BY CLASSEMENT;"; 
 			$res = $bdd->query($sdl);
       
       $compteur = 1;
