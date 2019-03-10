@@ -63,7 +63,7 @@
       {
 			  $idImage = $row['ID_IMAGE'];
         echo "Image $compteur : <br/>";
-				echo '<img src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/>'
+				echo '<img src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/>';
         echo "<br/><br/>";
       }
       
