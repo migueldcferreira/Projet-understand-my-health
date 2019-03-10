@@ -43,7 +43,7 @@
 
 									  <!-- Standar Form -->
 									
-									  <form action="simplifierByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
+									  <form class="my-2" action="simplifierByUpload.php" method="post" enctype="multipart/form-data" id="js-upload-form">
 										<div class="form-inline">
 										  <div class="form-group">
 											<input type="file" name="fichier" id="js-upload-files" multiple aria-describedby="fileHelp" accept=".txt,.pdf">
