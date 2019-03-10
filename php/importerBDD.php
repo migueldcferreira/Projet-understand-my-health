@@ -121,7 +121,7 @@
 					$row = $res->fetch();
 					if($row['NB'] == 0)
 					{
-						$tailleDef = $champs[7];
+						$tailleDef = $champs[6];
 						
 						//on determine le classement de la definition selon sa taille
 						$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$champs[1]."' AND TAILLE_DEFINITION<=".$tailleDef.";";
