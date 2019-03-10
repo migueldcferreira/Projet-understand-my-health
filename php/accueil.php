@@ -35,7 +35,7 @@
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 								
 								
-								
+				    				</br>
 								<div class="container">
 								  <div class="panel panel-default">
 									<div class="panel-heading"><strong>Sélectionnez des fichiers dans votre ordinateur</strong></div>
