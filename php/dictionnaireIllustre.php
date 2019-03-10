@@ -52,7 +52,7 @@
 			  $definition = $row['DEFINITION'];
 				echo '<div class="panel panel-primary">
       					<div class="panel-heading">Definition '.$compteur.'</div>
-      					<div class="panel-body">'.$defintion.'</div>
+      					<div class="panel-body">'.$definition.'</div>
     					</div>';
         //echo "Définition $compteur : $definition";
         echo "<br/><br/>";
