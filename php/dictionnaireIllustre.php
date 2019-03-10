@@ -52,6 +52,7 @@
 			  $definition = $row['DEFINITION'];
         echo "Définition $compteur : $definition";
         echo "<br/><br/>";
+				$compteur += 1;
       }
 		
 			$sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE WHERE MOT = '".$mot."' ORDER BY CLASSEMENT;"; 
@@ -63,8 +64,9 @@
       {
 			  $idImage = $row['ID_IMAGE'];
         echo "Image $compteur : <br/>";
-				echo '<img src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/>';
+				echo '<img class=img-responsive src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/>';
         echo "<br/><br/>";
+				$compteur += 1;
       }
       
     ?>
