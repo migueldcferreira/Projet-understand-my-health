@@ -19,7 +19,7 @@
 		require('Bdd.php');
 	
 		//si le membre a appuye sur le bouton "proposer"
-		/*if(isset($_POST['proposerImage']))
+		if(isset($_POST['proposerImage']))
 		{
 			//on verifie si on a bien recupere l'image
 			$verifImage = false;
@@ -85,7 +85,8 @@
 				//on ajoute l'image a la bdd
 				$sql = "INSERT INTO TABLE_IMAGE (MOT, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF, CLASSEMENT, A_CONFIRMER) VALUES ('".$mot."' ,".$image.", ".$taille.", '".$type."', ".$id.", ".$classement.", ".$confirmation.") ;";
 				$res = $bdd->query($sql);
-			}*/
+			}
+		}
 	?>
 	
 	<div class="header form_head bg-success">
