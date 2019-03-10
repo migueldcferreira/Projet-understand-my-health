@@ -83,8 +83,8 @@
 				$classement = $row['CLA']+1;
 				
 				//on ajoute l'image a la bdd
-				$sql = "INSERT INTO TABLE_IMAGE (MOT, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF, CLASSEMENT, A_CONFIRMER) VALUES ('".$mot."' ,".$image.", ".$taille.", '".$type."', ".$id.", ".$classement.", ".$confirmation.") ;";
-				$res = $bdd->query($sql);
+				/*$sql = "INSERT INTO TABLE_IMAGE (MOT, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF, CLASSEMENT, A_CONFIRMER) VALUES ('".$mot."' ,".$image.", ".$taille.", '".$type."', ".$id.", ".$classement.", ".$confirmation.") ;";
+				$res = $bdd->query($sql);*/
 			}
 		}
 	?>
