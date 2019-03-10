@@ -25,6 +25,7 @@
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+				  				</br>
 								<form class="form col-md-6" action="simplifierByText.php" method="post">
 									<textarea class="form-control form-control-block my-2" id="myText" name="testtext"></textarea>
 									<button type="submit" class="btn btn-primary my-1">Simplifier</button>
