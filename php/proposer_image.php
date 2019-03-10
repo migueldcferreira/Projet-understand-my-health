@@ -92,6 +92,7 @@
 	
 	<div class="header form_head bg-success">
 		<h2> Proposer l'ajout d'une nouvelle image</h2>
+		<img src="genererImage.php?id=1" height="" width="" alt="mon image" title="image"/>
 	</div>
 
 	<form enctype="multipart/form-data" method="post" action="proposer_image.php" class = "formulaire_stylise">
