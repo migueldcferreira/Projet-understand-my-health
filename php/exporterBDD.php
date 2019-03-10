@@ -38,7 +38,7 @@
 		}
 		else
 		{
-			$txt = $row['ID_DEFINITION']."|".$row['MOT']."|".$row['DEFINITION']."|".$row['METHODE']."|".$row['CLASSEMENT']."|".$row['DATE_MODIF']."|".$row['A_CONFIRMER']."|".$row['ID_UTILISATEUR_MODIF']."\r\n";
+			$txt = $row['ID_DEFINITION']."|".$row['MOT']."|".$row['DEFINITION']."|".$row['METHODE']."|".$row['DATE_MODIF']."|".$row['ID_UTILISATEUR_MODIF']."|".$row['TAILLE_DEFINITION']."|".$row['CLASSEMENT']."|".$row['A_CONFIRMER']."\r\n";
 		}
 
 		fwrite($myfile, $txt);
