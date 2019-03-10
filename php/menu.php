@@ -29,7 +29,10 @@
 					<?php if (!empty($_SESSION['username'])): ?>
 					
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-						<a href="proposer_definition_mot.php" class="nav-link">Proposer l'ajout d'un nouveau mot</a>
+						<a href="proposer_definition_mot.php" class="nav-link">Ajouter une définition</a>
+					</li>
+					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+						<a href="proposer_image.php" class="nav-link">Ajouter une image</a>
 					</li>
 
 					<?php else: ?>
