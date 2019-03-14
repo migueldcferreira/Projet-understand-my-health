@@ -29,7 +29,7 @@ $totalFiltered = $totalData;  // when there is no search parameter then total nu
 $sql = "SELECT MOT, DEFINITION";
 $sql.=" FROM TABLE_DEFINITION WHERE a_confirmer=0";
 if( !empty($requestData['search']['value']) ) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
-	$sql.=" AND MOT LIKE '".$requestData['search']['value']."%' ";    
+	$sql.=" AND MOT LIKE '%".$requestData['search']['value']."%' ";    
 	
 
 	
