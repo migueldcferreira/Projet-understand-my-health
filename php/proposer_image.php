@@ -26,7 +26,7 @@
 			$liste_mot = $_POST['LISTE_MOT'];
 			$liste_mot = preg_replace("# ,#" , ",", $liste_mot);
 			$liste_mot = explode(",", $liste_mot);
-			if(empty($liste_mot))
+			if(empty($liste_mot[0]))
 			{
 				array_push($errors, "Veuillez entrer un mot");
 				foreach ($liste_mot as $mot){
