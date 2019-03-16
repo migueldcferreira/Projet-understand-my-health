@@ -53,5 +53,7 @@
   ?>
 	  <?php include("script_menu.php"); ?>
 		<script type="text/javascript" src="../javascript/afficherDefinition.js"></script>
+	  	<script type="text/javascript" src="..\javascript/tooltipsMotDifficile.js"></script>
+
 	</body>
 </html>
