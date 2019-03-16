@@ -5,9 +5,8 @@
     session_start();
     include("head.php");
   ?>
-  <link rel="stylesheet" href="../css/traduction.css" />
-  <link rel="stylesheet" href="../css/simplifier.css" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
 </head>
 
 <body>
