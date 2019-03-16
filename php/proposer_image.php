@@ -118,10 +118,7 @@
 		<div class="input-group">
 			<label>Mot : </label>
 			<input type="text" name="MOT" />
-			<div class="bootstrap-tagsinput">
-			</div>
-			<select multiple data-role="tagsinput" name="LISTE_MOT">
-			</select>
+			<input type="text" name="LISTE_MOT" data-role="tagsinput" />
 		</div>
 		<div class="form-group">
 			<label>Image : </label>
