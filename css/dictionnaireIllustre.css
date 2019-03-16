@@ -4,7 +4,10 @@
 .title{
     position:relative;
     text-align:center;
-    color: white;
+    color: #337ab7;
+    font : 250% impact, futura, sans-serif;
+    text-transform : uppercase;
+    letter-spacing : 0.2em;
 }
 .title::before{
     content:"";
@@ -13,12 +16,17 @@
     left:0;
     width:100%;
     background:#337ab7;
-    height:2px;
+    height:4px;;
     z-index:-1;
 }
 .title span{
-    background:#337ab7;
+    background:white;
     padding:4px 8px;
+    border-style:solid;
+    border-radius: 10px;
+    border-width: 4px;
+    padding-left: 16px;
+    padding-right: 10px;
 }
 
 .export{
