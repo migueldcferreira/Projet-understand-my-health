@@ -25,12 +25,13 @@
 			//on verifie que le champ du mot n'est pas vide
 			$mot = $_POST['MOT'];
 			$liste_mot = preg_replace(" ," , ",", $_POST['LISTE_MOT']);
+			echo $liste_mot;
 			$liste_mot = explode(",", $liste_mot);
 			if(empty($mot))
 			{
 				array_push($errors, "Veuillez entrer un mot");
 				foreach ($liste_mot as $mot){
-					echo $mot.' <br />';
+					echo $mot;
 				}
 			}
 			
