@@ -21,6 +21,8 @@
 		//si le membre a appuye sur le bouton "proposer"
 		if(isset($_POST['proposerImage']))
 		{
+			//on verifie que le champ du mot n'est pas vide
+			$mot = $_POST['MOT'];
 			if(empty($mot))
 			{
 				array_push($errors, "Veuillez entrer un mot");
@@ -42,8 +44,7 @@
 			}
 			
 			$image = addslashes(file_get_contents($_FILES['IMAGE']['tmp_name']));
-			$type = $_FILES['IMAGE']['type'];
-			$mot = $_POST['MOT'];						
+			$type = $_FILES['IMAGE']['type'];									
 			
 			//si il n'y a pas eu d'erreur dans le remplissage du formulaire
 			if(count($errors) == 0)
