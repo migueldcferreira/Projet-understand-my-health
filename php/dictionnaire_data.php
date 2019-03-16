@@ -47,7 +47,8 @@ while( $row= $query->fetch() ) {  // preparing an array
 
 	$nestedData=array(); 
 
-	$nestedData[] = $row["MOT"];
+	//$nestedData[] = $row["MOT"];
+	$nestedData[] = '<a href="dictionnaireIllustre.php?mot='.$row["MOT"].'">'.$row["MOT"].'</a>';
 	$nestedData[] = $row["DEFINITION"];
 	
 	$data[] = $nestedData;
