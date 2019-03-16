@@ -79,7 +79,7 @@
 				}
 			
 				//on determine l'id de l'image
-				$sql = "SELECT COALESCE(MIN(ID_IMAGE)+1,1) AS ID FROM TABLE_IMAGE WHERE ID_IMAGE+1 NOT IN (SELECT ID_IMAGE FROM TABLE_IMAGE);"
+				$sql = "SELECT COALESCE(MIN(ID_IMAGE)+1,1) AS ID FROM TABLE_IMAGE WHERE ID_IMAGE+1 NOT IN (SELECT ID_IMAGE FROM TABLE_IMAGE);";
 				$res = $bdd->query($sql);
 				$row = $res->fetch();
 				$id_image = $row['ID'];
@@ -97,7 +97,7 @@
 				$classement = $row['CLA']+1;
 				
 				//on determine l'id du lien
-				$sql = "SELECT COALESCE(MIN(ID_LIEN)+1,1) AS ID FROM TABLE_LIEN_MOT_IMAGE WHERE ID_LIEN+1 NOT IN (SELECT ID_LIEN FROM TABLE_LIEN_MOT_IMAGE);"
+				$sql = "SELECT COALESCE(MIN(ID_LIEN)+1,1) AS ID FROM TABLE_LIEN_MOT_IMAGE WHERE ID_LIEN+1 NOT IN (SELECT ID_LIEN FROM TABLE_LIEN_MOT_IMAGE);";
 				$res = $bdd->query($sql);
 				$row = $res->fetch();
 				$id_lien = $row['ID'];
