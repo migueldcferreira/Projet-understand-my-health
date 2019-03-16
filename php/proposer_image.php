@@ -28,7 +28,7 @@
 			if(empty($mot))
 			{
 				array_push($errors, "Veuillez entrer un mot");
-				echo $liste_mot[1];
+				echo $liste_mot;
 			}
 			
 			//on verifie si on a bien recupere l'image
