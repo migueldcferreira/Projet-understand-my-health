@@ -8,6 +8,7 @@
 	?>
 
 	<link rel="stylesheet" href="..\css/choosetrad.css">
+	<link rel="stylesheet" href="..\css/bootstrap-tagsinput.css">
 </head>
 	
 <body>
@@ -118,7 +119,7 @@
 		<div class="input-group">
 			<label>Mot : </label>
 			<input type="text" name="MOT" />
-			<input type="text" name="LISTE_MOT" data-role="tagsinput" />
+			<input type="text" value="" name="LISTE_MOT" data-role="tagsinput" placeholder="Ajouter mots" />
 		</div>
 		<div class="form-group">
 			<label>Image : </label>
@@ -133,6 +134,7 @@
 
 
 	<?php include("script_menu.php"); ?>
+	<script src="../javascript/bootstrap-tagsinput.js"></script>
 
 </body>
 </html>
