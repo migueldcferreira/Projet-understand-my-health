@@ -117,7 +117,9 @@
 		<?php include("errors.php");?>
 		<div class="input-group">
 			<label>Mot : </label>
-			<input type="text" name="MOT" >
+			<input type="text" name="MOT" />
+			<select multiple data-role="tagsinput" name="LISTE_MOT">
+			</select>
 		</div>
 		<div class="form-group">
 			<label>Image : </label>
