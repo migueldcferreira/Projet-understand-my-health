@@ -29,9 +29,6 @@
 			if(empty($liste_mot[0]))
 			{
 				array_push($errors, "Veuillez entrer un mot");
-				foreach ($liste_mot as $mot){
-					array_push($errors, $mot);
-				}
 			}
 			
 			//on verifie si on a bien recupere l'image
