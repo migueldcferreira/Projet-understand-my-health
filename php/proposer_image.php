@@ -24,9 +24,11 @@
 		{
 			//on verifie que le champ du mot n'est pas vide
 			$mot = $_POST['MOT'];
+			$liste_mot = $_POST['LISTE_MOT'];
 			if(empty($mot))
 			{
 				array_push($errors, "Veuillez entrer un mot");
+				echo $liste_mot[1];
 			}
 			
 			//on verifie si on a bien recupere l'image
