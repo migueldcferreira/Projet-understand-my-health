@@ -23,11 +23,10 @@
 		if(isset($_POST['proposerImage']))
 		{
 			//on verifie que le champ du mot n'est pas vide
-			$mot = $_POST['MOT'];
 			$liste_mot = $_POST['LISTE_MOT'];
 			$liste_mot = preg_replace("# ,#" , ",", $liste_mot);
 			$liste_mot = explode(",", $liste_mot);
-			if(empty($mot))
+			if(empty($liste_mot))
 			{
 				array_push($errors, "Veuillez entrer un mot");
 				foreach ($liste_mot as $mot){
@@ -96,22 +95,24 @@
 				$res = $bdd->query($sql);
 				
 				//a faire pour chaque mot defini par l'image
-				
-				//on determine le classement selon le nombre d'image deja presente pour definir ce mot
-				$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_LIEN_MOT_IMAGE WHERE MOT='".$mot."';";
-				$res = $bdd->query($sql);
-				$row = $res->fetch();
-				$classement = $row['CLA']+1;
-				
-				//on determine l'id du lien
-				$sql = "SELECT COALESCE(MIN(ID_LIEN)+1,1) AS ID FROM TABLE_LIEN_MOT_IMAGE WHERE ID_LIEN+1 NOT IN (SELECT ID_LIEN FROM TABLE_LIEN_MOT_IMAGE);";
-				$res = $bdd->query($sql);
-				$row = $res->fetch();
-				$id_lien = $row['ID'];
-				
-				//on ajoute le lien entre l'image et les mots saisies
-				$sql = "INSERT INTO TABLE_LIEN_MOT_IMAGE (ID_LIEN, MOT, ID_IMAGE, CLASSEMENT) VALUES (".$id_lien.", '".$mot."' ,".$id_image.", ".$classement.") ;";
-				$res = $bdd->query($sql);
+				foreach($liste_mot as $mot)
+				{
+					//on determine le classement selon le nombre d'image deja presente pour definir ce mot
+					$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_LIEN_MOT_IMAGE WHERE MOT='".$mot."';";
+					$res = $bdd->query($sql);
+					$row = $res->fetch();
+					$classement = $row['CLA']+1;
+
+					//on determine l'id du lien
+					$sql = "SELECT COALESCE(MIN(ID_LIEN)+1,1) AS ID FROM TABLE_LIEN_MOT_IMAGE WHERE ID_LIEN+1 NOT IN (SELECT ID_LIEN FROM TABLE_LIEN_MOT_IMAGE);";
+					$res = $bdd->query($sql);
+					$row = $res->fetch();
+					$id_lien = $row['ID'];
+
+					//on ajoute le lien entre l'image et les mots saisies
+					$sql = "INSERT INTO TABLE_LIEN_MOT_IMAGE (ID_LIEN, MOT, ID_IMAGE, CLASSEMENT) VALUES (".$id_lien.", '".$mot."' ,".$id_image.", ".$classement.") ;";
+					$res = $bdd->query($sql);
+				}
 			}
 		}
 	?>
@@ -124,7 +125,6 @@
 		<?php include("errors.php");?>
 		<div class="input-group">
 			<label>Mots (séparés par une virgule) : </label>
-			<input type="text" name="MOT" />
 			<input type="text" value="" name="LISTE_MOT" data-role="tagsinput" placeholder="Ajouter mots" />
 		</div>
 		<div class="form-group">
