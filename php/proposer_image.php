@@ -31,7 +31,7 @@
 			{
 				array_push($errors, "Veuillez entrer un mot");
 				foreach ($liste_mot as $mot){
-					echo $mot;
+					array_push($errors, $mot);
 				}
 			}
 			
