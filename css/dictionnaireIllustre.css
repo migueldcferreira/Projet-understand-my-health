@@ -12,12 +12,12 @@
     top:50%;
     left:0;
     width:100%;
-    background:#28A745;
+    background:#337ab7;
     height:2px;
     z-index:-1;
 }
 .title span{
-    background:#28A745;
+    background:#337ab7;
     padding:4px 8px;
 }
 
