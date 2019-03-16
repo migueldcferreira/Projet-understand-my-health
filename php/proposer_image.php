@@ -24,11 +24,14 @@
 		{
 			//on verifie que le champ du mot n'est pas vide
 			$mot = $_POST['MOT'];
-			$liste_mot = $_POST['LISTE_MOT'];
+			$liste_mot = preg_replace(" ," , ",", $_POST['LISTE_MOT']);
+			$liste_mot = explode(",", $liste_mot);
 			if(empty($mot))
 			{
 				array_push($errors, "Veuillez entrer un mot");
-				echo $liste_mot;
+				foreach ($liste_mot as $mot){
+					echo "$mot <br />";
+				}
 			}
 			
 			//on verifie si on a bien recupere l'image
@@ -119,11 +122,9 @@
 	<form enctype="multipart/form-data" method="post" action="proposer_image.php" class = "formulaire_stylise">
 		<?php include("errors.php");?>
 		<div class="input-group">
-			<label>Mot : </label>
+			<label>Mots (séparés par une virgule) : </label>
 			<input type="text" name="MOT" />
 			<input type="text" value="" name="LISTE_MOT" data-role="tagsinput" placeholder="Ajouter mots" />
-			<select multiple name="LISTE_MOTS" data-role="tagsinput">
-			</select>
 		</div>
 		<div class="form-group">
 			<label>Image : </label>
