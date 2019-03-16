@@ -27,9 +27,9 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 				  				</br>
 								<form class="form col-md-6" action="simplifierByText.php" method="post">
-									<textarea class="form-control form-control-block" id="myText" name="testtext"></textarea>
 									<button type="submit" class="btn btn-primary my-1">Simplifier</button>
 									<button type="reset" class="btn btn-secondary my-1">Effacer</button>
+									<textarea class="form-control form-control-block " id="myText" name="testtext" rows="20"></textarea>
 								</form>
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
