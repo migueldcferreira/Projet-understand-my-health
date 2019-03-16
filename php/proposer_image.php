@@ -25,7 +25,7 @@
 			//on verifie que le champ du mot n'est pas vide
 			$mot = $_POST['MOT'];
 			$liste_mot = $_POST['LISTE_MOT'];
-			echo $liste_mot;
+			echo gettype($liste_mot);
 			$liste_mot = preg_replace(" ," , ",", $liste_mot);
 			echo $liste_mot;
 			$liste_mot = explode(",", $liste_mot);
