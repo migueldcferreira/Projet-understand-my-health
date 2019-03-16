@@ -14,7 +14,7 @@
     if(!empty($row = $res->fetch())) //La méthode fetch() permet de récupérer la ligne suivante du résultat de notre requete qui sont stockés dans la variable $res.
     {
         //$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
-        $texteRetour .= '
+        /*$texteRetour .= '
         <span class="vocabulaireSpecifique">
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNb'.$numModal.'">
@@ -40,7 +40,20 @@
               </div>
             </div>
           </div>
-        </span>';
+        </span>';*/
+      
+      
+      //Pour la gestion des images dans les info-bulle, faudra vérifier s'il existe bien une image quand 
+      //on a un mot difficile. Le cas échéant, il faudra faire une balise bouton type de ce type:
+      //<button type="button" class="btn btn-primary" data-toggle="tooltip" title="<img src=\'https://www.docteurclic.com/galerie-photos/image_4155_400.jpg\'/>' .$row['DEFINITION'] .'">
+        
+        $texteRetour .= '
+			  <span class="vocabulaireSpecifique">
+			  <button type="button" class="btn btn-primary" data-toggle="tooltip" title="'.$row['DEFINITION'].'">
+				'.$mot.'
+			  </button>';
+      
+      
         $mot_lower = strtolower($mot);
         $textePdf["texte"] .= '<a href="#'.$mot_lower.'">'.$mot.'</a>';
         if (!in_array($mot_lower, $motDejaSimplifies))
@@ -50,7 +63,7 @@
         }
 
 
-        $numModal += 1;
+        //$numModal += 1;
     }
     else
     {
