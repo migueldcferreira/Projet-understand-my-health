@@ -122,6 +122,8 @@
 			<label>Mot : </label>
 			<input type="text" name="MOT" />
 			<input type="text" value="" name="LISTE_MOT" data-role="tagsinput" placeholder="Ajouter mots" />
+			<select multiple name="LISTE_MOTS" data-role="tagsinput">
+			</select>
 		</div>
 		<div class="form-group">
 			<label>Image : </label>
