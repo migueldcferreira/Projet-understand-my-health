@@ -6,9 +6,10 @@
 		include("verif_membre.php");
 		include("head.php");
 	?>
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="..\css/choosetrad.css">
 	<link rel="stylesheet" href="..\css/bootstrap-tagsinput.css">
+	
 </head>
 	
 <body>
@@ -134,6 +135,7 @@
 
 
 	<?php include("script_menu.php"); ?>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="../javascript/bootstrap-tagsinput.js"></script>
 
 </body>
