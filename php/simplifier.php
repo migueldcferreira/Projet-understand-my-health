@@ -50,7 +50,7 @@
         
         $texteRetour .= '
 			  <span class="vocabulaireSpecifique">
-			  <button type="button" class="btn btn-primary" data-toggle="tooltip" title="'.$row['DEFINITION'].'">
+			  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="'.$row['DEFINITION'].'">
 				'.$mot.'
 			  </button>';
       
