@@ -29,7 +29,7 @@
 								<form class="form col-md-12" action="simplifierByText.php" method="post">
 									<button type="submit" class="btn btn-primary my-1">Simplifier</button>
 									<button type="reset" class="btn btn-secondary my-1">Effacer</button>
-									<textarea class="form-control form-control-block" id="myText" name="testtext" rows="17"></textarea>
+									<textarea class="form-control form-control-block" style="resize:none" id="myText" name="testtext" rows="18" placeholder="Copiez-collez un texte médical ici."></textarea>
 								</form>
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
