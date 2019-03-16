@@ -6,7 +6,6 @@
 		include("verif_membre.php");
 		include("head.php");
 	?>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="..\css/choosetrad.css">
 	<link rel="stylesheet" href="..\css/bootstrap-tagsinput.css">
 	
