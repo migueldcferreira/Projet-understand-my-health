@@ -45,7 +45,7 @@
   <form method = "post" class = "export" action="export_pdf.php" target="_blank">
     <input type="hidden" id="texte" name="texte" value="<?php echo htmlspecialchars($textePDF["texte"]);?>">
     <input type="hidden" id="traduction" name="traduction" value="<?php echo $textePDF["traduction"];?>">
-    <input type="submit" name="simplifier" value="Export PDF">
+    <input class="btn btn-secondary" type="submit" name="simplifier" value="Export PDF">
   </form>
   <?php
       echo $texteSimplifie;
