@@ -29,7 +29,7 @@
 								<form class="form col-md-6" action="simplifierByText.php" method="post">
 									<button type="submit" class="btn btn-primary my-1">Simplifier</button>
 									<button type="reset" class="btn btn-secondary my-1">Effacer</button>
-									<textarea class="form-control form-control-block " id="myText" name="testtext" rows="20"></textarea>
+									<textarea class="form-control form-control-block" style="width:100%" id="myText" name="testtext" rows="15"></textarea>
 								</form>
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
