@@ -7,6 +7,7 @@
   ?>
   <link rel="stylesheet" href="../css/traduction.css" />
   <link rel="stylesheet" href="../css/simplifier.css" />
+	<link rel="stylesheet" href="../css/dictionnaireIllustre.css" />
 	
 </head>
 
