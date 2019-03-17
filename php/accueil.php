@@ -68,7 +68,7 @@
 								<form class="form" action="simplifierByURL.php" method="post">
 									<br/>
 									<div class="form-inline">
-										<input type="text" class="form-control form-control-lg" id="myURL" name="testurl" style="width:62vw;" placeholder="Copiez-Collez le lien (URL) d'une page web"></input>
+										<input type="text" class="form-control form-control-lg" id="myURL" name="testurl" style="width:62vw;" placeholder="Copiez-collez le lien (URL) d'une page web"></input>
 										<button type="submit" class="btn btn-primary mx-2">Simplifier</button>
 									</div>
 								</form>
