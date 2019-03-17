@@ -47,7 +47,9 @@
 	  <input class="btn btn-secondary" type="submit" name="simplifier" value="Export PDF">
 	</form>
 	<?php
+	echo '<blockquote class="blockquote mx-4 my-3 text-justify" style="line-height:200%"><p>';
 	echo $texteSimplifie;
+	echo '</p></blockquote>';
     ?>
 
    
