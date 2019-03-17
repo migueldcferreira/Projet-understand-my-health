@@ -5,7 +5,8 @@
     position:relative;
     text-align:center;
     color: #337ab7;
-    font : 250% impact, futura, sans-serif;
+    font : 100% impact, futura, sans-serif;
+    font-size : 3vw;
     text-transform : uppercase;
     letter-spacing : 0.2em;
 }
@@ -16,7 +17,7 @@
     left:0;
     width:100%;
     background:#337ab7;
-    height:4px;;
+    height:0.5vw;
     z-index:-1;
 }
 .title span{
@@ -24,7 +25,7 @@
     padding:4px 8px;
     border-style:solid;
     border-radius: 10px;
-    border-width: 4px;
+    border-width: 0.5vw;
     padding-left: 16px;
     padding-right: 10px;
 }
