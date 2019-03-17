@@ -140,82 +140,83 @@
 </head>
 <body>
 
-
+	
 	<?php include("menu_admin.php"); ?>
+	
 
 	<?php
 			if($_SESSION['rang']=="super-admin")
 		{
 	?>
+	
+		<section id="tabs" class="project-tab">
+	                        <nav>
+	                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+	                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa fa-user-circle"></i> Administrateurs</a>
+	                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa fa-users"></i> Membres</a>
+	                            </div>
+	                        </nav>
+	                      <div class="tab-content" id="nav-tabContent">
+	                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+															</br>
 
-	<section id="tabs" class="project-tab">
-                        <nav>
-                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa fa-user-circle"></i> Administrateurs</a>
-                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa fa-users"></i> Membres</a>
-                            </div>
-                        </nav>
-                      <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-														</br>
-
-															<div class="container">
-																	<table id="admin_membres_1"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
-																			<thead>
-																				<tr>
-																					<th>Administrateurs</th>
-																					<th>Nom</th>
-																					<th>Prénom</th>
-																					<th>Adresse mail</th>
-																					<th>Rang</th>
-																					<th>Dernière connexion</th>
-																					<th>Actions</th>
-																				</tr>
-																			</thead>
-																	</table>
-															</div>
-
-
-														
+																<div style="overflow-x:auto;">
+																		<table id="admin_membres_1"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+																				<thead>
+																					<tr>
+																						<th>Administrateurs</th>
+																						<th>Nom</th>
+																						<th>Prénom</th>
+																						<th>Adresse mail</th>
+																						<th>Rang</th>
+																						<th>Dernière connexion</th>
+																						<th>Actions</th>
+																					</tr>
+																				</thead>
+																		</table>
+																</div>
 
 
+															
 
 
 
-                            </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 
-                            							<?php } ?>
-                            							</br>
-														
 
-                            								<div class="container">
-																	<table id="admin_membres_2"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
-																			<thead>
-																				<tr>
-																					<th>Administrateurs</th>
-																					<th>Nom</th>
-																					<th>Prénom</th>
-																					<th>Adresse mail</th>
-																					<th>Rang</th>
-																					<th>Dernière connexion</th>
-																					<th>Actions</th>
-																				</tr>
-																			</thead>
-																	</table>
-															</div>
+	                            </div>
+	                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 
-					<?php
-							if($_SESSION['rang']=="super-admin")
-						{
-					?>
+	                            							<?php } ?>
+	                            							</br>
+															
 
-                            </div>
+	                            								<div style="overflow-x:auto;">
+																		<table id="admin_membres_2"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+																				<thead>
+																					<tr>
+																						<th>Administrateurs</th>
+																						<th>Nom</th>
+																						<th>Prénom</th>
+																						<th>Adresse mail</th>
+																						<th>Rang</th>
+																						<th>Dernière connexion</th>
+																						<th>Actions</th>
+																					</tr>
+																				</thead>
+																		</table>
+																</div>
 
-                        </div>
-    </section>
+						<?php
+								if($_SESSION['rang']=="super-admin")
+							{
+						?>
+
+	                            </div>
+
+	                        </div>
+	   	</section>
     				<?php } ?>
-
+		
 
 
 </body>
