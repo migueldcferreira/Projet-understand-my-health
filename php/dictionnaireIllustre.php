@@ -42,7 +42,7 @@
         die('Erreur : ' . $e->getMessage());
       }
       
-			$sdl = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '".$mot."' ORDER BY CLASSEMENT;"; 
+			$sdl = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '".$mot."' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;"; 
 			$res = $bdd->query($sdl);
       
       $compteur = 1;
@@ -59,7 +59,7 @@
 				$compteur += 1;
       }
 		
-			$sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '".$mot."' ORDER BY CLASSEMENT;"; 
+			$sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '".$mot."' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;"; 
 			$res = $bdd->query($sdl);
       
       $compteur = 1;
