@@ -1,7 +1,7 @@
 
 
 <div id="topheader">
-	<nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top" role="navigation">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-success" role="navigation">
 		<div class="container-fluid">
 			
 				<a class="navbar-brand" href="accueil.php"><i class="fas fa-file-medical-alt"></i> Tradocteur</a>
