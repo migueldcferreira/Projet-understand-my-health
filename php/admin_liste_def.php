@@ -149,9 +149,9 @@
 																	<table id="admin_def_1"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
 																			<thead>
 																				<tr>
-																					<th>mot</th>
-																					<th>definition</th>
-																					<th>date_modif </th>
+																					<th>Mot</th>
+																					<th>Définition</th>
+																					<th>Date de modification</th>
 																					<th>Actions</th>
 																				</tr>
 																			</thead>
@@ -177,7 +177,7 @@
 																				<tr>
 																					<th>Mot</th>
 																					<th>Définition</th>
-																					<th>Date d'ajout</th>
+																					<th>Date de modification</th>
 																					<th>Actions</th>
 																				</tr>
 																			</thead>
