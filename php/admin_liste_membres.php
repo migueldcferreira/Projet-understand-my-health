@@ -45,7 +45,7 @@
 					if($_SESSION['rang']=="super-admin")
 			{
 				?>
-				<div class="col-md-12 table-responsive-sm">
+				<div class="col-md-12">
 					<table class="table">
 						<thead>
 							<tr>
@@ -83,7 +83,7 @@
 
 			?>
 			<div class="row">
-              			<div class="col-md-12 table-responsive-sm">
+              			<div class="col-md-12">
                 			<table class="table">
                 				<thead>
 							<tr>
