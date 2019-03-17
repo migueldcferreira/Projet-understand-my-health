@@ -40,9 +40,6 @@
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="register.php" class="nav-link">Devenir membre</a>
 					</li>
-					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-						<a href="login.php" class="nav-link">Se connecter</a>
-					</li>
 
 					<?php endif ?>
 					
@@ -82,6 +79,8 @@
 			</p>
 				<?php if (!empty($_SESSION['username'])): ?>
 					<a href="deconnexion.php" class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-caret-right"></i> Se déconnecter</a>
+				<?php else: ?>
+					<a href="login.php" class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-user-md"></i> Se connecter</a>
 				<?php endif ?>
 			<!--
 				<form method="post"  class="form-inline my-2 my-lg-0">
