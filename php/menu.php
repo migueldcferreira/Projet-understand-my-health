@@ -19,7 +19,7 @@
 			<div class="navbar-collapse collapse" id="navbar">
 				<ul class="nav navbar-nav mr-auto">
 					<li class="nav-item " data-toggle="collapse" data-target="#navbar-collapse.in">
-						<a href="accueil.php" class="nav-link">Traduire un contenu médical<span class="sr-only">(current)</span></a>
+						<a href="accueil.php" class="nav-link">Simplifier un contenu médical<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="dictionnaire.php" class="nav-link">Dictionnaire</a>
