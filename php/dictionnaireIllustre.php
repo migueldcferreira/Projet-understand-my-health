@@ -10,8 +10,8 @@
 </head>
 
 <body>
+  <?php include("menu.php");?>
   <?php
-    include("menu.php");
     if(isset($_GET['mot']))
     {
       $mot = $_GET['mot'];
