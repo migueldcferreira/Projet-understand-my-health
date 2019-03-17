@@ -2,136 +2,221 @@
 <html lang="fr">
 <head>
 
+	
 
+	<script type="text/javascript" src="..\javascript/tooltipsAdmin.js"></script>
 	 <?php session_start();
 	 include ('verif_admin.php');
-	 include("head.php"); ?>
+	 include("head.php");
+	 include("script_menu.php"); ?>
     <link rel="stylesheet" href="..\css/choosetrad.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+   
+    <script type="text/javascript" language="javascript" >
+    		<?php
+					if($_SESSION['rang']=="super-admin")
+			{
+				?>
+			$(document).ready(function() {
+				var dataTable = $('#admin_membres_1').DataTable( {
+					"processing": true,
+					"serverSide": true,
+					"columnDefs": [ {
+					"targets": 6,
+					"orderable": false
+					} ],
+					"language": { 
+
+					    "sProcessing": "Traitement en cours ...",
+					    "sLengthMenu": "Afficher _MENU_ lignes",
+					    "sZeroRecords": "Aucun résultat trouvé",
+					    "sEmptyTable": "Aucune donnée disponible",
+					    "sInfo": "Lignes _START_ à _END_ sur _TOTAL_",
+					    "sInfoEmpty": "Aucune ligne affichée",
+					    "sInfoFiltered": "(Filtrer un maximum de_MAX_)",
+					    "sInfoPostFix": "",
+					    "sSearch": "Chercher:",
+					    "sUrl": "",
+					    "sInfoThousands": ",",
+					    "sLoadingRecords": "Chargement...",
+					    "oPaginate": {
+					      "sFirst": "Premier", "sLast": "Dernier", "sNext": "Suivant", "sPrevious": "Précédent"
+					    },
+					    "oAria": {
+					      "sSortAscending": ": Trier par ordre croissant", "sSortDescending": ": Trier par ordre décroissant"
+					    }
+					} ,
+
+					"ajax":{
+						url :"admin_membres_data_su.php", // json datasource
+						type: "post",  // method  , by default get
+						dataFilter: function(reps) {
+				                console.log(reps);
+				                return reps;
+		           			 },
+		           		error:function(err){
+			                  console.log(err);
+			            },
+						error: function(){  // error handling
+							$(".admin_membres_1-error").html("");
+							$("#admin_membres_1").append('<tbody class="admin_membres_1-error"><tr><th colspan="3">Pas de données trouvées sur le serveur</th></tr></tbody>');
+							$("#admin_membres_1_processing").css("display","none");
+							
+						}
+					}
+				} );
+
+			} );
+
+		<?php } ?>
+
+
+			$(document).ready(function() {
+				var dataTable = $('#admin_membres_2').DataTable( {
+					"processing": true,
+					"serverSide": true,
+					"columnDefs": [ {
+					"targets": 6,
+					"orderable": false
+					} ],
+					"language": { 
+
+					    "sProcessing": "Traitement en cours ...",
+					    "sLengthMenu": "Afficher _MENU_ lignes",
+					    "sZeroRecords": "Aucun résultat trouvé",
+					    "sEmptyTable": "Aucune donnée disponible",
+					    "sInfo": "Lignes _START_ à _END_ sur _TOTAL_",
+					    "sInfoEmpty": "Aucune ligne affichée",
+					    "sInfoFiltered": "(Filtrer un maximum de_MAX_)",
+					    "sInfoPostFix": "",
+					    "sSearch": "Chercher:",
+					    "sUrl": "",
+					    "sInfoThousands": ",",
+					    "sLoadingRecords": "Chargement...",
+					    "oPaginate": {
+					      "sFirst": "Premier", "sLast": "Dernier", "sNext": "Suivant", "sPrevious": "Précédent"
+					    },
+					    "oAria": {
+					      "sSortAscending": ": Trier par ordre croissant", "sSortDescending": ": Trier par ordre décroissant"
+					    }
+					} ,
+
+					"ajax":{
+						url :"admin_membres_data_a.php", // json datasource
+						type: "post",  // method  , by default get
+						dataFilter: function(reps) {
+				                console.log(reps);
+				                return reps;
+		           			 },
+		           		error:function(err){
+			                  console.log(err);
+			            },
+						error: function(){  // error handling
+							$(".admin_membres_2-error").html("");
+							$("#admin_membres_2").append('<tbody class="admin_membres_2-error"><tr><th colspan="3">Pas de données trouvées sur le serveur</th></tr></tbody>');
+							$("#admin_membres_2_processing").css("display","none");
+							
+						}
+					}
+				} );
+
+			} );
+
+
+				
+
+		
+		</script>
+
+
 
 </head>
 <body>
 
 
 	<?php include("menu_admin.php"); ?>
+
 	<?php
-
-
-	require('Bdd.php');
-
-	try
-	{
-		$bdd = Bdd::connect("BDD_TRADOCTEUR");
-		$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Permet de récuperer une exception lorsque il y a une erreur au niveau de la base de donnée.
-																	   //On pourra donc traiter l'erreur plus simplement avec un try et catch.
-
-
-		$sql_adm = "SELECT  ID_UTILISATEUR,NOM, PRENOM, ADRESSE_MAIL,RANG,DATE_DERNIERE_CONNEXION FROM TABLE_UTILISATEUR WHERE ACTIF = 1 AND RANG LIKE '%admin' " ; //requête pour trouver les définitions non validées (propositions)
-		$res_adm = $bdd->query($sql_adm);
-		$sql_mem = "SELECT  ID_UTILISATEUR,NOM, PRENOM, ADRESSE_MAIL,RANG,DATE_DERNIERE_CONNEXION FROM TABLE_UTILISATEUR WHERE ACTIF = 1 AND RANG LIKE '%membre%' " ; //requête pour trouver les définitions non validées (propositions)
-		$res_mem = $bdd->query($sql_mem);
-
-
-	}
-	catch (Exception $e)
-	{
-			die('Erreur : ' . $e->getMessage());
-	}?>
-
+			if($_SESSION['rang']=="super-admin")
+		{
+	?>
 
 	<section id="tabs" class="project-tab">
-		<div class="container">
-			<div class="row">
-			<?php
-					if($_SESSION['rang']=="super-admin")
-			{
-				?>
-				<div class="col-md-12 table-responsive-sm">
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Administrateurs</th>
-								<th scope="col">Nom</th>
-								<th scope="col">Prénom</th>
-								<th scope="col">Adresse mail</th>
-								<th scope="col">Rang</th>
-								<th scope="col">Dernière connexion</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-																			<?php $i=1;
-																			 while ($row = $res_adm->fetch()) { ?>
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa fa-users"></i> Administrateurs</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa fa-database"></i> Membres</a>
+                            </div>
+                        </nav>
+                      <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+														</br>
+
+															<div class="container">
+																	<table id="admin_membres_1"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+																			<thead>
 																				<tr>
-																						<td ><?php printf ("%d", $i); ?>  </td>
-																						<td> <?php printf ("%s", $row[1]); ?> </td>
-																						<td> <?php printf ("%s", $row[2]); ?> </td>
-																						<td> <?php printf ("%s", $row[3]); ?> </td>
-																						<td> <?php printf ("%s", $row[4]); ?> </td>
-																						<td> <?php printf ("%s", $row[5]); ?> </td>
-																						<td><a href="supprimer_us.php?id=<?php echo $row[0] ?>">
-																							<button class="btn btn-danger btn-sm tooltipsAdmin " title="Supprimer cet administrateur"><i class="fas fa-minus-circle"></i></button></td>
-																						</a></td>
+																					<th>Administrateurs</th>
+																					<th>Nom</th>
+																					<th>Prénom</th>
+																					<th>Adresse mail</th>
+																					<th>Rang</th>
+																					<th>Dernière connexion</th>
+																					<th>Actions</th>
 																				</tr>
-																			<?php $i++;} ?>
-																		</tbody>
+																			</thead>
+																	</table>
+															</div>
 
-					</table>
-				</div>
-			</div>
-			<?php
-				}
 
-			?>
-			<div class="row">
-              			<div class="col-md-12 table-responsive-sm">
-                			<table class="table">
-                				<thead>
-							<tr>
-								<th scope="col">Membres</th>
-								<th scope="col">Nom</th>
-								<th scope="col">Prénom</th>
-								<th scope="col">Adresse mail</th>
-								<th scope="col">Rang</th>
-								<th scope="col">Dernière connexion</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-																			<?php $i=1;
-																			 while ($row = $res_mem->fetch()) { ?>
+														
+
+
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                            							<?php } ?>
+                            							</br>
+														
+
+                            								<div class="container">
+																	<table id="admin_membres_2"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+																			<thead>
 																				<tr>
-																						<td><?php printf ("%d", $i); ?>  </td>
-																						<td> <?php printf ("%s", $row[1]); ?> </td>
-																						<td> <?php printf ("%s", $row[2]); ?> </td>
-																						<td> <?php printf ("%s", $row[3]); ?> </td>
-																						<td> <?php printf ("%s", $row[4]); ?> </td>
-																						<td> <?php printf ("%s", $row[5]); ?> </td>
-																							<td>
-																								<a href="promotion.php?id=<?php echo $row[0] ?>">
-																								<button class="btn btn-success btn-sm tooltipsAdmin" title="Promouvoir comme membre spécialiste"><i class="fas fa-user-plus"></i>
-																								</button></a>
-																								<a href="retro.php?id=<?php echo $row[0] ?>">
-																								<button class="btn btn-warning btn-sm tooltipsAdmin disabled" title="Rétrograder à membre"><i class="fas fa-user-minus"></i>
-																								</button></a>
-																								<a href="supprimer_us.php?id=<?php echo $row[0] ?>">
-																								<button class="btn btn-danger btn-sm tooltipsAdmin" title="Supprimer ce membre"><i class="fas fa-minus-circle"></i></button></a>
-																							</td>
-
+																					<th>Administrateurs</th>
+																					<th>Nom</th>
+																					<th>Prénom</th>
+																					<th>Adresse mail</th>
+																					<th>Rang</th>
+																					<th>Dernière connexion</th>
+																					<th>Actions</th>
 																				</tr>
-																			<?php $i++;} ?>
-						</tbody>
+																			</thead>
+																	</table>
+															</div>
 
-					</table>
-                </div>
+					<?php
+							if($_SESSION['rang']=="super-admin")
+						{
+					?>
 
-            </div>
-		</div>
-	</section>
+                            </div>
+
+                        </div>
+    </section>
+    				<?php } ?>
 
 
-<?php include("script_menu.php"); ?>
-
-<script type="text/javascript" src="..\javascript/tooltipsAdmin.js"></script>
 
 </body>
 </html>
