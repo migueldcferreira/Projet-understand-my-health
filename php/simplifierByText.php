@@ -39,7 +39,7 @@
 
 
     <?php
-	echo '<blockquote class="blockquote"><p>';
+	echo '<blockquote class="blockquote mx-2 my-2"><p>';
         echo $texteSimplifie;
         echo '</p></blockquote></div>';
         //echo htmlspecialchars($textePDF["texte"]);
