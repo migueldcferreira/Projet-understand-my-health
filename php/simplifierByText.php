@@ -39,12 +39,9 @@
 
 
     <?php
-	echo '<blockquote class="blockquote">';
-	echo '<p>';
+	echo '<blockquote class="blockquote"><p>';
         echo $texteSimplifie;
-	echo '</p>';
-	echo '</blockquote>';
-        echo '</div>';
+        echo '</p></blockquote></div>';
         //echo htmlspecialchars($textePDF["texte"]);
     ?>
 
