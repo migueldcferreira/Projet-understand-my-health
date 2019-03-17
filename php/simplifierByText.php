@@ -39,7 +39,7 @@
 
 
     <?php
-	echo '<blockquote class="blockquote mx-4 my-3 text-justify"><p>';
+	echo '<blockquote class="blockquote mx-4 my-3 text-justify" style="line-height:200%"><p>';
         echo $texteSimplifie;
         echo '</p></blockquote></div>';
         //echo htmlspecialchars($textePDF["texte"]);
