@@ -61,10 +61,17 @@ while( $row= $query->fetch() ) {  // preparing an array
 	$nestedData[] = $row["ADRESSE_MAIL"];
 	$nestedData[] = $row["RANG"];
 	$nestedData[] = $row["DATE_DERNIERE_CONNEXION"];
-	$nestedData[] = '<a href="promotion.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-success btn-sm tooltipsAdmin" title="Promouvoir comme membre spécialiste"><i class="fas fa-user-plus"></i> </button></a>
-					<a href="retro.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-warning btn-sm tooltipsAdmin disabled" title="Rétrograder à membre"><i class="fas fa-user-minus"></i> </button></a>
-					<a href="supprimer_us.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-danger btn-sm tooltipsAdmin" title="Supprimer ce membre"><i class="fas fa-minus-circle"></i></button></a>';
-
+	if ($row["RANG"]=="membre spécialisé")
+	{
+		$nestedData[] = '<a href="promotion.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-success btn-sm tooltipsAdmin" title="Promouvoir comme membre spécialiste" disabled><i class="fas fa-user-plus"></i> </button></a>
+						<a href="retro.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-warning btn-sm tooltipsAdmin" title="Rétrograder à membre"><i class="fas fa-user-minus"></i> </button></a>
+						<a href="supprimer_us.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-danger btn-sm tooltipsAdmin" title="Supprimer ce membre"><i class="fas fa-minus-circle"></i></button></a>';
+	}
+	else {
+		$nestedData[] = '<a href="promotion.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-success btn-sm tooltipsAdmin" title="Promouvoir comme membre spécialiste"><i class="fas fa-user-plus"></i> </button></a>
+						<a href="retro.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-warning btn-sm tooltipsAdmin" title="Rétrograder à membre" disabled><i class="fas fa-user-minus"></i> </button></a>
+						<a href="supprimer_us.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-danger btn-sm tooltipsAdmin" title="Supprimer ce membre"><i class="fas fa-minus-circle"></i></button></a>';
+	}
 	
 	$data[] = $nestedData;
 
