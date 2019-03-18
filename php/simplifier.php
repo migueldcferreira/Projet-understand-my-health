@@ -13,6 +13,7 @@
                   //Ces lignes sont stockées dans la variables $res qui est un tableau du jeu de résultat de notre requête.
     if(!empty($row = $res->fetch())) //La méthode fetch() permet de récupérer la ligne suivante du résultat de notre requete qui sont stockés dans la variable $res.
     {
+	    echo "test1";
         //$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
         /*$texteRetour .= '
         <span class="vocabulaireSpecifique">
@@ -46,15 +47,17 @@
       $sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '".$mot."' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;"; 
       $resimg = $bdd->query($sdl);
       
-      
+      	    echo "test2 (before img)";
       if(!empty($row = $resimg->fetch()))
-      {
+      {      	    echo "test3 (after img request bdd)";
+
 			$idImage = $row['ID_IMAGE'];
 			$texteRetour .= '
 	      				  <span class="vocabulaireSpecifique">
 					  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img style=/'max-width: 100%; height: auto;/' src=/'genererImage.php?id='.$idImage.' /' alt=/'mon image/'>'.$row['DEFINITION'].'">
 						'.$mot.'
 					  </button>';
+       		echo "test4, on est bien passé par là";
 	      
       }
       else
