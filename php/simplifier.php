@@ -49,14 +49,13 @@
       if(!empty($row = $resimg->fetch()))
       {
 
-	/*		$idImage = $row['ID_IMAGE'];
+			$idImage = $row['ID_IMAGE'];
 			$texteRetour .= '
 	      				  <span class="vocabulaireSpecifique">
-					  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img style=/'max-width: 100%; height: auto;/' src=/'genererImage.php?id='.$idImage.' /' alt=/'mon image/'>'.$row['DEFINITION'].'">
+					  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img style="max-width: 100%; height: auto;" src="genererImage.php?id='.$idImage.'" alt="mon image">'.$row['DEFINITION'].'">
 						'.$mot.'
 					  </button>';
-	*/      
-	      	      $texteRetour .= ' ya une image ici je le jure';
+	      
 	      
       }
       else
