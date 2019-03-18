@@ -1,5 +1,9 @@
 /* bootstrap-tagsinput.css file - add in local */
 
+.font-size-100{
+    font-size: 100%;   
+}
+
 .bootstrap-tagsinput {
   background-color: #fff;
   border: 1px solid #ccc;
