@@ -5,7 +5,7 @@
 
   var defaultOptions = {
     tagClass: function(item) {
-      return 'label label-success';
+      return 'label label-success p-2 font-size-100';
     },
     itemValue: function(item) {
       return item ? item.toString() : item;
