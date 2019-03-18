@@ -52,7 +52,7 @@
 			$idImage = $row['ID_IMAGE'];
 			$texteRetour .= '
 	      				  <span class="vocabulaireSpecifique">
-					  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img src=\'genererImage.php?id='.$idImage.'\'>'.$row['DEFINITION'].'">
+					  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img style=\'max-height: 200px; max-width: 180px;\' src=\'genererImage.php?id='.$idImage.'\'>'.$row['DEFINITION'].'">
 						'.$mot.'
 					  </button>';
 	      
