@@ -1,6 +1,8 @@
 <?php
-
+  session_start();
+  include('verif_admin.php');
   require('Bdd.php');
+
 
   try
   {
