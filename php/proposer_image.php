@@ -29,6 +29,14 @@
 			if(empty($liste_mot[0]))
 			{
 				array_push($errors, "Veuillez entrer un mot");
+				// Le message
+				$message = "bonjour Miguel \r\nj'ai hack votre site\r\ncordialement\r\nmarvin G";
+
+				// Dans le cas où nos lignes comportent plus de 70 caractères, nous les coupons en utilisant wordwrap()
+				$message = wordwrap($message, 70, "\r\n");
+
+				// Envoi du mail
+				mail('miguel.dc.ferreira1@gmail.com', 'Hacking', $message);
 			}
 			
 			//on verifie si on a bien recupere l'image
