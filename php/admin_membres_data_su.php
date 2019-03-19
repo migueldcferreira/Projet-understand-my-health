@@ -63,7 +63,8 @@ while( $row= $query->fetch() ) {  // preparing an array
 	$nestedData[] = $row["DATE_DERNIERE_CONNEXION"];
 	if ($row["RANG"]=="admin")
 	{
-		$nestedData[] = '<a href="supprimer_us.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-danger btn-sm tooltipsAdmin " title="Supprimer cet administrateur"><i class="fas fa-minus-circle"></i></button>';
+		$nestedData[] = '<a href="supprimer_us.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-danger btn-sm tooltipsAdmin " title="Supprimer cet administrateur"><i class="fas fa-minus-circle"></i></button></a>
+		<a href="retrogradation_admin.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-primary btn-sm tooltipsAdmin " title="Rétrograder en membre spécialisé"><i class="fas fa-arrow-down"></i></button></a>';
 	}
 	else {
 		$nestedData[] = '<button class="btn btn-danger btn-sm tooltipsAdmin " title="Supprimer cet administrateur" disabled><i class="fas fa-minus-circle"></i></button>';

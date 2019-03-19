@@ -1,6 +1,7 @@
 
 <?php
 /* Database connection start */
+session_start();
 require('Bdd.php');
 $db = Bdd::connect("BDD_TRADOCTEUR");
 
@@ -61,18 +62,31 @@ while( $row= $query->fetch() ) {  // preparing an array
 	$nestedData[] = $row["ADRESSE_MAIL"];
 	$nestedData[] = $row["RANG"];
 	$nestedData[] = $row["DATE_DERNIERE_CONNEXION"];
+
+	$buttons = '';
+
+	if(!empty($_SESSION['username']) && ($_SESSION['rang']=="super-admin"))
+	{
+		$buttons .= ' <a href="promotion_admin.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-primary btn-sm tooltipsAdmin" title="Promouvoir comme administrateur"><i class="fas fa-user-tie"></i> </button></a>';
+	}
+
+
 	if ($row["RANG"]=="membre spécialisé")
 	{
-		$nestedData[] = '<button class="btn btn-success btn-sm tooltipsAdmin" title="Promouvoir comme membre spécialiste" disabled><i class="fas fa-user-plus"></i> </button></a>
+		$buttons .= ' <button class="btn btn-success btn-sm tooltipsAdmin" title="Promouvoir comme membre spécialiste" disabled><i class="fas fa-user-plus"></i> </button></a>
 						<a href="retro.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-warning btn-sm tooltipsAdmin" title="Rétrograder à membre"><i class="fas fa-user-minus"></i> </button></a>
 						<a href="supprimer_us.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-danger btn-sm tooltipsAdmin" title="Supprimer ce membre"><i class="fas fa-minus-circle"></i></button></a>';
 	}
 	else {
-		$nestedData[] = '<a href="promotion.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-success btn-sm tooltipsAdmin" title="Promouvoir comme membre spécialiste"><i class="fas fa-user-plus"></i> </button></a>
+		$buttons .= ' <a href="promotion.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-success btn-sm tooltipsAdmin" title="Promouvoir comme membre spécialiste"><i class="fas fa-user-plus"></i> </button></a>
 						<button class="btn btn-warning btn-sm tooltipsAdmin" title="Rétrograder à membre" disabled><i class="fas fa-user-minus"></i> </button></a>
 						<a href="supprimer_us.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-danger btn-sm tooltipsAdmin" title="Supprimer ce membre"><i class="fas fa-minus-circle"></i></button></a>';
 	}
-	
+
+
+
+	$nestedData[] = $buttons;
+
 	$data[] = $nestedData;
 
 }
