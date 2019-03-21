@@ -30,10 +30,10 @@ if (isset($_POST['simplifier']))
 	</body>
 
 	";
-	echo 'test';
+
 
 	// instantiate and use the mpdf class
-	$mpdf = new \Mpdf\Mpdf();
+	$mpdf = new Mpdf();
 	
 	 
 
