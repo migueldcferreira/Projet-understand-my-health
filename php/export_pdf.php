@@ -32,10 +32,9 @@ if (isset($_POST['simplifier']))
 	";
 
 	// instantiate and use the mpdf class
-	echo PHP_VERSION; 
-	die;
 	$mpdf = new \Mpdf\Mpdf();
-
+	echo PHP_VERSION;
+	die;
 	 
 
 	$mpdf->WriteHTML($html);
