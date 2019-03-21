@@ -4,7 +4,6 @@
 
 require_once '../mpdf/vendor/autoload.php';
 
-exit;
 
 
 
@@ -33,7 +32,7 @@ if (isset($_POST['simplifier']))
 	";
 
 	// instantiate and use the dompdf class
-	$mpdf = new Mpdf\Mpdf();
+	$mpdf = new \Mpdf\Mpdf();
 
 	 
 
@@ -45,8 +44,6 @@ if (isset($_POST['simplifier']))
 	exit;
 		
 }
-else{
-	echo "hrelp";
-}
+
 
 ?>
