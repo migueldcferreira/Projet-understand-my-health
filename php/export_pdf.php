@@ -1,8 +1,8 @@
 <?php
 
 
-var_dump(is_file ('../mpdf/vendor/autoload.php'));
-require_once '..\mpdf\vendor\autoload.php';
+
+require_once '../mpdf/vendor/autoload.php';
 
  
 
@@ -33,7 +33,7 @@ if (isset($_POST['simplifier']))
 	";
 
 	// instantiate and use the dompdf class
-	$mpdf = new \Mpdf\Mpdf();
+	$mpdf = new Mpdf\Mpdf();
 
 	 
 
