@@ -31,7 +31,9 @@ if (isset($_POST['simplifier']))
 
 	";
 
-	// instantiate and use the dompdf class
+	// instantiate and use the mpdf class
+	echo PHP_VERSION; 
+	die;
 	$mpdf = new \Mpdf\Mpdf();
 
 	 
