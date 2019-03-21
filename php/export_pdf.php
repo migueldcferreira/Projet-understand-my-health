@@ -33,7 +33,7 @@ if (isset($_POST['simplifier']))
 
 
 	// instantiate and use the mpdf class
-	$mpdf = new /Mpdf/Mpdf();
+	$mpdf = new ../Mpdf/Mpdf();
 	
 	 
 
