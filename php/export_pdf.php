@@ -1,8 +1,6 @@
 <?php
 
-require_once '../dompdf/autoload.inc.php';
-// reference the Dompdf namespace
-use Dompdf\Dompdf;
+require_once  '../mpdf/vendor/autoload.php';
 
 
 if (isset($_POST['simplifier']))
@@ -29,20 +27,17 @@ if (isset($_POST['simplifier']))
 
 	";
 
-	// instantiate and use the dompdf class
-	$dompdf = new Dompdf();
-	$dompdf->loadHtml($html);
+	$mpdf = new \Mpdf\Mpdf();
 
-	// (Optional) Setup the paper size and orientation
-	$dompdf->setPaper('A4', 'portrait');
+	 
 
-	// Render the HTML as PDF
-	$dompdf->render();
+	$mpdf->WriteHTML($html);
 
-	// Output the generated PDF to Browser
-	$dompdf->stream();
+	 
 
-	
+	$mpdf->Output();
+	exit;
+		
 }
 else{
 	echo "hrelp";
