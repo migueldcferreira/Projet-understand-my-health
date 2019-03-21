@@ -4,7 +4,7 @@
 
 require_once '../mpdf/vendor/autoload.php';
 
- 
+exit;
 
 
 
