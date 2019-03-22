@@ -18,7 +18,16 @@
 		
 		//connecion a la BDD
 		require('Bdd.php');
-		$db = Bdd::connect("BDD_TRADOCTEUR");
+		try
+		{
+			$db = Bdd::connect("BDD_TRADOCTEUR");
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Permet de récuperer une exception lorsque il y a une erreur au niveau de la base de donnée.
+																			 //On pourra donc traiter l'erreur plus simplement avec un try et catch.
+		}
+		catch (Exception $e)
+		{
+				die('Erreur : ' . $e->getMessage());
+		}
 		
 		// Si l'utilisateur a propose une nouvelle definition
 		if (isset($_POST['proposerDef']) and isset($_POST['MOT']) and isset($_POST['DEFINITION']))
@@ -66,12 +75,19 @@
 				$stmt->execute(); 
 
 				//on insere dans la table la nouvelle definition
-				$query = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES ('".$NOUVEAU_MOT."' ,'".str_replace("'","''",$DEFINITION)."', ".$id.", ".$tailleDef.", ".$classement.", ".$confirmation.") ;";
-				$stmt= $db->prepare($query); 
-				$stmt->execute(); 
+				try
+				{
+					$query = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES ('".$NOUVEAU_MOT."' ,'".str_replace("'","''",$DEFINITION)."', ".$id.", ".$tailleDef.", ".$classement.", ".$confirmation.") ;";
+					$stmt= $db->prepare($query); 
+					$stmt->execute();
+				}
+				catch (Exception $e)
+				{
+					die('Erreur : ' . $e->getMessage());
+				}
 
 				//on retourne sur la page weka (liste des mots difficiles rencontres par les utilisateurs)
-				header('location: accueil.php');
+				header('location: proposer_definition_mot.php');
 				
 			}
 		}
