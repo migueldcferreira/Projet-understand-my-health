@@ -132,7 +132,7 @@
 														</div>
 														<div class="form-group">
 															<label>Definition : </label>
-															<textarea class="form-control" type="text" name="DEFINITION" value="<?php echo $DEFINITION; ?>" rows="3"></textarea>
+															<textarea class="form-control" type="text" name="DEFINITION" rows="3"><?php echo $DEFINITION; ?></textarea>
 														</div>
 														<div class="input-group form-group">
 															<button type="submit" class="btn btn-success btn-sm"  name="proposerDef">Proposer</button>
