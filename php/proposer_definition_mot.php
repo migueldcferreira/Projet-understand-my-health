@@ -70,7 +70,31 @@
 				$stmt= $db->prepare($query); 
 				$stmt->execute(); 
 
+				//on retourne sur la page weka (liste des mots difficiles rencontres par les utilisateurs)
+				header('location:proposer_definition_mot.php');
+				
 			}
+		}
+		
+		//on regarde si on est sur la page de proposition de definition
+		$page_proposition = 0;
+		if(isset($_GET['mot']))
+    {
+      $mot = $_GET['mot'];
+			$page_proposition = 1;
+    }
+		else
+		{
+			$mot = '';
+		}		
+		if(isset($_GET['definition']))
+    {
+      $mot = $_GET['definition'];
+			$page_proposition = 1;
+    }
+		else
+		{
+			$definition = '';
 		}
 	?>
 		
@@ -80,20 +104,20 @@
 						<div class="col-md-12">
 								<nav>
 										<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-												<a class="nav-item nav-link active show" id="nav-weka-tab" data-toggle="tab" href="#nav-weka" role="tab" aria-controls="nav-weka" aria-selected="true"><i class="fas fa-file-upload"></i> Liste des mots les plus recherchés</a>
-												<a class="nav-item nav-link" id="nav-proposition-tab" data-toggle="tab" href="#nav-proposition" role="tab" aria-controls="nav-proposition" aria-selected="false"><i class="fas fa-file-csv"></i> Proposer l'ajout d'une nouvelle définition</a>
+												<a class="nav-item nav-link<?php if $page_proposition==0 echo ' active show'; ?>" id="nav-weka-tab" data-toggle="tab" href="#nav-weka" role="tab" aria-controls="nav-weka" aria-selected="<?php if $page_proposition==0 echo 'true'; else echo 'false';?>""><i class="fas fa-file-upload"></i> Liste des mots les plus recherchés</a>
+												<a class="nav-item nav-link<?php if $page_proposition==1 echo ' active show'; ?>" id="nav-proposition-tab" data-toggle="tab" href="#nav-proposition" role="tab" aria-controls="nav-proposition" aria-selected="<?php if $page_proposition==1 echo 'true'; else echo 'false';?>"><i class="fas fa-file-csv"></i> Proposer l'ajout d'une nouvelle définition</a>
 										</div>
 								</nav>
 								<div class="tab-content" id="nav-tabContent">
 									
 										<!--Liste des mots obtenus a l'aide de weka-->
-										<div class="tab-pane fade show active" id="nav-weka" role="tabpanel" aria-labelledby="nav-weka-tab">
+										<div class="tab-pane fade<?php if $page_proposition==0 echo ' active show'; ?>" id="nav-weka" role="tabpanel" aria-labelledby="nav-weka-tab">
 
 										</div>
 
 									
 										<!--Page pour ajouter une nouvelle definition-->
-										<div class="tab-pane fade" id="nav-proposition" role="tabpanel" aria-labelledby="nav-proposition-tab">
+										<div class="tab-pane fade<?php if $page_proposition==1 echo ' active show'; ?>" id="nav-proposition" role="tabpanel" aria-labelledby="nav-proposition-tab">
 													<div class="header form_head bg-success">
 														<h2> Proposer l'ajout d'une nouvelle définition</h2>
 													</div>
