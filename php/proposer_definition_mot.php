@@ -35,6 +35,7 @@
 			$page_proposition = 1;
 			$NOUVEAU_MOT = $_POST['MOT'];
 			$DEFINITION = $_POST['DEFINITION'];
+			$USERNAME = $_SESSION['username'];
 			if (empty($NOUVEAU_MOT))
 			{
 				array_push($errors, "Entrer votre nouveau mot");
@@ -75,16 +76,9 @@
 				$stmt->execute(); 
 
 				//on insere dans la table la nouvelle definition
-				try
-				{
-					$query = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES ('".$NOUVEAU_MOT."' ,'".str_replace("'","''",$DEFINITION)."', ".$id.", ".$tailleDef.", ".$classement.", ".$confirmation.") ;";
-					$stmt= $db->prepare($query); 
-					$stmt->execute();
-				}
-				catch (Exception $e)
-				{
-					die('Erreur : ' . $e->getMessage());
-				}
+				$query = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES ('".$NOUVEAU_MOT."' ,'".str_replace("'","''",$DEFINITION)."', ".$id.", ".$tailleDef.", ".$classement.", ".$confirmation.") ;";
+				$stmt= $db->prepare($query); 
+				$stmt->execute();
 
 				//on retourne sur la page weka (liste des mots difficiles rencontres par les utilisateurs)
 				header('location: proposer_definition_mot.php');
