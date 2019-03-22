@@ -7,6 +7,11 @@
 			include("head.php");
 		?>
     <link rel="stylesheet" href="..\css/choosetrad.css">
+		
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+		<script type="text/javascript" src="../javascript/table_proposition.js"></script>
   </head>
 	
   <body>
@@ -125,7 +130,16 @@
 									
 										<!--Liste des mots obtenus a l'aide de weka-->
 										<div class="tab-pane fade<?php if($page_proposition==0) echo ' active show'; ?>" id="nav-weka" role="tabpanel" aria-labelledby="nav-weka-tab">
-
+											<div class="container">
+												<table id="table_proposition"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+														<thead>
+															<tr>
+																<th>mot</th>
+																<th>fréquence de recherche</th>
+															</tr>
+														</thead>
+												</table>
+											</div>
 										</div>
 
 									
