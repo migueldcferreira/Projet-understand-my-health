@@ -138,6 +138,7 @@
 															<tr>
 																<th>mot</th>
 																<th>fréquence de recherche</th>
+																<th>action</th>
 															</tr>
 														</thead>
 												</table>
