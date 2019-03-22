@@ -5,6 +5,7 @@
 			session_start();
 			include('verif_membre.php');
 			include("head.php");
+			include("script_menu.php");
 		?>
     <link rel="stylesheet" href="..\css/choosetrad.css">
 		
