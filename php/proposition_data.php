@@ -7,8 +7,7 @@ $requestData= $_REQUEST;
 $columns = array(
   // datatable column index  => database column name
   0 => 'MOT',
-  1 => 'FREQUENCE',
-  2 => 'ACTION'
+  1 => 'FREQUENCE'
 );
 // getting total number records without any search
 $sql = "SELECT MOT, FREQUENCE";
