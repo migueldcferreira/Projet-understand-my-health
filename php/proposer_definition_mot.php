@@ -177,10 +177,6 @@
 		
 
 
-
-
-	<?php include("script_menu.php"); ?>
-
   </body>
 </html>
 
