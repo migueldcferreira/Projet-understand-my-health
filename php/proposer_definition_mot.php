@@ -74,26 +74,57 @@
 		}
 	?>
 		
-	<div class="header form_head bg-success">
-		<h2> Proposer l'ajout d'une nouvelle définition</h2>
-	</div>
+	<section id="tabs" class="project-tab">
+		<div class="container">
+				<div class="row">
+						<div class="col-md-12">
+								<nav>
+										<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+												<a class="nav-item nav-link active show" id="nav-weka-tab" data-toggle="tab" href="#nav-weka" role="tab" aria-controls="nav-weka" aria-selected="true"><i class="fas fa-file-upload"></i> Liste des mots les plus recherchés</a>
+												<a class="nav-item nav-link" id="nav-proposition-tab" data-toggle="tab" href="#nav-proposition" role="tab" aria-controls="nav-proposition" aria-selected="false"><i class="fas fa-file-csv"></i> Proposer l'ajout d'une nouvelle définition</a>
+										</div>
+								</nav>
+								<div class="tab-content" id="nav-tabContent">
+									
+										<!--Liste des mots obtenus a l'aide de weka-->
+										<div class="tab-pane fade show active" id="nav-weka" role="tabpanel" aria-labelledby="nav-weka-tab">
 
-	<form method="post" action="proposer_definition_mot.php" class = "formulaire_stylise">
-  	<?php include('errors.php');?>
-  	<div class="input-group">
-  		<label>Mot : </label>
-  		<input type="text" name="MOT" >
-  	</div>
-  	<div class="form-group">
-  		<label>Definition : </label>
-  		<textarea class="form-control" type="text" name="DEFINITION" rows="3"></textarea>
-  	</div>
-    <div class="input-group">
-      <input type="hidden" name="username" value= "<?php echo $_SESSION['username']; ?>">
-    </div>
-  	<div class="input-group form-group">
-  		<button type="submit" class="btn btn-success btn-sm"  name="proposerDef">Proposer</button>
-  	</div>
+										</div>
+
+									
+										<!--Page pour ajouter une nouvelle definition-->
+										<div class="tab-pane fade" id="nav-proposition" role="tabpanel" aria-labelledby="nav-proposition-tab">
+													<div class="header form_head bg-success">
+														<h2> Proposer l'ajout d'une nouvelle définition</h2>
+													</div>
+
+													<form method="post" action="proposer_definition_mot.php" class = "formulaire_stylise">
+														<?php include('errors.php');?>
+														<div class="input-group">
+															<label>Mot : </label>
+															<input type="text" name="MOT" >
+														</div>
+														<div class="form-group">
+															<label>Definition : </label>
+															<textarea class="form-control" type="text" name="DEFINITION" rows="3"></textarea>
+														</div>
+														<div class="input-group">
+															<input type="hidden" name="username" value= "<?php echo $_SESSION['username']; ?>">
+														</div>
+														<div class="input-group form-group">
+															<button type="submit" class="btn btn-success btn-sm"  name="proposerDef">Proposer</button>
+														</div>
+													</form>
+										</div>
+									
+								</div>
+						</div>
+				</div>
+		</div>
+	</section>	
+		
+	
+		
 
 
 
