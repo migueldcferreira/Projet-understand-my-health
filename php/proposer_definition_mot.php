@@ -117,8 +117,8 @@
 						<div class="col-md-12">
 								<nav>
 										<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-												<a class="nav-item nav-link<?php if($page_proposition==0) echo ' active show'; ?>" id="nav-weka-tab" data-toggle="tab" href="#nav-weka" role="tab" aria-controls="nav-weka" aria-selected="<?php if($page_proposition==0) echo 'true'; else echo 'false';?>""><i class="fas fa-file-upload"></i> Liste des mots les plus recherchés</a>
-												<a class="nav-item nav-link<?php if($page_proposition==1) echo ' active show'; ?>" id="nav-proposition-tab" data-toggle="tab" href="#nav-proposition" role="tab" aria-controls="nav-proposition" aria-selected="<?php if($page_proposition==1) echo 'true'; else echo 'false';?>"><i class="fas fa-file-csv"></i> Proposer l'ajout d'une nouvelle définition</a>
+												<a class="nav-item nav-link<?php if($page_proposition==0) echo ' active show'; ?>" id="nav-weka-tab" data-toggle="tab" href="#nav-weka" role="tab" aria-controls="nav-weka" aria-selected="<?php if($page_proposition==0) echo 'true'; else echo 'false';?>""><i class="fas fa-list-ul"></i> Liste des mots les plus recherchés</a>
+												<a class="nav-item nav-link<?php if($page_proposition==1) echo ' active show'; ?>" id="nav-proposition-tab" data-toggle="tab" href="#nav-proposition" role="tab" aria-controls="nav-proposition" aria-selected="<?php if($page_proposition==1) echo 'true'; else echo 'false';?>"><i class="fas fa-pencil-alt"></i> Proposer l'ajout d'une nouvelle définition</a>
 										</div>
 								</nav>
 								<div class="tab-content" id="nav-tabContent">
