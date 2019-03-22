@@ -71,7 +71,7 @@
 				$stmt->execute(); 
 
 				//on retourne sur la page weka (liste des mots difficiles rencontres par les utilisateurs)
-				$page_proposition = 0;
+				header('location: proposer_definition_mot.php');
 				
 			}
 		}
