@@ -7,7 +7,8 @@ $requestData= $_REQUEST;
 $columns = array(
   // datatable column index  => database column name
   0 => 'MOT',
-  1 => 'FREQUENCE'
+  1 => 'FREQUENCE',
+  2 => 'ACTION'
 );
 // getting total number records without any search
 $sql = "SELECT MOT, FREQUENCE";
@@ -36,6 +37,7 @@ while( $row= $query->fetch() ) {  // preparing an array
   //$nestedData[] = $row["MOT"];
   $nestedData[] = $row["MOT"];
   $nestedData[] = $row["FREQUENCE"];
+  $nestedData[] = '<a href="proposer_definition_mot.php?mot='.$row["MOT"].'"><i class="fas fa-pencil-alt"></i></a>';
 
   $data[] = $nestedData;
 }
