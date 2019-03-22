@@ -23,7 +23,7 @@ $(document).ready(function() {
       }
     } ,
     "ajax":{
-      url :"proposition_data.php", // json datasource
+      url :"../php/proposition_data.php", // json datasource
       type: "post",  // method  , by default get
       dataFilter: function(reps) {
         console.log(reps);
