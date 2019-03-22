@@ -14,7 +14,7 @@
     if(!empty($row = $res->fetch())) //La méthode fetch() permet de récupérer la ligne suivante du résultat de notre requete qui sont stockés dans la variable $res.
     {
         //$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
-        $texteRetour .= '
+        /*$texteRetour .= '
         <span class="vocabulaireSpecifique">
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNb'.$numModal.'">
@@ -40,17 +40,47 @@
               </div>
             </div>
           </div>
-        </span>';
-        $mot_lower = strtolower($mot);
-        $textePdf["texte"] .= '<a href="#'.$mot_lower.'">'.$mot.'</a>';
-        if (!in_array($mot_lower, $motDejaSimplifies))
-        {
-          $textePdf["traduction"] .= '<div><a name='.$mot_lower.'>'.$mot.' : '.$row['DEFINITION'].' <br/> </a></div>';
-          $motDejaSimplifies[] = $mot_lower;
-        }
+        </span>';*/
+      
+	   
+      $sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '".$mot."' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;"; 
+      $resimg = $bdd->query($sdl);
+      
+      if(!empty($rowimg = $resimg->fetch()))
+      {
 
+			$idImage = $rowimg['ID_IMAGE'];
+			$texteRetour .= '
+	      				  <span class="vocabulaireSpecifique">
+					  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img style=\'max-height: 200px; max-width: 180px;\' src=\'genererImage.php?id='.$idImage.'\'>'.$row['DEFINITION'].'">
+						'.$mot.'
+					  </button>';
+	      
+	      
+      }
+      else
+      {
+      
+	      //Pour la gestion des images dans les info-bulle, faudra vérifier s'il existe bien une image quand 
+	      //on a un mot difficile. Le cas échéant, il faudra faire une balise bouton type de ce type:
+	      //<button type="button" class="btn btn-primary" data-toggle="tooltip" title="<img src=\'https://www.docteurclic.com/galerie-photos/image_4155_400.jpg\'/>' .$row['DEFINITION'] .'">
 
-        $numModal += 1;
+	      $texteRetour .= '
+				<span class="vocabulaireSpecifique">
+				<button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="'.$row['DEFINITION'].'">
+					'.$mot.'
+				</button>';	     
+      }
+
+      $mot_lower = strtolower($mot);
+      $textePdf["texte"] .= '<a href="#'.$mot_lower.'">'.$mot.'</a>';
+      if (!in_array($mot_lower, $motDejaSimplifies))
+      {
+	  $textePdf["traduction"] .= '<div><a name='.$mot_lower.'>'.$mot.' : '.$row['DEFINITION'].' <br/> </a></div>';
+	  $motDejaSimplifies[] = $mot_lower;
+      }
+	    
+        //$numModal += 1;
     }
     else
     {

@@ -6,8 +6,9 @@
 		include("verif_membre.php");
 		include("head.php");
 	?>
-
 	<link rel="stylesheet" href="..\css/choosetrad.css">
+	<link rel="stylesheet" href="..\css/bootstrap-tagsinput.css">
+	
 </head>
 	
 <body>
@@ -21,6 +22,15 @@
 		//si le membre a appuye sur le bouton "proposer"
 		if(isset($_POST['proposerImage']))
 		{
+			//on verifie que le champ du mot n'est pas vide
+			$liste_mot = $_POST['LISTE_MOT'];
+			$liste_mot = preg_replace("# ,#" , ",", $liste_mot);
+			$liste_mot = explode(",", $liste_mot);
+			if(empty($liste_mot[0]))
+			{
+				array_push($errors, "Veuillez entrer un mot");			
+			}
+			
 			//on verifie si on a bien recupere l'image
 			$verifImage = false;
 			$verifImage = is_uploaded_file($_FILES['IMAGE']['tmp_name']);
@@ -37,12 +47,7 @@
 			}
 			
 			$image = addslashes(file_get_contents($_FILES['IMAGE']['tmp_name']));
-			$type = $_FILES['IMAGE']['type'];
-			$mot = $_POST['MOT'];			
-			if(empty($mot))
-			{
-				array_push($errors, "Veuillez entrer un mot");
-			}
+			$type = $_FILES['IMAGE']['type'];									
 			
 			//si il n'y a pas eu d'erreur dans le remplissage du formulaire
 			if(count($errors) == 0)
@@ -75,17 +80,36 @@
 					$sql = "UPDATE TABLE_UTILISATEUR SET NB_DEF_ACCEPTEE = NB_DEF_ACCEPTEE+1 WHERE ID_UTILISATEUR=".$id.";";
 					$res = $bdd->query($sql);
 				}
-				
-				//on determine le classement de la definition selon sa taille
-				$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_IMAGE WHERE MOT='".$mot."';";
+			
+				//on determine l'id de l'image
+				$sql = "SELECT COALESCE(MIN(ID_IMAGE)+1,1) AS ID FROM TABLE_IMAGE WHERE ID_IMAGE+1 NOT IN (SELECT ID_IMAGE FROM TABLE_IMAGE);";
 				$res = $bdd->query($sql);
 				$row = $res->fetch();
-				$classement = $row['CLA']+1;
-				//echo "Id utilisateur : $id, Classement : $classement, A_CONFIRMER : $confirmation, Image: $image";
+				$id_image = $row['ID'];
 				
 				//on ajoute l'image a la bdd
-				$sql = "INSERT INTO TABLE_IMAGE (MOT, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF, CLASSEMENT, A_CONFIRMER) VALUES ('".$mot."' ,'".$image."', ".$taille.", '".$type."', ".$id.", ".$classement.", ".$confirmation.") ;";
-				$res = $bdd->query($sql);		
+				$sql = "INSERT INTO TABLE_IMAGE (ID_IMAGE, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF, A_CONFIRMER) VALUES (".$id_image.", '".$image."', ".$taille.", '".$type."', ".$id.", ".$confirmation.") ;";
+				$res = $bdd->query($sql);
+				
+				//a faire pour chaque mot defini par l'image
+				foreach($liste_mot as $mot)
+				{
+					//on determine le classement selon le nombre d'image deja presente pour definir ce mot
+					$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_LIEN_MOT_IMAGE WHERE MOT='".$mot."';";
+					$res = $bdd->query($sql);
+					$row = $res->fetch();
+					$classement = $row['CLA']+1;
+
+					//on determine l'id du lien
+					$sql = "SELECT COALESCE(MIN(ID_LIEN)+1,1) AS ID FROM TABLE_LIEN_MOT_IMAGE WHERE ID_LIEN+1 NOT IN (SELECT ID_LIEN FROM TABLE_LIEN_MOT_IMAGE);";
+					$res = $bdd->query($sql);
+					$row = $res->fetch();
+					$id_lien = $row['ID'];
+
+					//on ajoute le lien entre l'image et les mots saisies
+					$sql = "INSERT INTO TABLE_LIEN_MOT_IMAGE (ID_LIEN, MOT, ID_IMAGE, CLASSEMENT) VALUES (".$id_lien.", '".$mot."' ,".$id_image.", ".$classement.") ;";
+					$res = $bdd->query($sql);
+				}
 			}
 		}
 	?>
@@ -97,8 +121,8 @@
 	<form enctype="multipart/form-data" method="post" action="proposer_image.php" class = "formulaire_stylise">
 		<?php include("errors.php");?>
 		<div class="input-group">
-			<label>Mot : </label>
-			<input type="text" name="MOT" >
+			<label>Mots (séparés par une virgule) : </label>
+			<input type="text" value="" name="LISTE_MOT" data-role="tagsinput" placeholder="Ajouter mots" />
 		</div>
 		<div class="form-group">
 			<label>Image : </label>
@@ -113,6 +137,8 @@
 
 
 	<?php include("script_menu.php"); ?>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="../javascript/bootstrap-tagsinput.js"></script>
 
 </body>
 </html>

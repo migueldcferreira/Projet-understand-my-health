@@ -1,7 +1,7 @@
 
 
 <div id="topheader">
-	<nav class="navbar navbar-expand-lg navbar-dark bg-success " role="navigation">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-success" role="navigation">
 		<div class="container-fluid">
 			
 				<a class="navbar-brand" href="accueil.php"><i class="fas fa-file-medical-alt"></i> Tradocteur</a>
@@ -19,7 +19,7 @@
 			<div class="navbar-collapse collapse" id="navbar">
 				<ul class="nav navbar-nav mr-auto">
 					<li class="nav-item " data-toggle="collapse" data-target="#navbar-collapse.in">
-						<a href="accueil.php" class="nav-link">Traduire un contenu médical<span class="sr-only">(current)</span></a>
+						<a href="accueil.php" class="nav-link">Simplifier un contenu médical<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="dictionnaire.php" class="nav-link">Dictionnaire</a>
@@ -39,9 +39,6 @@
 
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="register.php" class="nav-link">Devenir membre</a>
-					</li>
-					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-						<a href="login.php" class="nav-link">Se connecter</a>
 					</li>
 
 					<?php endif ?>
@@ -82,6 +79,8 @@
 			</p>
 				<?php if (!empty($_SESSION['username'])): ?>
 					<a href="deconnexion.php" class="btn btn-secondary my-2 my-sm-0 btn-sm"><i class="fas fa-caret-right"></i> Se déconnecter</a>
+				<?php else: ?>
+					<a href="login.php" class="btn btn-secondary mx-2 my-2 my-sm-0 btn-sm"><i class="fas fa-user-md"></i> Se connecter</a>
 				<?php endif ?>
 			<!--
 				<form method="post"  class="form-inline my-2 my-lg-0">
@@ -95,5 +94,4 @@
 		</div>
 	</nav>
 </div>
-
 

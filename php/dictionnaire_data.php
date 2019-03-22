@@ -18,8 +18,8 @@ $columns = array(
 );
 
 // getting total number records without any search
-$sql = "SELECT mot, definition";
-$sql.=" FROM TABLE_DEFINITION";
+$sql = "SELECT MOT, DEFINITION";
+$sql.=" FROM TABLE_DEFINITION WHERE A_CONFIRMER=0 AND CLASSEMENT=1";
 $query=  $db->prepare($sql) ;
 $query ->execute() or die("dictionnaire_data.php: get defs 1");
 $totalData = $query->rowCount();
@@ -27,9 +27,9 @@ $totalFiltered = $totalData;  // when there is no search parameter then total nu
 
 
 $sql = "SELECT MOT, DEFINITION";
-$sql.=" FROM TABLE_DEFINITION WHERE a_confirmer=0";
+$sql.=" FROM TABLE_DEFINITION WHERE A_CONFIRMER=0 AND CLASSEMENT=1";
 if( !empty($requestData['search']['value']) ) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
-	$sql.=" AND MOT LIKE '".$requestData['search']['value']."%' ";    
+	$sql.=" AND MOT LIKE '%".$requestData['search']['value']."%' ";    
 	
 
 	
@@ -47,7 +47,8 @@ while( $row= $query->fetch() ) {  // preparing an array
 
 	$nestedData=array(); 
 
-	$nestedData[] = $row["MOT"];
+	//$nestedData[] = $row["MOT"];
+	$nestedData[] = '<a href="dictionnaireIllustre.php?mot='.$row["MOT"].'">'.$row["MOT"].'</a>';
 	$nestedData[] = $row["DEFINITION"];
 	
 	$data[] = $nestedData;
