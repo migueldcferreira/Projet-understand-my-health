@@ -21,9 +21,9 @@
 		$db = Bdd::connect("BDD_TRADOCTEUR");
 		
 		// Si l'utilisateur a propose une nouvelle definition
-		if (isset($_POST['proposerDef']))
+		if (isset($_POST['proposerDef']) and isset($_POST['MOT']) and isset($_POST['DEFINITION']))
 		{
-			$USERNAME = $_POST['username'];
+			$page_proposition = 1;
 			$NOUVEAU_MOT = $_POST['MOT'];
 			$DEFINITION = $_POST['DEFINITION'];
 			if (empty($NOUVEAU_MOT))
@@ -75,26 +75,28 @@
 				
 			}
 		}
-		
-		//on regarde si on est sur la page de proposition de definition
-		$page_proposition = 0;
-		if(isset($_GET['mot']))
-    {
-      $mot = $_GET['mot'];
-			$page_proposition = 1;
-    }
 		else
 		{
-			$mot = '';
-		}		
-		if(isset($_GET['definition']))
-    {
-      $mot = $_GET['definition'];
-			$page_proposition = 1;
-    }
-		else
-		{
-			$definition = '';
+			//on regarde si on est sur la page de proposition de definition
+			$page_proposition = 0;
+			if(isset($_GET['mot']))
+			{
+				$NOUVEAU_MOT = $_GET['mot'];
+				$page_proposition = 1;
+			}
+			else
+			{
+				$NOUVEAU_MOT = '';
+			}		
+			if(isset($_GET['definition']))
+			{
+				$DEFINITION = $_GET['definition'];
+				$page_proposition = 1;
+			}
+			else
+			{
+				$DEFINITION = '';
+			}
 		}
 	?>
 		
@@ -126,14 +128,11 @@
 														<?php include('errors.php');?>
 														<div class="input-group">
 															<label>Mot : </label>
-															<input type="text" name="MOT" >
+															<input type="text" name="MOT" value="<?php echo $NOUVEAU_MOT; ?>" >
 														</div>
 														<div class="form-group">
 															<label>Definition : </label>
-															<textarea class="form-control" type="text" name="DEFINITION" rows="3"></textarea>
-														</div>
-														<div class="input-group">
-															<input type="hidden" name="username" value= "<?php echo $_SESSION['username']; ?>">
+															<textarea class="form-control" type="text" name="DEFINITION" value="<?php echo $DEFINITION; ?>" rows="3"></textarea>
 														</div>
 														<div class="input-group form-group">
 															<button type="submit" class="btn btn-success btn-sm"  name="proposerDef">Proposer</button>
