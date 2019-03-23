@@ -85,18 +85,23 @@ if (isset($_POST['login_user'])) {
 
     if ($results = $db->query($sts))
     {
-	if (!empty($row = $results->fetch()))
-	{
-        	$_SESSION['username'] = $ADRESSE_MAIL;
-        	$_SESSION['success'] = "vous etes connecté";
-		$_SESSION['rang']=$row['RANG'];
-		$_SESSION['prenom']=$row['PRENOM'];
-         	header('location: accueil.php');
-    	}
-	else
-	{
-		array_push($errors, "Mot de passe ou identifiant incorrect ");
-  	}
+    	if (!empty($row = $results->fetch()))
+    	{
+            	$_SESSION['username'] = $ADRESSE_MAIL;
+            	$_SESSION['success'] = "vous etes connecté";
+    		$_SESSION['rang']=$row['RANG'];
+    		$_SESSION['prenom']=$row['PRENOM'];
+        date_default_timezone_set('Europe/Paris');
+        $date = date('Y-m-d H:i:s');
+        $upd = "UPDATE TABLE_UTILISATEUR SET DATE_DERNIERE_CONNEXION = '$date' WHERE ID_UTILISATEUR = " .$row['ID_UTILISATEUR']. ";";
+        $query= $db->prepare($upd);
+        $query->execute();
+             	header('location: accueil.php');
+        	}
+    	else
+    	{
+    		array_push($errors, "Mot de passe ou identifiant incorrect ");
+      	}
     }
   }
 }
