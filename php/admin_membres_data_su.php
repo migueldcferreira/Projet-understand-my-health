@@ -55,7 +55,6 @@ while( $row= $query->fetch() ) {  // preparing an array
 	$nestedData=array(); 
 
 
-	$nestedData[] = $row["ID_UTILISATEUR"];
 	$nestedData[] = $row["NOM"];
 	$nestedData[] = $row["PRENOM"];
 	$nestedData[] = $row["ADRESSE_MAIL"];
