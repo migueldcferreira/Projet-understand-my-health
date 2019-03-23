@@ -91,9 +91,7 @@ if (isset($_POST['login_user'])) {
             	$_SESSION['success'] = "vous etes connecté";
     		$_SESSION['rang']=$row['RANG'];
     		$_SESSION['prenom']=$row['PRENOM'];
-        date_default_timezone_set('Europe/Paris');
-        $date = date('Y-m-d H:i:s');
-        $upd = "UPDATE TABLE_UTILISATEUR SET DATE_DERNIERE_CONNEXION = '$date' WHERE ID_UTILISATEUR = " .$row['ID_UTILISATEUR']. ";";
+        $upd = "UPDATE TABLE_UTILISATEUR SET DATE_DERNIERE_CONNEXION = NOW() WHERE ID_UTILISATEUR = " .$row['ID_UTILISATEUR']. ";";
         $query= $db->prepare($upd);
         $query->execute();
              	header('location: accueil.php');
