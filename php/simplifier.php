@@ -12,37 +12,7 @@
     $res = $bdd->query($sql); //On récupère (s'il en existe) les lignes de notre table "produits" qui répondent à notre requête $sql.
                   //Ces lignes sont stockées dans la variables $res qui est un tableau du jeu de résultat de notre requête.
     if(!empty($row = $res->fetch())) //La méthode fetch() permet de récupérer la ligne suivante du résultat de notre requete qui sont stockés dans la variable $res.
-    {
-        //$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
-        /*$texteRetour .= '
-        <span class="vocabulaireSpecifique">
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNb'.$numModal.'">
-            '.$mot.'
-          </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="modalNb'.$numModal.'" tabindex="-1" role="dialog" aria-labelledby="modalNb'.$numModal.'Label" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="modalNb'.$numModal.'Label">'.$mot.'</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  '.$row['DEFINITION'].'
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </span>';*/
-      
-	   
+    {         
       $sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '".$mot."' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;"; 
       $resimg = $bdd->query($sdl);
       
@@ -51,8 +21,7 @@
 
 			$idImage = $rowimg['ID_IMAGE'];
 			$texteRetour .= '
-	      				  <span class="vocabulaireSpecifique">
-					  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img style=\'max-height: 200px; max-width: 180px;\' src=\'genererImage.php?id='.$idImage.'\'>'.$row['DEFINITION'].'">
+					  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img style=\'max-height: 800px; max-width: 650px;\' src=\'genererImage.php?id='.$idImage.'\' > <br/>' '.$row['DEFINITION'].'">
 						'.$mot.'
 					  </button>';
 	      
