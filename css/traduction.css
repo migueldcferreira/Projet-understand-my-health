@@ -16,9 +16,7 @@
   max-width: 1800px;
   font-size: 18px;
   padding:.25rem .5rem;
-  color:#fff;
   text-align:center;
   background-color:#000;
   overflow:auto;
-  display: block;
 }
