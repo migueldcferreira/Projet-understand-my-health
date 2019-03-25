@@ -21,7 +21,7 @@
 
 			$idImage = $rowimg['ID_IMAGE'];
 			$texteRetour .= '
-					  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img style=\'max-height: 800px; max-width: 650px;\' src=\'genererImage.php?id='.$idImage.'\' > <br/>'.$row['DEFINITION'].'">
+					  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img class="imageInfoBulle" src=\'genererImage.php?id='.$idImage.'\' > <br/>'.$row['DEFINITION'].'">
 						'.$mot.'
 					  </button>';
 	      
