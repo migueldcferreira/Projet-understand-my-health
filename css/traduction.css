@@ -13,7 +13,7 @@
 }
 
 .tooltip-inner {
-  max-width: 80%;
+  width: 80%;
   height: 40%;
   font-size: 18px;
   padding:.25rem .5rem;
@@ -24,6 +24,6 @@
 }
 
 .imageInfoBulle {
-  max-height: 40%;
-  width: auto;
+  max-width: 100%;
+  height: auto;
 }
