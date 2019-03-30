@@ -161,6 +161,7 @@
         }
         if($lettre != " ")
         {
+					echo "NB ITER ";
           $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression);
           $texteSimplifie .= $texteArray["retour"];
           $textePDF["texte"] .= $texteArray["PDF"]["texte"];
