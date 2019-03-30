@@ -43,7 +43,7 @@
             {
               $idImage = $rowimg['ID_IMAGE'];
               $texteRetour .= '
-                    <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img class=\'imageInfoBulle\' src=\'genererImage.php?id='.$idImage.'\' > <br/>'.$row['DEFINITION'].'">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img class=\'imageInfoBulle\' src=\'genererImage.php?id='.$idImage.'\' > <br/>'.addcslashes($row['DEFINITION'],'"').'">
                       '.$expression.'
                     </button>';
 
@@ -56,7 +56,7 @@
 
               $texteRetour .= '
               <span class="vocabulaireSpecifique">
-                <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="'.$row['DEFINITION'].'">
+                <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="'.addcslashes($row['DEFINITION'],'"').'">
                   '.$expression.'
                 </button>
               </span>';
@@ -66,7 +66,7 @@
             $textePdf["texte"] .= '<a href="#'.$expression_lower.'">'.$expression.'</a>';
             if (!in_array($expression_lower, $expressionDejaSimplifies))
             {
-              $textePdf["traduction"] .= '<div><a name='.$expression_lower.'>'.$expression.' : '.$row['DEFINITION'].' <br/> </a></div>';
+              $textePdf["traduction"] .= '<div><a name='.$expression_lower.'>'.$expression.' : '.addcslashes($row['DEFINITION'],'"').' <br/> </a></div>';
               $expressionDejaSimplifies[] = $expression_lower;
             }
 
