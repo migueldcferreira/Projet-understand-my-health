@@ -27,9 +27,8 @@
           $expression = $tabExpression[0];
           for($j=1 ; $j<$i ; $j++)
           {
-            $expression .= " ".$tabExpression[j];
+            $expression .= " ".$tabExpression[$j];
           }
-					echo "[$i--$expression]";
           //on regarde dans la BDD si l'expression $expression est presente
           $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$expression' ORDER BY CLASSEMENT;";
           $res = $bdd->query($sql);
