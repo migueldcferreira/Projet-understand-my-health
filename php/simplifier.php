@@ -153,11 +153,17 @@
       }
       else
       {
-
-        $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression);
-        $texteSimplifie .= $texteArray["retour"];
-        $textePDF["texte"] .= $texteArray["PDF"]["texte"];
-        $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
+        if(strlen($mot) > 0)
+        {
+          $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression);
+        }
+        if($lettre != " ")
+        {
+          $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression);
+          $texteSimplifie .= $texteArray["retour"];
+          $textePDF["texte"] .= $texteArray["PDF"]["texte"];
+          $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
+        }
 
         $mot = "";
         if($balise>0 and $lettre == "<")
@@ -179,18 +185,27 @@
             }
             else
             {
-              $texteSimplifie .= "$lettre";
-              $textePDF["texte"] .= "$lettre";
+              if($lettre != ' ' or count($tabExpression)==0 )
+              {
+                $texteSimplifie .= "$lettre";
+                $textePDF["texte"] .= "$lettre";
+              }
             }
           }
         }
       }
     }
 
-    $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression);
+    if(strlen($mot) > 0)
+    {
+      $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression);
+    }
+
+    $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression);
     $texteSimplifie .= $texteArray["retour"];
     $textePDF["texte"] .= $texteArray["PDF"]["texte"];
     $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
+
 
 
     $arrayRetour = [
