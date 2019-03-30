@@ -29,8 +29,7 @@
           {
             $expression .= " ".$tabExpression[j];
           }
-					print_r($tabExpression);
-					echo "[$expression]";
+					echo "[$i--$expression]";
           //on regarde dans la BDD si l'expression $expression est presente
           $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$expression' ORDER BY CLASSEMENT;";
           $res = $bdd->query($sql);
@@ -161,7 +160,6 @@
         }
         if($lettre != " ")
         {
-					echo "NB ITER ";
           $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression);
           $texteSimplifie .= $texteArray["retour"];
           $textePDF["texte"] .= $texteArray["PDF"]["texte"];
