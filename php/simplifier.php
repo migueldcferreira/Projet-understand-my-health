@@ -17,9 +17,6 @@
       while($tailleTab>0)
       {
         $nbMotExpressionDansBDD = 0;
-        $texteRetour_tmp = "";
-        $textePdf_texte = "";
-        $textePdf_traduction = "";
 
         //on cherche toutes les combinaisons d'expression dans tabExpression
         for($i=1 ; $i<=$tailleTab ; $i++)
@@ -49,7 +46,7 @@
               if(!empty($rowimg = $resimg->fetch()))
               {
                 $idImage = $rowimg['ID_IMAGE'];
-                $texteRetour_tmp .= '
+                $texteRetour_tmp = '
                       <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img class=\'imageInfoBulle\' src=\'genererImage.php?id='.$idImage.'\' > <br/>'.htmlspecialchars($row['DEFINITION']).'">
                         '.$expression.'
                       </button>';
@@ -59,7 +56,7 @@
                 //Pour la gestion des images dans les info-bulle, faudra vérifier s'il existe bien une image quand
                 //on a un mot difficile. Le cas échéant, il faudra faire une balise bouton type de ce type:
                 //<button type="button" class="btn btn-primary" data-toggle="tooltip" title="<img src=\'https://www.docteurclic.com/galerie-photos/image_4155_400.jpg\'/>' .$row['DEFINITION'] .'">
-                $texteRetour_tmp .= '
+                $texteRetour_tmp = '
                 <span class="vocabulaireSpecifique">
                   <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="'.htmlspecialchars($row['DEFINITION']).'">
                     '.$expression.'
@@ -67,10 +64,10 @@
                 </span>';
               }
               $expression_lower = strtolower($expression);
-              $textePdf_texte .= '<a href="#'.$expression_lower.'">'.$expression.'</a>';
+              $textePdf_texte = '<a href="#'.$expression_lower.'">'.$expression.'</a>';
               if (!in_array($expression_lower, $expressionDejaSimplifies))
               {
-                $textePdf_traduction .= '<div><a name='.$expression_lower.'>'.$expression.' : '.htmlspecialchars($row['DEFINITION']).' <br/> </a></div>';
+                $textePdf_traduction = '<div><a name='.$expression_lower.'>'.$expression.' : '.htmlspecialchars($row['DEFINITION']).' <br/> </a></div>';
                 $expressionDejaSimplifies[] = $expression_lower;
               }
               $nbMotExpressionDansBDD = $i;
