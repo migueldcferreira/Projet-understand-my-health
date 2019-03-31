@@ -33,14 +33,14 @@
           //Si on a une definition pour cette expression + potentiellement d'autres mots dans la BDD
           if(!empty($row = $res->fetch()))
           {
-            //on test alors si il y a une definition pour l'expression exacte (sans le %)
+            //on test alors s'il y a une definition pour l'expression exacte (sans le %)
             $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$expression' ORDER BY CLASSEMENT;";
             $res = $bdd->query($sql);
 
             //Si on a une definition pour cette expression dans la BDD
             if(!empty($row = $res->fetch()))
             {
-              //on regarde si il existe aussi une image pour cette expression
+              //on regarde s'il existe aussi une image pour cette expression
               $sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '$expression' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;";
               $resimg = $bdd->query($sdl);
               if(!empty($rowimg = $resimg->fetch()))
@@ -53,10 +53,7 @@
               }
               else
               {
-                //Pour la gestion des images dans les info-bulle, faudra vérifier s'il existe bien une image quand
-                //on a un mot difficile. Le cas échéant, il faudra faire une balise bouton type de ce type:
-                //<button type="button" class="btn btn-primary" data-toggle="tooltip" title="<img src=\'https://www.docteurclic.com/galerie-photos/image_4155_400.jpg\'/>' .$row['DEFINITION'] .'">
-                $texteRetour_tmp = '
+                 $texteRetour_tmp = '
                 <span class="vocabulaireSpecifique">
                   <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="'.htmlspecialchars($row['DEFINITION']).'">
                     '.$expression.'
@@ -99,7 +96,7 @@
           }
         }
         $tailleTab = count($tabExpression);
-        //si il y a encore des mots a traiter alors on rajoute un espace
+        //s'il y a encore des mots a traiter alors on rajoute un espace
         if($tailleTab>0)
         {
           $textePdf["texte"] .= " ";
