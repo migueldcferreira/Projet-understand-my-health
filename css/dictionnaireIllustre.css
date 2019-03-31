@@ -1,7 +1,7 @@
 /*! * Bootstrap v3.4.0 (https://getbootstrap.com/) * Copyright 2011-2018 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE) */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
-/*.title{
+.title{
     position:relative;
     text-align:center;
     color: #337ab7;
@@ -29,7 +29,7 @@
     padding-left: 16px;
     padding-right: 10px;
 }
-*/
+/*
 .export{
     text-align: right;
     padding-right: 8px;
@@ -295,6 +295,6 @@
 }
 .btn-group-vertical>.btn-group:after,.btn-toolbar:after,.clearfix:after,.container-fluid:after,.container:after,.dl-horizontal dd:after,.form-horizontal .form-group:after,.modal-footer:after,.modal-header:after,.nav:after,.navbar-collapse:after,.navbar-header:after,.navbar:after,.pager:after,.panel-body:after,.row:after{
     clear:both
-}
+}*/
 
 /*# sourceMappingURL=bootstrap.min.css.map */
