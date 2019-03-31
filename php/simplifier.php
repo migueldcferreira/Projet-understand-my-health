@@ -54,11 +54,9 @@
               else
               {
                  $texteRetour_tmp = '
-                <span class="vocabulaireSpecifique">
                   <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="'.htmlspecialchars($row['DEFINITION']).'">
                     '.$expression.'
-                  </button>
-                </span>';
+                  </button>';
               }
               $expression_lower = strtolower($expression);
               $textePdf_texte = '<a href="#'.$expression_lower.'">'.$expression.'</a>';
