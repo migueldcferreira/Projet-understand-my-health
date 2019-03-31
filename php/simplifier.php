@@ -62,8 +62,15 @@
               $textePdf_texte = '<a href="#'.$expression_lower.'">'.$expression.'</a>';
               if (!in_array($expression_lower, $expressionDejaSimplifies))
               {
-                $textePdf_traduction = '<div><a name='.$expression_lower.'>'.$expression.' : '.htmlspecialchars($row['DEFINITION']).' <br/> </a></div>';
-                $expressionDejaSimplifies[] = $expression_lower;
+		if(!empty($rowimg))
+		{
+			$textePdf_traduction = '<div><a name='.$expression_lower.'>'.$expression.' : '.htmlspecialchars($row['DEFINITION']).' <img src=\'genererImage.php?id='.$idImage.'\' > <br/> </a></div>';
+		}
+		else
+		{
+                	$textePdf_traduction = '<div><a name='.$expression_lower.'>'.$expression.' : '.htmlspecialchars($row['DEFINITION']).' <br/> </a></div>';
+		}
+	       	$expressionDejaSimplifies[] = $expression_lower;
               }
               $nbMotExpressionDansBDD = $i;
             }
