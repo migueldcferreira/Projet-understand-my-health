@@ -58,7 +58,7 @@
                     '.$expression.'
                   </button>';
               }
-              $expression_lower = strtolower($expression);
+              $expression_lower = (str_replace(' ', '-', strtolower($expression)));
               $textePdf_texte = '<a href="#'.$expression_lower.'">'.$expression.'</a>';
               if (!in_array($expression_lower, $expressionDejaSimplifies))
               {
