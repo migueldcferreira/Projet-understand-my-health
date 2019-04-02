@@ -60,9 +60,14 @@ while( $row= $query->fetch() ) {  // preparing an array
 	$nestedData[] = $row["ADRESSE_MAIL"];
 	$nestedData[] = $row["RANG"];
 	$nestedData[] = $row["DATE_DERNIERE_CONNEXION"];
-	
+	if ($row["RANG"]=="admin"){
 		$nestedData[] = '<a href="deban.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-success btn-sm tooltipsAdmin " title="Débannir cet administrateur"><i class="fa fa-retweet" aria-hidden="true"></i></a>
 		';
+	}
+	else{
+		$nestedData[] = '<a href="deban.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-success btn-sm tooltipsAdmin " title="Débannir ce membre"><i class="fa fa-retweet" aria-hidden="true"></i></a>
+		';
+	}
 	
 	$data[] = $nestedData;
 
