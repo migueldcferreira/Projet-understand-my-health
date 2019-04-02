@@ -202,7 +202,7 @@
           $textePDF["texte"] .= $texteArray["PDF"]["texte"];
           $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
         }
-				else
+				else if(count($tabExpression)>0)
 				{
 					$nbEspaceAAjouter ++;
 				}
@@ -226,7 +226,7 @@
             }
             else
             {
-              if($lettre != ' ')
+              if($lettre != ' ' or count($tabExpression)==0)
               {
 								while($nbEspaceAAjouter>0)
 								{
