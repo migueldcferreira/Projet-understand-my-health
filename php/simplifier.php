@@ -69,7 +69,7 @@
 		else
 		{*/
                 
-		$textePdf_traduction = '<div><a name='.$expression_lower.'>'.$expression.' : '.htmlspecialchars($row['DEFINITION']).' <br/> </a></div>';
+		$textePdf_traduction = '<div><a name='.$expression_lower.'><u>'.$expression.'</u> : '.htmlspecialchars($row['DEFINITION']).' <br/> <br/> </a></div>';
 		//}
 	       	$expressionDejaSimplifies[] = $expression_lower;
               }
