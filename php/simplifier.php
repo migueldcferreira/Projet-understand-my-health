@@ -178,6 +178,7 @@
     ];
     $mot = "";
     $nbBaliseOuvrante = 0;
+		$nbEspaceAAjouter = 0;
     //le text doit etre sous la forme d'un tableau
     if(gettype($text) == "string")
       $text = str_split($text);
@@ -186,6 +187,7 @@
       if($nbBaliseOuvrante==0 and preg_match("#[a-zA-Z0-9éèàêâùïüëÉÈÀÊÂÙÏÜË]#",$lettre) or (strlen($mot)>0 and $lettre=="-"))
       {
         $mot = $mot . "$lettre";
+				$nbEspaceAAjouter = 0;
       }
       else
       {
@@ -200,6 +202,10 @@
           $textePDF["texte"] .= $texteArray["PDF"]["texte"];
           $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
         }
+				else
+				{
+					$nbEspaceAAjouter ++;
+				}
         $mot = "";
         if($balise>0 and $lettre == "<")
         {
@@ -220,8 +226,14 @@
             }
             else
             {
-              if($lettre != ' ' or count($tabExpression)==0 )
+              if($lettre != ' ')
               {
+								while($nbEspaceAAjouter>0)
+								{
+									$texteSimplifie .= " ";
+                	$textePDF["texte"] .= " ";
+									$nbEspaceAAjouter--;
+								}
                 $texteSimplifie .= "$lettre";
                 $textePDF["texte"] .= "$lettre";
               }
