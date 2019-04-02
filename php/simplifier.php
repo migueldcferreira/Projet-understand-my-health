@@ -1,7 +1,36 @@
 <?php
   require('Bdd.php');
-	function chercherExpressionBDD($mot, &$bdd, &$expressionDejaSimplifies, &$tabExpression)
+
+	function plurielVersSingulier($mot)
 	{
+		//fonction generique qui n'est pas fiable a 100%
+		$tabConversion = array
+		(
+			array("pluriel" => "eaux","singulier" => "eau","taille" => 4),
+			array("pluriel" => "eux","singulier" => "eu","taille" => 3),
+			array("pluriel" => "aux","singulier" => "al","taille" => 3),
+			//array("pluriel" => "aux","singulier" => "au","taille" => 3),
+			//array("pluriel" => "aux","singulier" => "ail","taille" => 3),
+			array("pluriel" => "s","singulier" => "","taille" => 1),
+		);
+		
+		$taille = strlen($mot);
+		
+		foreach($tabConversion as $conv)
+		{
+			if($conv["taille"]<=$taille)
+			{
+				if(substr($mot, -$conv["taille"]) === $conv["pluriel"])
+					return substr($mot, 0, $taille - $conv["taille"]).$conv["singulier"];
+			}
+		}
+		return $mot;
+	}
+
+	function chercherExpressionBDD($mot, &$bdd, &$expressionDejaSimplifies, &$tabExpression, &$tabExpressionSingulier)
+	{
+		
+		
     $texteRetour = "";
     $textePdf = [
       "texte" => "",
@@ -10,6 +39,7 @@
     if(strlen($mot) > 0)
     {
       array_push($tabExpression,$mot);
+			array_push($tabExpressionSingulier, plurielVersSingulier($mot));
     }
     else
     {
@@ -22,26 +52,28 @@
         for($i=1 ; $i<=$tailleTab ; $i++)
         {
           $expression = $tabExpression[0];
+					$expressionSingulier = $tabExpressionSingulier[0];
           for($j=1 ; $j<$i ; $j++)
           {
             $expression .= " ".$tabExpression[$j];
+						$expressionSingulier .= " ".$tabExpressionSingulier[$j];
           }
           //on regarde dans la BDD si l'expression $expression + n'importe quoi est presente dans la BDD
-          $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$expression%' ORDER BY CLASSEMENT;";
+          $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$expression%' OR MOT LIKE '$expressionSingulier%' ORDER BY CLASSEMENT;";
           $res = $bdd->query($sql);
 
           //Si on a une definition pour cette expression + potentiellement d'autres mots dans la BDD
           if(!empty($row = $res->fetch()))
           {
             //on test alors s'il y a une definition pour l'expression exacte (sans le %)
-            $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$expression' ORDER BY CLASSEMENT;";
+            $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '$expression' OR MOT = '$expressionSingulier' ORDER BY CLASSEMENT;";
             $res = $bdd->query($sql);
 
             //Si on a une definition pour cette expression dans la BDD
             if(!empty($row = $res->fetch()))
             {
               //on regarde s'il existe aussi une image pour cette expression
-              $sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '$expression' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;";
+              $sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '$expression' OR MOT = '$expressionSingulier' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;";
               $resimg = $bdd->query($sdl);
               if(!empty($rowimg = $resimg->fetch()))
               {
@@ -86,6 +118,7 @@
         {
           //on a trouve aucune expression commencant par le premier mot de $tabExpression
           $premierMot = array_shift($tabExpression);
+					array_shift($tabExpressionSingulier);
           $textePdf["texte"] .= "$premierMot";
           $texteRetour .= "$premierMot";
         }
@@ -99,6 +132,7 @@
           for($i=0 ; $i<$nbMotExpressionDansBDD ; $i++)
           {
             array_shift($tabExpression);
+						array_shift($tabExpressionSingulier);
           }
         }
         $tailleTab = count($tabExpression);
@@ -136,6 +170,7 @@
     }
     $expressionDejaSimplifies = [];
     $tabExpression = array();
+		$tabExpressionSingulier = array();
     $texteSimplifie = "";
     $textePDF = [
       "texte" => "",
@@ -156,11 +191,11 @@
       {
         if(strlen($mot) > 0)
         {
-          $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression);
+          $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
         }
         if($lettre != " ")
         {
-          $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression);
+          $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
           $texteSimplifie .= $texteArray["retour"];
           $textePDF["texte"] .= $texteArray["PDF"]["texte"];
           $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
@@ -197,9 +232,9 @@
     }
     if(strlen($mot) > 0)
     {
-      $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression);
+      $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
     }
-    $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression);
+    $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
     $texteSimplifie .= $texteArray["retour"];
     $textePDF["texte"] .= $texteArray["PDF"]["texte"];
     $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
