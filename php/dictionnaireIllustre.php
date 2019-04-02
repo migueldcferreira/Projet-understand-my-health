@@ -5,6 +5,7 @@
 		session_start();
 		include("head.php");
 	?>
+	
 	<link rel="stylesheet" href="../css/dictionnaireIllustre.css" />
 	
 </head>

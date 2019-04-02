@@ -29,7 +29,7 @@
 					"processing": true,
 					"serverSide": true,
 					"columnDefs": [ {
-					"targets": 6,
+					"targets": 5,
 					"orderable": false
 					} ],
 					"language": { 
@@ -83,7 +83,7 @@
 					"processing": true,
 					"serverSide": true,
 					"columnDefs": [ {
-					"targets": 6,
+					"targets": 5,
 					"orderable": false
 					} ],
 					"language": { 
@@ -164,7 +164,6 @@
 																		<table id="admin_membres_1"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
 																				<thead>
 																					<tr>
-																						<th>Administrateurs</th>
 																						<th>Nom</th>
 																						<th>Prénom</th>
 																						<th>Adresse mail</th>
@@ -194,7 +193,6 @@
 																		<table id="admin_membres_2"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
 																				<thead>
 																					<tr>
-																						<th>Administrateurs</th>
 																						<th>Nom</th>
 																						<th>Prénom</th>
 																						<th>Adresse mail</th>

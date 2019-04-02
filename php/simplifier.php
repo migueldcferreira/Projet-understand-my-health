@@ -1,106 +1,162 @@
 <?php
   require('Bdd.php');
-  
-  function chercherMotBDD($mot, &$bdd, &$numModal,&$motDejaSimplifies)
-  {
+
+	function plurielVersSingulier($mot)
+	{
+		//fonction generique qui n'est pas fiable a 100%
+		$tabConversion = array
+		(
+			array("pluriel" => "eaux","singulier" => "eau","taille" => 4),
+			array("pluriel" => "eux","singulier" => "eu","taille" => 3),
+			array("pluriel" => "aux","singulier" => "al","taille" => 3),
+			//array("pluriel" => "aux","singulier" => "au","taille" => 3),
+			//array("pluriel" => "aux","singulier" => "ail","taille" => 3),
+			array("pluriel" => "s","singulier" => "","taille" => 1),
+		);
+		
+		$taille = strlen($mot);
+		
+		foreach($tabConversion as $conv)
+		{
+			if($conv["taille"]<=$taille)
+			{
+				if(substr($mot, -$conv["taille"]) === $conv["pluriel"])
+					return substr($mot, 0, $taille - $conv["taille"]).$conv["singulier"];
+			}
+		}
+		return $mot;
+	}
+
+	function chercherExpressionBDD($mot, &$bdd, &$expressionDejaSimplifies, &$tabExpression, &$tabExpressionSingulier)
+	{
+		
+		
     $texteRetour = "";
     $textePdf = [
       "texte" => "",
       "traduction" => "",
     ];
-    $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$mot' AND CLASSEMENT = 1;";
-    $res = $bdd->query($sql); //On récupère (s'il en existe) les lignes de notre table "produits" qui répondent à notre requête $sql.
-                  //Ces lignes sont stockées dans la variables $res qui est un tableau du jeu de résultat de notre requête.
-    if(!empty($row = $res->fetch())) //La méthode fetch() permet de récupérer la ligne suivante du résultat de notre requete qui sont stockés dans la variable $res.
+    if(strlen($mot) > 0)
     {
-        //$texteSimplifie .= '<span class="vocabulaire"><span class="expression">'.$mot.'</span><span style="display:none" class="definition hidden">'.$row['DEFINITION'].'</span></span>';
-        /*$texteRetour .= '
-        <span class="vocabulaireSpecifique">
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNb'.$numModal.'">
-            '.$mot.'
-          </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="modalNb'.$numModal.'" tabindex="-1" role="dialog" aria-labelledby="modalNb'.$numModal.'Label" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="modalNb'.$numModal.'Label">'.$mot.'</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  '.$row['DEFINITION'].'
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </span>';*/
-      
-	   
-      $sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '".$mot."' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;"; 
-      $resimg = $bdd->query($sdl);
-      
-      if(!empty($rowimg = $resimg->fetch()))
-      {
-
-			$idImage = $rowimg['ID_IMAGE'];
-			$texteRetour .= '
-	      				  <span class="vocabulaireSpecifique">
-					  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img style=\'max-height: 200px; max-width: 180px;\' src=\'genererImage.php?id='.$idImage.'\'>'.$row['DEFINITION'].'">
-						'.$mot.'
-					  </button>';
-	      
-	      
-      }
-      else
-      {
-      
-	      //Pour la gestion des images dans les info-bulle, faudra vérifier s'il existe bien une image quand 
-	      //on a un mot difficile. Le cas échéant, il faudra faire une balise bouton type de ce type:
-	      //<button type="button" class="btn btn-primary" data-toggle="tooltip" title="<img src=\'https://www.docteurclic.com/galerie-photos/image_4155_400.jpg\'/>' .$row['DEFINITION'] .'">
-
-	      $texteRetour .= '
-				<span class="vocabulaireSpecifique">
-				<button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="'.$row['DEFINITION'].'">
-					'.$mot.'
-				</button>';	     
-      }
-
-      $mot_lower = strtolower($mot);
-      $textePdf["texte"] .= '<a href="#'.$mot_lower.'">'.$mot.'</a>';
-      if (!in_array($mot_lower, $motDejaSimplifies))
-      {
-	  $textePdf["traduction"] .= '<div><a name='.$mot_lower.'>'.$mot.' : '.$row['DEFINITION'].' <br/> </a></div>';
-	  $motDejaSimplifies[] = $mot_lower;
-      }
-	    
-        //$numModal += 1;
+      array_push($tabExpression,$mot);
+			array_push($tabExpressionSingulier, plurielVersSingulier($mot));
     }
     else
     {
-      $textePdf["texte"] .= "$mot";
-      $texteRetour .= "$mot";            
+      $tailleTab = count($tabExpression);
+      while($tailleTab>0)
+      {
+        $nbMotExpressionDansBDD = 0;
+
+        //on cherche toutes les combinaisons d'expression dans tabExpression
+        for($i=1 ; $i<=$tailleTab ; $i++)
+        {
+          $expression = $tabExpression[0];
+					$expressionSingulier = $tabExpressionSingulier[0];
+          for($j=1 ; $j<$i ; $j++)
+          {
+            $expression .= " ".$tabExpression[$j];
+						$expressionSingulier .= " ".$tabExpressionSingulier[$j];
+          }
+          //on regarde dans la BDD si l'expression $expression + n'importe quoi est presente dans la BDD
+          $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$expression%' OR MOT LIKE '$expressionSingulier%' ORDER BY CLASSEMENT;";
+          $res = $bdd->query($sql);
+
+          //Si on a une definition pour cette expression + potentiellement d'autres mots dans la BDD
+          if(!empty($row = $res->fetch()))
+          {
+            //on test alors s'il y a une definition pour l'expression exacte (sans le %)
+            $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '$expression' OR MOT = '$expressionSingulier' ORDER BY CLASSEMENT;";
+            $res = $bdd->query($sql);
+
+            //Si on a une definition pour cette expression dans la BDD
+            if(!empty($row = $res->fetch()))
+            {
+              //on regarde s'il existe aussi une image pour cette expression
+              $sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '$expression' OR MOT = '$expressionSingulier' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;";
+              $resimg = $bdd->query($sdl);
+              if(!empty($rowimg = $resimg->fetch()))
+              {
+                $idImage = $rowimg['ID_IMAGE'];
+                $texteRetour_tmp = '
+                      <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title=" <img class=\'imageInfoBulle\' src=\'genererImage.php?id='.$idImage.'\' > <br/>'.htmlspecialchars($row['DEFINITION']).'">
+                        '.$expression.'
+                      </button>';
+              }
+              else
+              {
+                 $texteRetour_tmp = '
+                  <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" title="'.htmlspecialchars($row['DEFINITION']).'">
+                    '.$expression.'
+                  </button>';
+              }
+              $expression_lower = (str_replace(' ', '-', strtolower($expression)));
+              $textePdf_texte = '<a href="#'.$expression_lower.'">'.$expression.'</a>';
+              if (!in_array($expression_lower, $expressionDejaSimplifies))
+              {
+		/*if(!empty($rowimg))
+		{
+			$textePdf_traduction = '<div><a name='.$expression_lower.'>'.$expression.' : '.htmlspecialchars($row['DEFINITION']).' <img src=\'genererImage.php?id='.$idImage.'\' > <br/> </a></div>';
+		}
+		else
+		{*/
+                
+		$textePdf_traduction = '<div><a name='.$expression_lower.'><u>'.$expression.'</u> : '.htmlspecialchars($row['DEFINITION']).' <br/> <br/> </a></div>';
+		//}
+	       	$expressionDejaSimplifies[] = $expression_lower;
+              }
+              $nbMotExpressionDansBDD = $i;
+            }
+          }
+          else
+          {
+            //on ne peut plus trouver d'expression plus grande dans la BDD
+            break;
+          }
+        }
+        if($nbMotExpressionDansBDD == 0)
+        {
+          //on a trouve aucune expression commencant par le premier mot de $tabExpression
+          $premierMot = array_shift($tabExpression);
+					array_shift($tabExpressionSingulier);
+          $textePdf["texte"] .= "$premierMot";
+          $texteRetour .= "$premierMot";
+        }
+        else
+        {
+          //on ajoute l'expression et sa definition au texte qu'on affichera sur la page et celui pour la generation du pdf
+          $texteRetour .= $texteRetour_tmp;
+          $textePdf["texte"] .= $textePdf_texte;
+          $textePdf["traduction"] .= $textePdf_traduction;
+          //on supprime du debut du tableau le nombre de mot qui compose l'expression (la plus grande) qui a ete trouvee dans la BDD
+          for($i=0 ; $i<$nbMotExpressionDansBDD ; $i++)
+          {
+            array_shift($tabExpression);
+						array_shift($tabExpressionSingulier);
+          }
+        }
+        $tailleTab = count($tabExpression);
+        //s'il y a encore des mots a traiter alors on rajoute un espace
+        if($tailleTab>0)
+        {
+          $textePdf["texte"] .= " ";
+          $texteRetour .= " ";
+        }
+      }
     }
     $arrayRetour = [
       "retour" => $texteRetour,
       "PDF" => $textePdf,
     ];
     return $arrayRetour;
-  }
-
+	}
   //$balise =
   //0: on cherche des mots difficiles dans les balises (<>),
   //1: on supprime les balises et leur contenue,
   //2: on laisse les balises mais on ne cherche pas de mots difficiles dedans
   function simplifierTexteBrut($text, $balise, $sautLigne = false)
   {
-    //connexion a la base de donnees   
+    //connexion a la base de donnees
     try
     {
       $bdd = Bdd::connect("BDD_TRADOCTEUR");
@@ -112,9 +168,9 @@
     {
         die('Erreur : ' . $e->getMessage());
     }
-
-
-    $motDejaSimplifies = [];
+    $expressionDejaSimplifies = [];
+    $tabExpression = array();
+		$tabExpressionSingulier = array();
     $texteSimplifie = "";
     $textePDF = [
       "texte" => "",
@@ -122,26 +178,34 @@
     ];
     $mot = "";
     $nbBaliseOuvrante = 0;
-    $numModal = 0;
-    
+		$nbEspaceAAjouter = 0;
     //le text doit etre sous la forme d'un tableau
     if(gettype($text) == "string")
       $text = str_split($text);
     foreach($text as $lettre)
     {
-      if($nbBaliseOuvrante==0 and preg_match("#[a-zA-ZéèàêâùïüëÉÈÀÊÂÙÏÜË]#",$lettre) or (strlen($mot)>0 and $lettre=="-"))
+      if($nbBaliseOuvrante==0 and preg_match("#[a-zA-Z0-9éèàêâùïüëÉÈÀÊÂÙÏÜË]#",$lettre) or (strlen($mot)>0 and $lettre=="-"))
       {
         $mot = $mot . "$lettre";
+				$nbEspaceAAjouter = 0;
       }
       else
       {
         if(strlen($mot) > 0)
         {
-          $texteArray = chercherMotBDD($mot, $bdd, $numModal,$motDejaSimplifies);
+          $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
+        }
+        if($lettre != " ")
+        {
+          $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
           $texteSimplifie .= $texteArray["retour"];
           $textePDF["texte"] .= $texteArray["PDF"]["texte"];
           $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
         }
+				else if(count($tabExpression)>0)
+				{
+					$nbEspaceAAjouter ++;
+				}
         $mot = "";
         if($balise>0 and $lettre == "<")
         {
@@ -162,25 +226,33 @@
             }
             else
             {
-              $texteSimplifie .= "$lettre";
-              $textePDF["texte"] .= "$lettre";
+              if($lettre != ' ' or count($tabExpression)==0)
+              {
+								while($nbEspaceAAjouter>0)
+								{
+									$texteSimplifie .= " ";
+                	$textePDF["texte"] .= " ";
+									$nbEspaceAAjouter--;
+								}
+                $texteSimplifie .= "$lettre";
+                $textePDF["texte"] .= "$lettre";
+              }
             }
           }
         }
       }
     }
     if(strlen($mot) > 0)
-        {
-          $texteArray = chercherMotBDD($mot, $bdd, $numModal,$motDejaSimplifies);
-          $texteSimplifie .= $texteArray["retour"];
-          $textePDF["texte"] .= $texteArray["PDF"]["texte"];
-          $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
-
-        }
+    {
+      $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
+    }
+    $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
+    $texteSimplifie .= $texteArray["retour"];
+    $textePDF["texte"] .= $texteArray["PDF"]["texte"];
+    $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
     $arrayRetour = [
       "retour" => $texteSimplifie,
       "PDF" => $textePDF,
-
     ];
     return $arrayRetour;
   }

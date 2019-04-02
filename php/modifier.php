@@ -76,7 +76,7 @@
     $stmt= $bdd->prepare($sql); 
 		$stmt->execute(); 
 		
-    header('location: accueil.php');
+    header('location: admin_liste_def.php');
   }
  
   if(isset($_GET['id']) AND !empty($_GET['id'])) 

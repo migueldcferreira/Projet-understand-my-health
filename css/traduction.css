@@ -11,3 +11,19 @@
    height: 1px;
    overflow: hidden;
 }
+
+.tooltip-inner {
+  max-width: 80%;
+  max-height: 40%;
+  font-size: 18px;
+  padding:.25rem .5rem;
+  text-align:center;
+  background-color:#B8B8B8;
+  overflow:auto;
+  color: black;
+}
+
+.imageInfoBulle {
+  max-width: 100%;
+  height: auto;
+}
