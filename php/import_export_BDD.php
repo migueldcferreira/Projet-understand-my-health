@@ -62,7 +62,7 @@
                           </div>
 
 
-                          <div class="tab-pane fade show active" id="nav-import-img" role="tabpanel" aria-labelledby="nav-import-img-tab">
+                          <div class="tab-pane fade" id="nav-import-img" role="tabpanel" aria-labelledby="nav-import-img-tab">
                             <form action="importerImgBDD.php" method="post" enctype="multipart/form-data" id="js-upload-form">
                               <br/>
                               <div class="container">
