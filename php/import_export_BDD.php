@@ -19,7 +19,7 @@
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active show" id="nav-import-def-tab" data-toggle="tab" href="#nav-import-def" role="tab" aria-controls="nav-import-def" aria-selected="true"><i class="fas fa-file-upload"></i> Importer des définitions</a>
                                 <a class="nav-item nav-link" id="nav-export-tab" data-toggle="tab" href="#nav-export" role="tab" aria-controls="nav-export" aria-selected="false"><i class="fas fa-file-csv"></i> Exporter des définitions</a>
-                                <a class="nav-item nav-link" id="nav-import-img-tab" data-toggle="tab" href="#nav-import-img" role="tab" aria-controls="nav-import-img" aria-selected="false"><i class="fas fa-file-csv"></i> Importer des images</a>
+                                <a class="nav-item nav-link" id="nav-import-img-tab" data-toggle="tab" href="#nav-import-img" role="tab" aria-controls="nav-import-img" aria-selected="false"><i class="fas fa-file-archive"></i> Importer des images</a>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
