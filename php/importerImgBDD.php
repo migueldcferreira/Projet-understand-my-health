@@ -108,7 +108,7 @@
       {
         $nbLigne += 1;
         $absent_tab_image = 1;
-        foreach($tab_image as $image)
+        foreach($tab_image as &$image)
         {
           if($image["nom_image"] == $champs[1])
           {
