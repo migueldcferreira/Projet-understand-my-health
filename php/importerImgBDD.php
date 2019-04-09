@@ -133,13 +133,13 @@
 		//ajout des images et des liens avec les expressions dans la BDD
     foreach ($tab_image as $image)
     {
-      $text .= "Image : ".$image["nom_image"]." <br/>";
+      echo "Image : ".$image["nom_image"]." <br/>";
 			//on test si l'image existe bien
 			if(!file_exists($chemin_dossier.$image["nom_image"]))
 			{
 				//on passe a l'image suivante
 				$nbErreurImg++;
-				$text .= "L'image '".$image["nom_image"]."' est introuvable.<br/>";
+				echo "L'image '".$chemin_dossier.$image["nom_image"]."' est introuvable.<br/>";
 				continue;
 			}
 			
@@ -161,7 +161,7 @@
 			//pour chaque mot/expression defini par l'image
       foreach ($image["liste_mot"] as $mot)
       {
-        $text .= "----Mot : ".$mot." <br/>";
+        echo "----Mot : ".$mot." <br/>";
 				//on determine le classement selon le nombre d'image deja presente pour definir ce mot
 				$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_LIEN_MOT_IMAGE WHERE MOT='".$mot."';";
 				$res = $bdd->query($sql);
@@ -180,7 +180,7 @@
 				
 				$ajoutTable ++;
       }
-      $text .= "<br/><br/>";
+      echo "<br/><br/>";
     }
 
 		//incrementation du compteur de def acceptee
