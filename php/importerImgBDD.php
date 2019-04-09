@@ -45,14 +45,15 @@
     $nom_fichier_txt = $chemin_dossier . "images.txt";
 
     //on vide le dossier qui va comptenir l'archive
-    $ouverture=opendir($chemin_dossier);
-    $fichier=readdir($ouverture); //pour ne pas supprimer "."
-    $fichier=readdir($ouverture); //pour ne pas supprimer ".."
-    while ($fichier=readdir($ouverture))
-    {
-      unlink("$chemin_dossier/$fichier");
-    }
-    closedir($ouverture);
+		$fichiers = glob($chemin_dossier . '/*');
+		foreach($fichiers as $fichier)
+		{
+			//permet de ne pas supprimer les dossiers
+			if(is_file($fichier))
+			{
+				unlink($fichier);
+			}
+		}
 
     //on copie l'archive sur le serveur
     $resultat = move_uploaded_file($_FILES['fichier']['tmp_name'],$nom_archive);
