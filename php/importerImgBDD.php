@@ -143,22 +143,29 @@
 				continue;
 			}
 			
+			echo "test:0<br/>";
+			
 			//on recupere l'image dans le dossier
-			try{
 			$image = addslashes(file_get_contents($chemin_dossier.$image["nom_image"]));
 			$type = filetype($chemin_dossier.$image["nom_image"]);
 			$taille = filesize($chemin_dossier.$image["nom_image"]);
 			
+			echo "test:1<br/>";
 			
 			//on determine l'id de l'image
 			$sql = "SELECT COALESCE(MIN(ID_IMAGE)+1,1) AS ID FROM TABLE_IMAGE WHERE ID_IMAGE+1 NOT IN (SELECT ID_IMAGE FROM TABLE_IMAGE);";
 			$res = $bdd->query($sql);
 			$row = $res->fetch();
 			$id_image = $row['ID'];
-
+			
+			
+			echo "test:2<br/>";
+				
 			//on ajoute l'image a la bdd
 			$sql = "INSERT INTO TABLE_IMAGE (ID_IMAGE, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF, A_CONFIRMER) VALUES (".$id_image.", '".$image."', ".$taille.", '".$type."', ".$id.", 0) ;";
 			$res = $bdd->query($sql);
+			
+			echo "test:3<br/>";
 			
 			//pour chaque mot/expression defini par l'image
       foreach ($image["liste_mot"] as $mot)
@@ -179,11 +186,7 @@
 				//on ajoute le lien entre l'image et les mots saisies
 				$sql = "INSERT INTO TABLE_LIEN_MOT_IMAGE (ID_LIEN, MOT, ID_IMAGE, CLASSEMENT) VALUES (".$id_lien.", '".$mot."' ,".$id_image.", ".$classement.") ;";
 				$res = $bdd->query($sql);
-				}
-				catch (Exception $e)
-				{
-					echo 'Erreur : ' . $e->getMessage();
-				}
+
 				$ajoutTable ++;
       }
       echo "<br/><br/>";
