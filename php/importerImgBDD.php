@@ -151,7 +151,7 @@
 			}
 			catch (Exception $e)
 			{
-				die('Erreur : ' . $e->getMessage());
+				echo 'Erreur : ' . $e->getMessage();
 			}
 			
 			//on determine l'id de l'image
