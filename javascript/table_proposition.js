@@ -2,6 +2,10 @@ $(document).ready(function() {
   var dataTable = $('#table_proposition').DataTable( {
     "processing": true,
     "serverSide": true,
+    "columnDefs": [ {
+      "targets": 2,
+      "orderable": false
+      } ],
     "language": {
       "sProcessing": "Traitement en cours ...",
       "sLengthMenu": "Afficher _MENU_ lignes",
