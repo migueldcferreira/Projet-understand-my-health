@@ -147,7 +147,7 @@
 			
 			//on recupere l'image dans le dossier
 			$image = addslashes(file_get_contents($chemin_dossier.$image["nom_image"]));
-			$type = filetype($chemin_dossier.$image["nom_image"]);
+			$type = pathinfo($chemin_dossier.$image["nom_image"], PATHINFO_EXTENSION);
 			$taille = filesize($chemin_dossier.$image["nom_image"]);
 			
 			echo "test:1<br/>";
