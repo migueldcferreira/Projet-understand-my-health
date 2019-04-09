@@ -36,7 +36,7 @@ while( $row= $query->fetch() ) {  // preparing an array
   //$nestedData[] = $row["MOT"];
   $nestedData[] = $row["MOT"];
   $nestedData[] = $row["FREQUENCE"];
-  $nestedData[] = '<a href="proposer_definition_mot.php?mot='.$row["MOT"].'"><i class="fas fa-pencil-alt"></i></a>';
+  $nestedData[] = '<a href="proposer_definition_mot.php?mot='.$row["MOT"].'"><button class="btn btn-primary btn-sm tooltipsAdmin " title="Définir ce mot"><i class="fas fa-pencil-alt"></i></button></a>';
 
   $data[] = $nestedData;
 }
