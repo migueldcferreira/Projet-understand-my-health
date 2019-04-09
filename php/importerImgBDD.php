@@ -165,7 +165,7 @@
       {
         $text .= "----Mot : ".$mot." <br/>";
 				//on determine le classement selon le nombre d'image deja presente pour definir ce mot
-				$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_LIEN_MOT_IMAGE WHERE MOT='".$mot."';";
+				$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_LIEN_MOT_IMAGE WHERE MOT='".str_replace("'","''",$mot)."';";
 				$res = $bdd->query($sql);
 				$row = $res->fetch();
 				$classement = $row['CLA']+1;
@@ -177,7 +177,7 @@
 				$id_lien = $row['ID'];
 				
 				//on ajoute le lien entre l'image et les mots saisies
-				$sql = "INSERT INTO TABLE_LIEN_MOT_IMAGE (ID_LIEN, MOT, ID_IMAGE, CLASSEMENT) VALUES (".$id_lien.", '".$mot."' ,".$id_image.", ".$classement.") ;";
+				$sql = "INSERT INTO TABLE_LIEN_MOT_IMAGE (ID_LIEN, MOT, ID_IMAGE, CLASSEMENT) VALUES (".$id_lien.", '".str_replace("'","''",$mot)."' ,".$id_image.", ".$classement.") ;";
 				$res = $bdd->query($sql);
 
 				$ajoutTable ++;
