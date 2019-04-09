@@ -160,9 +160,8 @@
 			
 			
 			echo "test:2<br/>";
-			echo $type;
-			echo $taille."<br/>";
-			echo $image;
+			echo "type : ".$type;
+			echo " taille : ".$taille."<br/>";
 			//on ajoute l'image a la bdd
 			$sql = "INSERT INTO TABLE_IMAGE (ID_IMAGE, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF) VALUES (".$id_image.", '".$image."', ".$taille.", '".$type."', ".$id.") ;";
 			$res = $bdd->query($sql);
