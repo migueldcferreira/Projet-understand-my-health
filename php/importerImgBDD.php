@@ -148,11 +148,7 @@
 			$image = addslashes(file_get_contents($chemin_dossier.$image["nom_image"]));
 			$type = filetype($chemin_dossier.$image["nom_image"]);
 			$taille = filesize($chemin_dossier.$image["nom_image"]);
-			}
-			catch (Exception $e)
-			{
-				echo 'Erreur : ' . $e->getMessage();
-			}
+			
 			
 			//on determine l'id de l'image
 			$sql = "SELECT COALESCE(MIN(ID_IMAGE)+1,1) AS ID FROM TABLE_IMAGE WHERE ID_IMAGE+1 NOT IN (SELECT ID_IMAGE FROM TABLE_IMAGE);";
@@ -183,7 +179,11 @@
 				//on ajoute le lien entre l'image et les mots saisies
 				$sql = "INSERT INTO TABLE_LIEN_MOT_IMAGE (ID_LIEN, MOT, ID_IMAGE, CLASSEMENT) VALUES (".$id_lien.", '".$mot."' ,".$id_image.", ".$classement.") ;";
 				$res = $bdd->query($sql);
-				
+				}
+				catch (Exception $e)
+				{
+					echo 'Erreur : ' . $e->getMessage();
+				}
 				$ajoutTable ++;
       }
       echo "<br/><br/>";
