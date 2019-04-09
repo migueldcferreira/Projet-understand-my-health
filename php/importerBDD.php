@@ -77,7 +77,7 @@
 				}
 				else
 				{
-					$sql = "SELECT COUNT(*) AS NB FROM TABLE_DEFINITION WHERE MOT='".$champs[0]."' AND DEFINITION='".str_replace("'","''",$champs[1])."';";
+					$sql = "SELECT COUNT(*) AS NB FROM TABLE_DEFINITION WHERE MOT='".str_replace("'","''",$champs[0])."' AND DEFINITION='".str_replace("'","''",$champs[1])."';";
 					$res = $bdd->query($sql);
 					$row = $res->fetch();
 					if($row['NB'] == 0)
@@ -85,17 +85,17 @@
 						$tailleDef = strlen($champs[1]);
 						
 						//on determine le classement de la definition selon sa taille
-						$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$champs[0]."' AND TAILLE_DEFINITION<=".$tailleDef.";";
+						$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".str_replace("'","''",$champs[0])."' AND TAILLE_DEFINITION<=".$tailleDef.";";
 						$res = $bdd->query($sql);
 						$row = $res->fetch();
 						$classement = $row['CLA']+1;
 						
 						//on met a jour les classements des definitions du meme mot de taille superieur a cette definition
-						$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".$champs[0]."' AND CLASSEMENT >=".$classement.";";
+						$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".str_replace("'","''",$champs[0])."' AND CLASSEMENT >=".$classement.";";
 						$res = $bdd->query($sql);
 						
 						//on insere dans la table la nouvelle definition
-						$sql = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, METHODE, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT) VALUES ('".$champs[0]."' ,'".str_replace("'","''",$champs[1])."', '".$champs[2]."', ".$id.", ".$tailleDef.", ".$classement.") ;";
+						$sql = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, METHODE, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT) VALUES ('".str_replace("'","''",$champs[0])."' ,'".str_replace("'","''",$champs[1])."', '".$champs[2]."', ".$id.", ".$tailleDef.", ".$classement.") ;";
 						$res = $bdd->query($sql);
 						
 						$ajoutTable += 1;
@@ -116,7 +116,7 @@
 				}
 				else
 				{
-					$sql = "SELECT COUNT(*) AS NB FROM TABLE_DEFINITION WHERE MOT='".$champs[1]."' AND DEFINITION='".str_replace("'","''",$champs[2])."';";
+					$sql = "SELECT COUNT(*) AS NB FROM TABLE_DEFINITION WHERE MOT='".str_replace("'","''",$champs[1])."' AND DEFINITION='".str_replace("'","''",$champs[2])."';";
 					$res = $bdd->query($sql);
 					$row = $res->fetch();
 					if($row['NB'] == 0)
@@ -124,17 +124,17 @@
 						$tailleDef = $champs[6];
 						
 						//on determine le classement de la definition selon sa taille
-						$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$champs[1]."' AND TAILLE_DEFINITION<=".$tailleDef.";";
+						$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".str_replace("'","''",$champs[1])."' AND TAILLE_DEFINITION<=".$tailleDef.";";
 						$res = $bdd->query($sql);
 						$row = $res->fetch();
 						$classement = $row['CLA']+1;
 						
 						//on met a jour les classements des definitions du meme mot de taille superieur a cette definition
-						$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".$champs[1]."' AND CLASSEMENT >=".$classement.";";
+						$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".str_replace("'","''",$champs[1])."' AND CLASSEMENT >=".$classement.";";
 						$res = $bdd->query($sql);
 						
 						//on insere dans la table la nouvelle definition
-						$sql = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, METHODE, DATE_MODIF, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES ('".$champs[1]."' ,'".str_replace("'","''",$champs[2])."', '".$champs[3]."', '".$champs[4]."', ".$champs[5].", ".$tailleDef.", ".$classement.", ".$champs[8].") ;";
+						$sql = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, METHODE, DATE_MODIF, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES ('".str_replace("'","''",$champs[1])."' ,'".str_replace("'","''",$champs[2])."', '".$champs[3]."', '".$champs[4]."', ".$champs[5].", ".$tailleDef.", ".$classement.", ".$champs[8].") ;";
 						$res = $bdd->query($sql);
 						
 						$ajoutTable += 1;
