@@ -149,7 +149,7 @@
 			echo $chemin_dossier.$image["nom_image"];
 			$type = pathinfo($chemin_dossier.$image["nom_image"], PATHINFO_EXTENSION);
 			$taille = filesize($chemin_dossier.$image["nom_image"]);
-			$image = addslashes(file_get_contents($chemin_dossier.$image["nom_image"]));
+			$img = addslashes(file_get_contents($chemin_dossier.$image["nom_image"]));
 			
 			echo "test:1<br/>";
 			
@@ -164,7 +164,7 @@
 			echo "type : ".$type;
 			echo " taille : ".$taille."<br/>";
 			//on ajoute l'image a la bdd
-			$sql = "INSERT INTO TABLE_IMAGE (ID_IMAGE, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF) VALUES (".$id_image.", '".$image."', ".$taille.", '".$type."', ".$id.") ;";
+			$sql = "INSERT INTO TABLE_IMAGE (ID_IMAGE, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF) VALUES (".$id_image.", '".$img."', ".$taille.", '".$type."', ".$id.") ;";
 			$res = $bdd->query($sql);
 			
 			echo "test:3<br/>";
