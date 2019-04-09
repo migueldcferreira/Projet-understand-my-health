@@ -133,46 +133,37 @@
 		//ajout des images et des liens avec les expressions dans la BDD
     foreach ($tab_image as $image)
     {
-      echo "Image : ".$image["nom_image"]." <br/>";
+      $text .= "Image : ".$image["nom_image"]." <br/>";
 			//on test si l'image existe bien
 			if(!file_exists($chemin_dossier.$image["nom_image"]))
 			{
 				//on passe a l'image suivante
 				$nbErreurImg++;
-				echo "L'image '".$chemin_dossier.$image["nom_image"]."' est introuvable.<br/>";
+				$text .= "L'image '".$chemin_dossier.$image["nom_image"]."' est introuvable.<br/>";
 				continue;
 			}
 			
 			echo "test:0<br/>";
 			
 			//on recupere l'image dans le dossier
-			echo $chemin_dossier.$image["nom_image"];
 			$type = pathinfo($chemin_dossier.$image["nom_image"], PATHINFO_EXTENSION);
 			$taille = filesize($chemin_dossier.$image["nom_image"]);
 			$img = addslashes(file_get_contents($chemin_dossier.$image["nom_image"]));
-			
-			echo "test:1<br/>";
-			
+						
 			//on determine l'id de l'image
 			$sql = "SELECT COALESCE(MIN(ID_IMAGE)+1,1) AS ID FROM TABLE_IMAGE WHERE ID_IMAGE+1 NOT IN (SELECT ID_IMAGE FROM TABLE_IMAGE);";
 			$res = $bdd->query($sql);
 			$row = $res->fetch();
 			$id_image = $row['ID'];
 			
-			
-			echo "test:2<br/>";
-			echo "type : ".$type;
-			echo " taille : ".$taille."<br/>";
 			//on ajoute l'image a la bdd
 			$sql = "INSERT INTO TABLE_IMAGE (ID_IMAGE, IMAGE, TAILLE, TYPE, ID_UTILISATEUR_MODIF) VALUES (".$id_image.", '".$img."', ".$taille.", '".$type."', ".$id.") ;";
 			$res = $bdd->query($sql);
-			
-			echo "test:3<br/>";
-			
+						
 			//pour chaque mot/expression defini par l'image
       foreach ($image["liste_mot"] as $mot)
       {
-        echo "----Mot : ".$mot." <br/>";
+        $text .= "----Mot : ".$mot." <br/>";
 				//on determine le classement selon le nombre d'image deja presente pour definir ce mot
 				$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_LIEN_MOT_IMAGE WHERE MOT='".$mot."';";
 				$res = $bdd->query($sql);
@@ -191,7 +182,7 @@
 
 				$ajoutTable ++;
       }
-      echo "<br/><br/>";
+      $text .= "<br/><br/>";
     }
 
 		//incrementation du compteur de def acceptee
