@@ -12,12 +12,11 @@ $requestData= $_REQUEST;
 
 $columns = array( 
 // datatable column index  => database column name
-	0 => 'ID_UTILISATEUR', 
-	1 => 'NOM',
-	2 => 'PRENOM',
-	3 => 'ADDRESSE_MAIL',
-	4 => 'RANG',
-	5 => 'DATE_DERNIERE_CONNEXION'
+	0 => 'NOM',
+	1 => 'PRENOM',
+	2 => 'ADRESSE_MAIL',
+	3 => 'RANG',
+	4 => 'DATE_DERNIERE_CONNEXION'
 
 
 );

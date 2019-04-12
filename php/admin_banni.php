@@ -16,7 +16,7 @@ $columns = array(
 
 	0 => 'NOM',
 	1 => 'PRENOM',
-	2 => 'ADDRESSE_MAIL',
+	2 => 'ADRESSE_MAIL',
 	3 => 'RANG',
 	4 => 'DATE_DERNIERE_CONNEXION'
 
