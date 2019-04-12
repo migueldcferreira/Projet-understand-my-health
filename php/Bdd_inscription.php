@@ -109,4 +109,51 @@ if (isset($_POST['login_user'])) {
   }
 }
 
+
+
+// mdp oublié
+if (isset($_POST['recover'])) {
+  // prendre tous les champs insérés dans le formulaire
+  $ADRESSE_MAIL = $_POST['ADRESSE_MAIL'];
+  $MOT_DE_PASSE_1 = $_POST['MOT_DE_PASSE_1'];
+  $MOT_DE_PASSE_2 = $_POST['MOT_DE_PASSE_2'];
+  $QUESTION = $_POST['PICK_QUESTION'];
+  $REPONSE = substr($_POST['REPONSE'], 0, 100);
+
+  // verification si tous les champs sont remplis
+  // on remplit le tableau array des erreurs pour les afficher après la saisie
+  if (empty($ADRESSE_MAIL)) { array_push($errors, "Entrez votre adresse mail "); }
+  if (empty($REPONSE)) { array_push($errors, "Entrez une réponse à la question secrète"); }
+  if (empty($MOT_DE_PASSE_1)) { array_push($errors, "Entrez un mot de passe"); }
+  if (empty($MOT_DE_PASSE_2)) { array_push($errors, "Confirmez votre mot de passe"); }
+  if ($MOT_DE_PASSE_1 != $MOT_DE_PASSE_2) {
+  array_push($errors, "Les deux mots de passe ne coincident pas");
+  }
+  $REPONSE_CRYPTEE = md5($REPONSE);
+  $MDP_CRYPTE = md5($MOT_DE_PASSE_1);
+
+
+
+  // si on a aucune erreur on vérifie les informations
+  if (count($errors) == 0) {
+    $sts = "SELECT * FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL='$ADRESSE_MAIL' AND QUESTION_SECRETE='$QUESTION' AND REPONSE = '$REPONSE_CRYPTEE'";
+
+
+    if ($results = $db->query($sts))
+    {
+      if (!empty($row = $results->fetch()))
+      {
+            
+        $upd = "UPDATE TABLE_UTILISATEUR SET MOT_DE_PASSE = '$MDP_CRYPTE' WHERE ID_UTILISATEUR = " .$row['ID_UTILISATEUR']. ";";
+        $query= $db->prepare($upd);
+        $query->execute();
+              header('location: login.php');
+          }
+      else
+      {
+        array_push($errors, "La question et/ou la réponse ne correspondent pas à l'adresse mail");
+        }
+    }
+  }
+}
 ?>

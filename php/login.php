@@ -4,11 +4,8 @@
 <html>
 <head>
 <?php include("head.php"); ?>
-<title>SE CONNECTER \(^-^)/ </title>
+<title>Connexion </title>
      <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <meta name="description" content="Projet">
-     <meta name="Oussenan-/-Slaouti" content="Nom prénom">
      <link rel="stylesheet" type="text/css" href="..\css/form_inscr.css">
      
   
@@ -38,6 +35,9 @@
   	<p>
   		Pas encore inscrit ? <a href="register.php">Devenir membre</a>
   	</p>
+    <p>
+      Mot de passe oublié ? <a href="mdp_oublie.php">Réinitialiser le mot de passe</a>
+    </p>
   </form>
 
 
