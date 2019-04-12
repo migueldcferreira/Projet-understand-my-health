@@ -156,4 +156,51 @@ if (isset($_POST['recover'])) {
     }
   }
 }
+
+
+
+// changement de mot de passe
+if (isset($_POST['modify'])) {
+  // prendre tous les champs insérés dans le formulaire
+  $OLD_MDP = $_POST['OLD_MDP'];
+  $MOT_DE_PASSE_1 = $_POST['MOT_DE_PASSE_1'];
+  $MOT_DE_PASSE_2 = $_POST['MOT_DE_PASSE_2'];
+
+
+  // verification si tous les champs sont remplis
+  // on remplit le tableau array des erreurs pour les afficher après la saisie
+  if (empty($OLD_MDP)) { array_push($errors, "Entrez votre ancien mot de passe"); }
+  if (empty($MOT_DE_PASSE_1)) { array_push($errors, "Entrez un nouveau mot de passe"); }
+  if (empty($MOT_DE_PASSE_2)) { array_push($errors, "Confirmez votre nouveau mot de passe"); }
+  if ($MOT_DE_PASSE_1 != $MOT_DE_PASSE_2) {
+  array_push($errors, "Les deux mots de passe ne coincident pas");
+  }
+  $OLD_MDP_CRYPTE = md5($OLD_MDP);
+  $MDP_CRYPTE = md5($MOT_DE_PASSE_1);
+
+
+
+  // si on a aucune erreur on vérifie les informations
+  if (count($errors) == 0) {
+    $ADRESSE_MAIL = $_SESSION['username'];
+    $sts = "SELECT * FROM TABLE_UTILISATEUR WHERE ADRESSE_MAIL= '$ADRESSE_MAIL' AND MOT_DE_PASSE='$OLD_MDP_CRYPTE'";
+
+
+    if ($results = $db->query($sts))
+    {
+      if (!empty($row = $results->fetch()))
+      {
+            
+        $upd = "UPDATE TABLE_UTILISATEUR SET MOT_DE_PASSE = '$MDP_CRYPTE' WHERE ID_UTILISATEUR = " .$row['ID_UTILISATEUR']. ";";
+        $query= $db->prepare($upd);
+        $query->execute();
+              header('location: accueil.php');
+          }
+      else
+      {
+        array_push($errors, "Ancien mot de passe erroné");
+        }
+    }
+  }
+}
 ?>
