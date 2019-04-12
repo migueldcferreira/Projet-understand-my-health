@@ -32,7 +32,7 @@ if (isset($_POST['reg_user'])) {
   if (empty($ADRESSE_MAIL)) { array_push($errors, "Entrez votre adresse mail "); }
   if (empty($MOT_DE_PASSE_1)) { array_push($errors, "Entrez un mot de passe"); }
   if (empty($MOT_DE_PASSE_2)) { array_push($errors, "Confirmez votre mot de passe"); }
-  if (empty($REPONSE)) { array_push($errors, "Entrez une reponse à la question secrète"); }
+  if (empty($REPONSE)) { array_push($errors, "Entrez une réponse à la question secrète"); }
   if ($MOT_DE_PASSE_1 != $MOT_DE_PASSE_2) {
 	array_push($errors, "Les deux mots de passe ne coincident pas");
   }
