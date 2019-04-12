@@ -4,7 +4,9 @@
 
 	
 
-	<script type="text/javascript" src="..\javascript/tooltipsAdmin.js"></script>
+	<script type="text/javascript" src="..\javascript/tooltipsAdmin.js">
+		
+	</script>
 	 <?php session_start();
 	 include ('verif_admin.php');
 	 include("head.php");
@@ -17,7 +19,10 @@
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"> </script>
+
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.19/sorting/num-html.js"> </script>
+    
    
     <script type="text/javascript" language="javascript" >
     		<?php
@@ -135,10 +140,12 @@
 				var dataTable = $('#admin_membres_2').DataTable( {
 					"processing": true,
 					"serverSide": true,
+
 					"columnDefs": [ {
-					"targets": 5,
+					"targets": 6,
 					"orderable": false
 					} ],
+
 					"language": { 
 
 					    "sProcessing": "Traitement en cours ...",
@@ -255,6 +262,7 @@
 																						<th>Adresse mail</th>
 																						<th>Rang</th>
 																						<th>Dernière connexion</th>
+																						<th>Ratio (%)</th>
 																						<th>Actions</th>
 																					</tr>
 																				</thead>

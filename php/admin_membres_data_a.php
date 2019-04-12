@@ -18,7 +18,8 @@ $columns = array(
 	2 => 'PRENOM',
 	3 => 'ADRESSE_MAIL',
 	4 => 'RANG',
-	5 => 'DATE_DERNIERE_CONNEXION'
+	5 => 'RATIO',
+	6 => 'DATE_DERNIERE_CONNEXION'
 
 
 );
@@ -32,7 +33,7 @@ $totalData = $query->rowCount();
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
 
 
-$sql = "SELECT ID_UTILISATEUR,NOM,PRENOM,ADRESSE_MAIL,RANG,DATE_DERNIERE_CONNEXION";
+$sql = "SELECT ID_UTILISATEUR,NOM,PRENOM, NB_DEF_REFUSEE, NB_DEF_ACCEPTEE, ADRESSE_MAIL,RANG,DATE_DERNIERE_CONNEXION";
 $sql.=" FROM TABLE_UTILISATEUR WHERE ACTIF=1 AND RANG LIKE '%membre%'";
 if( !empty($requestData['search']['value']) ) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
 	$sql.=" AND (NOM LIKE '%".$requestData['search']['value']."%' ";    
@@ -61,6 +62,14 @@ while( $row= $query->fetch() ) {  // preparing an array
 	$nestedData[] = $row["ADRESSE_MAIL"];
 	$nestedData[] = $row["RANG"];
 	$nestedData[] = $row["DATE_DERNIERE_CONNEXION"];
+
+	$nombre_total_def = $row["NB_DEF_ACCEPTEE"] + $row["NB_DEF_REFUSEE"];
+	$ratio = 50;   //au depart les utilisateurs ont un ratio neutre
+	if($nombre_total_def > 0)
+	{
+		$ratio = round($row["NB_DEF_ACCEPTEE"]/ $nombre_total_def, 2) * 100; //on arondit au centième près
+	}
+	$nestedData[] = $ratio;
 
 	$buttons = '';
 
