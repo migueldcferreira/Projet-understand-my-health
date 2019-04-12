@@ -22,15 +22,19 @@ if (isset($_POST['reg_user'])) {
   $DATE_NAISSANCE=$_POST['DATE_NAISSANCE'];
   $MOT_DE_PASSE_1 = $_POST['MOT_DE_PASSE_1'];
   $MOT_DE_PASSE_2 = $_POST['MOT_DE_PASSE_2'];
+  $QUESTION = $_POST['PICK_QUESTION'];
+  $REPONSE = substr($_POST['REPONSE'], 0, 100);
 
   // verification si tous les champs sont remplis
   // on remplit le tableau array des erreurs pour les afficher après la saisie
-  if (empty($NOM)) { array_push($errors, "Entrer votre nom de famille "); }
-  if (empty($PRENOM)) { array_push($errors, "Entrer votre prénom  "); }
-  if (empty($ADRESSE_MAIL)) { array_push($errors, "Entrer votre adresse mail "); }
-  if (empty($MOT_DE_PASSE_1)) { array_push($errors, "Entrer un mot de passe"); }
+  if (empty($NOM)) { array_push($errors, "Entrez votre nom de famille "); }
+  if (empty($PRENOM)) { array_push($errors, "Entrez votre prénom  "); }
+  if (empty($ADRESSE_MAIL)) { array_push($errors, "Entrez votre adresse mail "); }
+  if (empty($MOT_DE_PASSE_1)) { array_push($errors, "Entrez un mot de passe"); }
+  if (empty($MOT_DE_PASSE_2)) { array_push($errors, "Confirmez votre mot de passe"); }
+  if (empty($REPONSE)) { array_push($errors, "Entrez une reponse à la question secrète"); }
   if ($MOT_DE_PASSE_1 != $MOT_DE_PASSE_2) {
-	array_push($errors, "les deux mots de passe ne coincident pas");
+	array_push($errors, "Les deux mots de passe ne coincident pas");
   }
 
   // on fait une recherche dans la base de données
@@ -49,9 +53,10 @@ if (isset($_POST['reg_user'])) {
   // si on a aucune erreur l'inscription est validée
   if (count($errors) == 0) {
   	$MOT_DE_PASSE = md5($MOT_DE_PASSE_1);//on crypte le mot de passe par sécurité
+    $REPONSE_CRYPTEE = md5($REPONSE);//on crypte la réponse à la question secrète par sécurité
 
-  	$query = "INSERT INTO TABLE_UTILISATEUR (NOM,PRENOM, ADRESSE_MAIL,DATE_NAISSANCE, MOT_DE_PASSE)
-  			  VALUES('$NOM','$PRENOM', '$ADRESSE_MAIL', '$DATE_NAISSANCE' , '$MOT_DE_PASSE')";
+  	$query = "INSERT INTO TABLE_UTILISATEUR (NOM,PRENOM, ADRESSE_MAIL,DATE_NAISSANCE, MOT_DE_PASSE, QUESTION_SECRETE, REPONSE)
+  			  VALUES('$NOM','$PRENOM', '$ADRESSE_MAIL', '$DATE_NAISSANCE' , '$MOT_DE_PASSE', '$QUESTION', '$REPONSE_CRYPTEE')";
 
   	$tmp=$db->prepare($query);
     $tmp->execute();
