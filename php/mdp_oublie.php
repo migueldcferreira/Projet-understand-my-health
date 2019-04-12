@@ -48,7 +48,7 @@
       <input type="password" name="MOT_DE_PASSE_2">
     </div>
   	<div class="input-group form-group">
-  		<button type="submit" class="btn btn-success btn-sm"  name="recover">Changer le mot de passe</button>
+  		<button type="submit" class="btn btn-success btn-sm"  name="recover">Réinitialiser le mot de passe</button>
   	</div>
   </form>
 
