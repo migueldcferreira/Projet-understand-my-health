@@ -18,7 +18,8 @@ $columns = array(
 	1 => 'PRENOM',
 	2 => 'ADRESSE_MAIL',
 	3 => 'RANG',
-	4 => 'DATE_DERNIERE_CONNEXION'
+	4 => 'DATE_DERNIERE_CONNEXION',
+	5 => 'RATIO'
 
 
 );
@@ -32,7 +33,7 @@ $totalData = $query->rowCount();
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
 
 
-$sql = "SELECT ID_UTILISATEUR,NOM,PRENOM,ADRESSE_MAIL,RANG,DATE_DERNIERE_CONNEXION";
+$sql = "SELECT ID_UTILISATEUR,NOM,PRENOM,ADRESSE_MAIL,RANG,DATE_DERNIERE_CONNEXION, NB_DEF_ACCEPTEE, NB_DEF_REFUSEE, COALESCE(((NB_DEF_ACCEPTEE)/NULLIF(NB_DEF_REFUSEE + NB_DEF_ACCEPTEE, 0) * 100), 50) AS RATIO";
 $sql.=" FROM TABLE_UTILISATEUR WHERE ACTIF=0 ";
 if( !empty($requestData['search']['value']) ) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
 	$sql.=" AND ( NOM LIKE '%".$requestData['search']['value']."%' ";    
@@ -60,6 +61,15 @@ while( $row= $query->fetch() ) {  // preparing an array
 	$nestedData[] = $row["ADRESSE_MAIL"];
 	$nestedData[] = $row["RANG"];
 	$nestedData[] = $row["DATE_DERNIERE_CONNEXION"];
+
+	$nombre_total_def = $row["NB_DEF_ACCEPTEE"] + $row["NB_DEF_REFUSEE"];
+	$ratio = '0/0 (50%)';   //au depart les utilisateurs ont un ratio neutre
+	if($nombre_total_def > 0)
+	{
+		$ratio = $row["NB_DEF_ACCEPTEE"].'/'.$nombre_total_def. ' ('. round($row["RATIO"]). '%)' ; //on arondit au centième près
+	}
+	$nestedData[] = $ratio;
+
 	if ($row["RANG"]=="admin"){
 		$nestedData[] = '<a href="deban.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-success btn-sm tooltipsAdmin " title="Débannir cet administrateur"><i class="fa fa-retweet" aria-hidden="true"></i></a>
 		';

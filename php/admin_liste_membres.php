@@ -86,7 +86,7 @@
 					"processing": true,
 					"serverSide": true,
 					"columnDefs": [ {
-					"targets": 5,
+					"targets": 6,
 					"orderable": false
 					} ],
 					"language": { 
@@ -261,7 +261,7 @@
 																						<th>Adresse mail</th>
 																						<th>Rang</th>
 																						<th>Dernière connexion</th>
-																						<th>Ratio (%)</th>
+																						<th>Ratio</th>
 																						<th>Actions</th>
 																					</tr>
 																				</thead>
@@ -289,6 +289,7 @@
 																						<th>Adresse mail</th>
 																						<th>Rang</th>
 																						<th>Dernière connexion</th>
+																						<th>Ratio</th>
 																						<th>Actions</th>
 																					</tr>
 																				</thead>
