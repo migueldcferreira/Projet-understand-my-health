@@ -33,7 +33,7 @@ $totalData = $query->rowCount();
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
 
 
-$sql = "SELECT NOM,PRENOM, ADRESSE_MAIL,RANG,DATE_DERNIERE_CONNEXION, NB_DEF_ACCEPTEE, NB_DEF_REFUSEE, ((NB_DEF_ACCEPTEE+1)/(NB_DEF_REFUSEE + NB_DEF_ACCEPTEE + 2)) AS RATIO, ID_UTILISATEUR";
+$sql = "SELECT NOM,PRENOM, ADRESSE_MAIL,RANG,DATE_DERNIERE_CONNEXION, NB_DEF_ACCEPTEE, NB_DEF_REFUSEE, COALESCE(((NB_DEF_ACCEPTEE)/NULLIF(NB_DEF_REFUSEE + NB_DEF_ACCEPTEE, 0) * 100), 50) AS RATIO, ID_UTILISATEUR";
 $sql.=" FROM TABLE_UTILISATEUR WHERE ACTIF=1 AND RANG LIKE '%membre%'";
 if( !empty($requestData['search']['value']) ) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
 	$sql.=" AND (NOM LIKE '%".$requestData['search']['value']."%' ";    
@@ -64,12 +64,12 @@ while( $row= $query->fetch() ) {  // preparing an array
 	$nestedData[] = $row["DATE_DERNIERE_CONNEXION"];
 
 	$nombre_total_def = $row["NB_DEF_ACCEPTEE"] + $row["NB_DEF_REFUSEE"];
-	$ratio = 50;   //au depart les utilisateurs ont un ratio neutre
+	$ratio = '0/0 (50%)';   //au depart les utilisateurs ont un ratio neutre
 	if($nombre_total_def > 0)
 	{
-		$ratio = round(($row["NB_DEF_ACCEPTEE"]/ $nombre_total_def) * 100); //on arondit au centième près
+		$ratio = $row["NB_DEF_ACCEPTEE"].'/'.$nombre_total_def. ' ('. round($row["RATIO"]). '%)' ; //on arondit au centième près
 	}
-	$nestedData[] =  (int) ($ratio);
+	$nestedData[] = $ratio;
 
 	$buttons = '';
 
