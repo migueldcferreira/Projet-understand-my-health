@@ -123,7 +123,7 @@
           $texteRetour .= "$premierMot";
 					
 					//on ajoute le mot dans le tableau des mots a traiter par l'algo weka
-					array_push($motPourAlgoWeka, $premierMot);
+					$motPourAlgoWeka .= "$premierMot\n";
         }
         else
         {
@@ -174,7 +174,7 @@
     $expressionDejaSimplifies = [];
     $tabExpression = array();
 		$tabExpressionSingulier = array();
-		$motPourAlgoWeka = array();
+		$motPourAlgoWeka = "";
     $texteSimplifie = "";
     $textePDF = [
       "texte" => "",
@@ -257,18 +257,12 @@
 		$fichierCompteur = fopen('../../weka/Atraiter/compteur.var', 'r+');
 		$compteur = fgets($fichierCompteur);
 		$compteur += 1;
-		echo "compteur : $compteur";
 		fseek($fichierCompteur, 0);
 		fputs($fichierCompteur, $compteur);
 		fclose($fichierCompteur);
 		$nomFichierWeka = "../../weka/Atraiter/motWeka$compteur.txt";
-		echo $nomFichierWeka;
 		$fichierMotWeka = fopen($nomFichierWeka, 'w+');
-		foreach($motPourAlgoWeka as $motWeka)
-		{
-			fputs($fichierMotWeka,$motWeka);
-			echo "mot weka : $motWeka <br />";
-		}
+		file_put_contents($fichierMotWeka,$motPourAlgoWeka);
 		fclose($fichierMotWeka);
 		
 		$texteSimplifie .= $texteArray["retour"];
