@@ -44,7 +44,6 @@
 					<?php endif ?>
 					
 					
-					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="#top" class="nav-link">À propos</a>
 					</li>
