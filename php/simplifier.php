@@ -27,7 +27,7 @@
 		return $mot;
 	}
 
-	function chercherExpressionBDD($mot, &$bdd, &$expressionDejaSimplifies, &$tabExpression, &$tabExpressionSingulier)
+	function chercherExpressionBDD($mot, &$bdd, &$expressionDejaSimplifies, &$tabExpression, &$tabExpressionSingulier, &$motPourAlgoWeka)
 	{
 		
 		
@@ -121,6 +121,9 @@
 					array_shift($tabExpressionSingulier);
           $textePdf["texte"] .= "$premierMot";
           $texteRetour .= "$premierMot";
+					
+					//on ajoute le mot dans le tableau des mots a traiter par l'algo weka
+					array_push($motPourAlgoWeka, $premierMot);
         }
         else
         {
@@ -171,6 +174,7 @@
     $expressionDejaSimplifies = [];
     $tabExpression = array();
 		$tabExpressionSingulier = array();
+		$motPourAlgoWeka = array();
     $texteSimplifie = "";
     $textePDF = [
       "texte" => "",
@@ -193,11 +197,11 @@
       {
         if(strlen($mot) > 0)
         {
-          $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
+          $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier, $motPourAlgoWeka);
         }
         if($lettre != " ")
         {
-          $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
+          $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier, $motPourAlgoWeka);
           $texteSimplifie .= $texteArray["retour"];
           $textePDF["texte"] .= $texteArray["PDF"]["texte"];
           $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
@@ -244,10 +248,26 @@
     }
     if(strlen($mot) > 0)
     {
-      $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
+      $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier, $motPourAlgoWeka);
     }
-    $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
-    $texteSimplifie .= $texteArray["retour"];
+    $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier, $motPourAlgoWeka);
+    
+		//on ecrit les mots sur le serveur pour que l'algo weka puisse decouvrir de nouveaux mots difficiles
+		//on recupere la valeur du compteur et on l'incremente
+		$fichierCompteur = fopen('../../weka/Atraiter/compteur.var', 'r+');
+		$compteur = fgets($fichierCompteur);
+		$compteur ++;
+		fseek($fichierCompteur, 0);
+		fputs($fichierCompteur, $compteur);
+		fclose($fichierCompteur);
+		$fichierMotWeka = fopen('../../weka/Atraiter/motWeka'.$compteur.'.txt', 'w+');
+		foreach($motPourAlgoWeka as $motWeka)
+		{
+			fputs($fichierCompteur,$motWeka);
+		}
+		fclose($fichierMotWeka);
+		
+		$texteSimplifie .= $texteArray["retour"];
     $textePDF["texte"] .= $texteArray["PDF"]["texte"];
     $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
     $arrayRetour = [
