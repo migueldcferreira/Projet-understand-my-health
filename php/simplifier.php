@@ -261,10 +261,7 @@
 		fputs($fichierCompteur, $compteur);
 		fclose($fichierCompteur);
 		$nomFichierWeka = "../../weka/Atraiter/motWeka$compteur.txt";
-		$fichierMotWeka = fopen($nomFichierWeka, 'w+');
-		echo $motPourWeka;
-		file_put_contents($fichierMotWeka,$motPourAlgoWeka);
-		fclose($fichierMotWeka);
+		file_put_contents($nomFichierWeka,$motPourAlgoWeka);
 		
 		$texteSimplifie .= $texteArray["retour"];
     $textePDF["texte"] .= $texteArray["PDF"]["texte"];
