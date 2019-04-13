@@ -257,6 +257,7 @@
 		$fichierCompteur = fopen('../../weka/Atraiter/compteur.var', 'r+');
 		$compteur = fgets($fichierCompteur);
 		$compteur ++;
+		echo "compteur : $compteur";
 		fseek($fichierCompteur, 0);
 		fputs($fichierCompteur, $compteur);
 		fclose($fichierCompteur);
@@ -264,6 +265,7 @@
 		foreach($motPourAlgoWeka as $motWeka)
 		{
 			fputs($fichierMotWeka,$motWeka);
+			echo "mot weka : $motWeka <br />";
 		}
 		fclose($fichierMotWeka);
 		
