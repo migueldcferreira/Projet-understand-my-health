@@ -261,7 +261,7 @@
 		fseek($fichierCompteur, 0);
 		fputs($fichierCompteur, $compteur);
 		fclose($fichierCompteur);
-		$fichierMotWeka = fopen('../../weka/Atraiter/motWeka'.$compteur.'.txt', 'w+');
+		$fichierMotWeka = fopen('../../weka/Atraiter/motWeka'.$compteur.'.txt', 'r+');
 		foreach($motPourAlgoWeka as $motWeka)
 		{
 			fputs($fichierMotWeka,$motWeka);
