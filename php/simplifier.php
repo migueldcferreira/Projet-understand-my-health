@@ -256,7 +256,7 @@
 		//on recupere la valeur du compteur et on l'incremente
 		$fichierCompteur = fopen('../../weka/Atraiter/compteur.var', 'r+');
 		$compteur = fgets($fichierCompteur);
-		$compteur ++;
+		$compteur += 1;
 		echo "compteur : $compteur";
 		fseek($fichierCompteur, 0);
 		fputs($fichierCompteur, $compteur);
