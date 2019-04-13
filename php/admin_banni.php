@@ -63,11 +63,10 @@ while( $row= $query->fetch() ) {  // preparing an array
 	$nestedData[] = $row["DATE_DERNIERE_CONNEXION"];
 
 	$nombre_total_def = $row["NB_DEF_ACCEPTEE"] + $row["NB_DEF_REFUSEE"];
-	$ratio = '0/0 (50%)';   //au depart les utilisateurs ont un ratio neutre
-	if($nombre_total_def > 0)
-	{
-		$ratio = $row["NB_DEF_ACCEPTEE"].'/'.$nombre_total_def. ' ('. round($row["RATIO"]). '%)' ; //on arondit au centième près
-	}
+    //au depart les utilisateurs ont un ratio neutre ( 0/0 (50%))
+
+	$ratio = $row["NB_DEF_ACCEPTEE"].'/'.$nombre_total_def. ' ('. round($row["RATIO"]). '%)' ; //on arondit au centième près
+	
 	$nestedData[] = $ratio;
 
 	if ($row["RANG"]=="admin"){
