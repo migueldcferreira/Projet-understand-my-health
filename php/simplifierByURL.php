@@ -17,9 +17,10 @@
     	}
 	  
 	//on recupere le texte a l'URL
+	//on a commente des preg_replace car cela etait trop long a l'execution
 	$textURL = file_get_contents($_POST["testurl"]);
 	//on garde seulement le body de la page
-      	//$textBrut = preg_replace("#^.*<body[^>]*>|</body>.*$#s" , "", $textURL);
+  //$textBrut = preg_replace("#^.*<body[^>]*>|</body>.*$#s" , "", $textURL);
 	preg_match("#<body[^>]*>.*</body>#s",$textURL,$match);
 	$textBrut = preg_replace("#<body[^>]*>#s","<body>",$match[0],1);
 	//$textBrut = preg_replace("#<script[^>]*>.*</script>#s" , "", $textBrut);
@@ -32,14 +33,12 @@
 	//$textBrut = preg_replace("#<div[^>]*navigation[^>]*>(((?!<div).)*<div[^>]*>((?!</div).)*</div>((?!</*div).)*)*</div>#s","",$textBrut);
 	
 	$textBrut = preg_replace("#<((a[^>]*>)|(/a>)|(header[^>]*>.*</header>)|(footer[^>]*>.*</footer>))#s" , "", $textBrut);
-    	require_once("simplifier.php");
-	$time_start = time();	
-    $texteSimplifieArray = simplifierTexteBrut($textBrut,0);
-    $texteSimplifie = $texteSimplifieArray["retour"];
-    $textePDF = $texteSimplifieArray["PDF"];
-	$time_end = time();
-	$timer = $time_end - $time_start;
-	echo $timer;
+	require_once("simplifier.php");
+	
+	$texteSimplifieArray = simplifierTexteBrut($textBrut,0);
+	$texteSimplifie = $texteSimplifieArray["retour"];
+	$textePDF = $texteSimplifieArray["PDF"];
+	
 	?>
 	<form method = "post" class = "export" action="export_pdf.php" target="_blank">
 	  <input type="hidden" id="texte" name="texte" value="<?php echo htmlspecialchars($textePDF["texte"]);?>">
