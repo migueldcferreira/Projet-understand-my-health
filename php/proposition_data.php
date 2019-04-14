@@ -1,4 +1,6 @@
 <?php
+session_start();
+include("verif_membre.php");
 /* Database connection start */
 require('Bdd.php');
 $db = Bdd::connect("BDD_TRADOCTEUR");
