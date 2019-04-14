@@ -81,8 +81,14 @@
 				$stmt= $db->prepare($query); 
 				$stmt->execute(); 
 
+				//on determine l'id de la definition
+				$sql = "SELECT COALESCE(MIN(ID_DEFINITION)+1,1) AS ID FROM TABLE_DEFINITION WHERE ID_DEFINITION+1 NOT IN (SELECT ID_DEFINITION FROM TABLE_DEFINITION);";
+				$res = $bdd->query($sql);
+				$row = $res->fetch();
+				$id_definition = $row['ID'];
+				
 				//on insere dans la table la nouvelle definition
-				$query = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES ('".str_replace("'","''",$NOUVEAU_MOT)."' ,'".str_replace("'","''",$DEFINITION)."', ".$id.", ".$tailleDef.", ".$classement.", ".$confirmation.") ;";
+				$query = "INSERT INTO TABLE_DEFINITION (ID_DEFINITION, MOT, DEFINITION, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES (".$id_definition.", '".str_replace("'","''",$NOUVEAU_MOT)."' ,'".str_replace("'","''",$DEFINITION)."', ".$id.", ".$tailleDef.", ".$classement.", ".$confirmation.") ;";
 				$stmt= $db->prepare($query); 
 				$stmt->execute();
 
