@@ -44,7 +44,9 @@ if ($id) {
 	$sql = "DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = ".$id.";";
 	$res = $bdd->query($sql);
 
-	header('location: admin_liste_def.php');
+	//on retourne sur la page web appelante
+	$url_source=$_SERVER['HTTP_REFERER'];
+	header('location: '.$url_source);
 }
 else{header('location: register.php'); }
 ?>
