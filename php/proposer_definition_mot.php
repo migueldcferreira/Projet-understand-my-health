@@ -122,6 +122,14 @@
 				$stmt= $db->prepare($query); 
 				$stmt->execute(); 
 			}
+			
+			//on regarde si un mot facile est finalement defini comme difficile par un admin
+			if(isset($_GET['difficile']) and $_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
+			{
+				$query = "UPDATE TABLE_PROPOSITION_MOT SET MOT_FACILE = 0 WHERE MOT='".str_replace("'","''",$_GET['difficile'])."' ;";
+				$stmt= $db->prepare($query); 
+				$stmt->execute(); 
+			}
 		}
 	?>
 		
