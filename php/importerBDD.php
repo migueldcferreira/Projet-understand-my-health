@@ -94,8 +94,14 @@
 						$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".str_replace("'","''",$champs[0])."' AND CLASSEMENT >=".$classement.";";
 						$res = $bdd->query($sql);
 						
+						//on determine l'id de la definition
+						$sql = "SELECT COALESCE(MIN(ID_DEFINITION)+1,1) AS ID FROM TABLE_DEFINITION WHERE ID_DEFINITION+1 NOT IN (SELECT ID_DEFINITION FROM TABLE_DEFINITION);";
+						$res = $bdd->query($sql);
+						$row = $res->fetch();
+						$id_definition = $row['ID'];
+						
 						//on insere dans la table la nouvelle definition
-						$sql = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, METHODE, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT) VALUES ('".str_replace("'","''",$champs[0])."' ,'".str_replace("'","''",$champs[1])."', '".$champs[2]."', ".$id.", ".$tailleDef.", ".$classement.") ;";
+						$sql = "INSERT INTO TABLE_DEFINITION (ID_DEFINITION, MOT, DEFINITION, METHODE, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT) VALUES (".$id_definition.", '".str_replace("'","''",$champs[0])."', '".str_replace("'","''",$champs[1])."', '".$champs[2]."', ".$id.", ".$tailleDef.", ".$classement.") ;";
 						$res = $bdd->query($sql);
 						
 						$ajoutTable += 1;
@@ -133,8 +139,14 @@
 						$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".str_replace("'","''",$champs[1])."' AND CLASSEMENT >=".$classement.";";
 						$res = $bdd->query($sql);
 						
+						//on determine l'id de la definition
+						$sql = "SELECT COALESCE(MIN(ID_DEFINITION)+1,1) AS ID FROM TABLE_DEFINITION WHERE ID_DEFINITION+1 NOT IN (SELECT ID_DEFINITION FROM TABLE_DEFINITION);";
+						$res = $bdd->query($sql);
+						$row = $res->fetch();
+						$id_definition = $row['ID'];
+						
 						//on insere dans la table la nouvelle definition
-						$sql = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, METHODE, DATE_MODIF, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES ('".str_replace("'","''",$champs[1])."' ,'".str_replace("'","''",$champs[2])."', '".$champs[3]."', '".$champs[4]."', ".$champs[5].", ".$tailleDef.", ".$classement.", ".$champs[8].") ;";
+						$sql = "INSERT INTO TABLE_DEFINITION (ID_DEFINITION, MOT, DEFINITION, METHODE, DATE_MODIF, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES (".$id_definition.", '".str_replace("'","''",$champs[1])."', '".str_replace("'","''",$champs[2])."', '".$champs[3]."', '".$champs[4]."', ".$champs[5].", ".$tailleDef.", ".$classement.", ".$champs[8].") ;";
 						$res = $bdd->query($sql);
 						
 						$ajoutTable += 1;
