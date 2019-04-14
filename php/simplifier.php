@@ -58,16 +58,22 @@
             $expression .= " ".$tabExpression[$j];
 						$expressionSingulier .= " ".$tabExpressionSingulier[$j];
           }
-          //on regarde dans la BDD si l'expression $expression + n'importe quoi est presente dans la BDD
-          $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$expression%' OR MOT LIKE '$expressionSingulier%' ORDER BY CLASSEMENT;";
+          //on regarde dans la BDD si l'expression $expression + n'importe quoi est presente dans la BDD definition ou image
+          $sql = "(SELECT MOT FROM TABLE_DEFINITION WHERE (MOT LIKE '$expression%' OR MOT LIKE '$expressionSingulier%') AND A_CONFIRMER=0)";
+					$sql .= " UNION"
+					$sql .= " (SELECT MOT FROM TABLE_LIEN_MOT_IMAGE WHERE (MOT LIKE '$expression%' OR MOT LIKE '$expressionSingulier%') AND A_CONFIRMER=0);";
           $res = $bdd->query($sql);
 
           //Si on a une definition pour cette expression + potentiellement d'autres mots dans la BDD
           if(!empty($row = $res->fetch()))
           {
             //on test alors s'il y a une definition pour l'expression exacte (sans le %)
-            $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '$expression' OR MOT = '$expressionSingulier' ORDER BY CLASSEMENT;";
-            $res = $bdd->query($sql);
+            $sql = "(SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '$expression' OR MOT = '$expressionSingulier' AND A_CONFIRMER=0 ORDER BY CLASSEMENT)";
+            $sql .= " UNION";
+						$sql .= " (SELECT ' ' AS DEFINITION FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '$expression' OR MOT = '$expressionSingulier' AND A_CONFIRMER=0";
+						$sql .= " AND MOT NOT IN";
+						$sql .= " (SELECT DISTINCT MOT FROM TABLE_DEFINITION))";
+						$res = $bdd->query($sql);
 
             //Si on a une definition pour cette expression dans la BDD
             if(!empty($row = $res->fetch()))
