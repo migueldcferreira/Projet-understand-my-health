@@ -1,5 +1,5 @@
 <?php 
-      include('Bdd_interaction.php'); 
+      include('Bdd_inscription.php'); 
       include('verif_membre.php');?>
 <!DOCTYPE html>
 <html>
@@ -24,7 +24,7 @@
     <?php include('errors.php');?>
     <div class="input-group">
       <label>Ancien mot de passe</label>
-      <input type="text" name="OLD_MDP" >
+      <input type="password" name="OLD_MDP" >
     </div>
     <div class="input-group">
       <label>Nouveau mot de passe</label>
