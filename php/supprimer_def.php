@@ -27,7 +27,7 @@ if ($id) {
 	$classement = $row['CLASSEMENT'];
 
 	//on met a jour les classements des autres definitions de ce mot		
-	$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT-1 WHERE MOT='".$mot."' AND CLASSEMENT >".$classement.";";
+	$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT-1 WHERE MOT='".str_replace("'","''",$mot)."' AND CLASSEMENT >".$classement.";";
 	$res = $bdd->query($sql);
 	
 	//on cherche l'id de l'utilisateur qui avait propose cette definition
