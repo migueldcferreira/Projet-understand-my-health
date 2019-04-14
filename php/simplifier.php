@@ -194,7 +194,7 @@
       $text = str_split($text);
     foreach($text as $lettre)
     {
-      if($nbBaliseOuvrante==0 and preg_match("#[a-zA-Z0-9éèàêâùïüëÉÈÀÊÂÙÏÜË]#",$lettre) or (strlen($mot)>0 and $lettre=="-"))
+      if($nbBaliseOuvrante==0 and preg_match("#[a-zA-Z0-9éàèùâêîôûëïüçÉÀÈÙÂÊÎÔÛËÏÜÇ]#",$lettre) or (strlen($mot)>0 and $lettre=="-"))
       {
         $mot = $mot . "$lettre";
 				$nbEspaceAAjouter = 0;
