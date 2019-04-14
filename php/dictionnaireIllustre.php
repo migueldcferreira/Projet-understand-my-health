@@ -43,7 +43,7 @@
         die('Erreur : ' . $e->getMessage());
       }
       
-			$sdl = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '".str_replace("'","''",$mot)."' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;"; 
+			$sdl = "SELECT DEFINITION, ID_DEFINITION FROM TABLE_DEFINITION WHERE MOT = '".str_replace("'","''",$mot)."' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;"; 
 			$res = $bdd->query($sdl);
       
       $compteur = 1;
@@ -51,12 +51,22 @@
       while(!empty($row = $res->fetch()))
       {
 			  $definition = $row['DEFINITION'];
-				echo '<div class="panel panel-primary">
-      					<div class="panel-heading">Definition '.$compteur.'</div>
-      					<div class="panel-body">'.$definition.'</div>
-    					</div>';
-        //echo "Définition $compteur : $definition";
-        echo "<br/><br/>";
+				if($_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
+				{
+					echo '<div class="panel panel-primary">
+									<div class="panel-heading">Definition '.$compteur.' <a href="modifier.php?id='.$row[1].'"><button class="btn btn-sm tooltipsAdmin enabled" title="Modifier cette définition"><i class="fa fa-edit"></i></button>      </a>
+										<a href="supprimer_def.php?id='.$row[1].'"><button class="btn btn-danger btn-sm tooltipsAdmin enabled" title="Supprimer cette définition"><i class="fas fa-minus-circle"></i></button> </a></div>
+									<div class="panel-body">'.$definition.'</div>
+								</div>';
+				}
+				else
+				{
+					echo '<div class="panel panel-primary">
+									<div class="panel-heading">Definition '.$compteur.' </div>
+									<div class="panel-body">'.$definition.'</div>
+								</div>';
+				}
+				echo "<br/><br/>";
 				$compteur += 1;
       }
 		
