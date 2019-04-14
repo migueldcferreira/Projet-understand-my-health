@@ -1,5 +1,5 @@
 <?php 
-      include('Bdd_inscription.php'); 
+      include('Bdd_interaction.php'); 
       include('verif_membre.php');?>
 <!DOCTYPE html>
 <html>
