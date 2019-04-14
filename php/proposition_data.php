@@ -41,7 +41,7 @@ while( $row= $query->fetch() ) {  // preparing an array
   if($_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
   {
     $nestedData[] = '<a href="proposer_definition_mot.php?mot='.$row["MOT"].'"><button class="btn btn-primary btn-sm tooltipsAdmin " title="Définir ce mot"><i class="fas fa-pencil-alt"></i></button></a>'
-                    .'<a href="proposer_definition_mot.php?facile='.$row["MOT"].'"><button class="btn btn-danger btn-sm tooltipsAdmin " title="Indiquer que ce mot est facile"><i class="fas fa-balance-scale"></i></button></a>';
+                    .'<a href="proposer_definition_mot.php?facile='.$row["MOT"].'"><button class="btn btn-success btn-sm tooltipsAdmin " title="Indiquer que ce mot est facile"><i class="fas fa-balance-scale"></i></button></a>';
   }
   else
   {
