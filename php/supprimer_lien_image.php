@@ -25,7 +25,7 @@ if ($id) {
 	$classement = $row['CLASSEMENT'];
 
 	//on met a jour les classements des autres liens de ce mot
-	$sql = "UPDATE TABLE_LIEN_MOT_IMAGE SET CLASSEMENT = CLASSEMENT-1 WHERE MOT='".$mot."' AND CLASSEMENT >".$classement.";";
+	$sql = "UPDATE TABLE_LIEN_MOT_IMAGE SET CLASSEMENT = CLASSEMENT-1 WHERE MOT='".str_replace("'","''",$mot)."' AND CLASSEMENT >".$classement.";";
 	$res = $bdd->query($sql);
 
   //on supprime le lien de la table
