@@ -11,6 +11,12 @@ $columns = array(
   0 => 'MOT',
   1 => 'FREQUENCE'
 );
+
+//deleting def already define
+$sql="DELETE FROM TABLE_PROPOSITION_MOT WHERE MOT IN (SELECT DISTINCT MOT FROM TABLE_DEFINITION WHERE A_CONFIRMER = 0)";
+$query=  $db->prepare($sql) ;
+$query->execute();
+
 // getting total number records without any search
 $sql = "SELECT MOT, FREQUENCE";
 $sql.=" FROM TABLE_PROPOSITION_MOT WHERE MOT_FACILE=0";
