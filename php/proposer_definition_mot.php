@@ -82,8 +82,8 @@
 				$stmt->execute(); 
 
 				//on determine l'id de la definition
-				$sql = "SELECT COALESCE(MIN(ID_DEFINITION)+1,1) AS ID FROM TABLE_DEFINITION WHERE ID_DEFINITION+1 NOT IN (SELECT ID_DEFINITION FROM TABLE_DEFINITION);";
-				$res = $bdd->query($sql);
+				$query = "SELECT COALESCE(MIN(ID_DEFINITION)+1,1) AS ID FROM TABLE_DEFINITION WHERE ID_DEFINITION+1 NOT IN (SELECT ID_DEFINITION FROM TABLE_DEFINITION);";
+				$res = $db->query($query);
 				$row = $res->fetch();
 				$id_definition = $row['ID'];
 				
