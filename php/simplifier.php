@@ -59,10 +59,10 @@
 						$expressionSingulier .= " ".$tabExpressionSingulier[$j];
           }
           //on regarde dans la BDD si l'expression $expression + n'importe quoi est presente dans la BDD definition ou image
-          $sql = "(SELECT MOT FROM TABLE_DEFINITION WHERE (MOT LIKE '$expression%' OR MOT LIKE '$expressionSingulier%') AND A_CONFIRMER=0)";
-					$sql .= " UNION"
+					$sql = "(SELECT MOT FROM TABLE_DEFINITION WHERE (MOT LIKE '$expression%' OR MOT LIKE '$expressionSingulier%') AND A_CONFIRMER=0)";
+					$sql .= " UNION";
 					$sql .= " (SELECT MOT FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE (MOT LIKE '$expression%' OR MOT LIKE '$expressionSingulier%') AND A_CONFIRMER=0);";
-          $res = $bdd->query($sql);
+					$res = $bdd->query($sql);
 
           //Si on a une definition pour cette expression + potentiellement d'autres mots dans la BDD
           if(!empty($row = $res->fetch()))
