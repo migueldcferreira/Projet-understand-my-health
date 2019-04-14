@@ -27,7 +27,7 @@ if ($id) {
 	$classement = $row['CLASSEMENT'];
 
 	//on met a jour les classements des autres definitions de ce mot		
-	$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT-1 WHERE MOT='".$mot."' AND CLASSEMENT >".$classement.";";
+	$sql = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT-1 WHERE MOT='".str_replace("'","''",$mot)."' AND CLASSEMENT >".$classement.";";
 	$res = $bdd->query($sql);
 	
 	//on cherche l'id de l'utilisateur qui avait propose cette definition
@@ -36,7 +36,7 @@ if ($id) {
 	$row = $res->fetch();
 	$idU = $row['ID_UTILISATEUR_MODIF'];
 
-	//on augmente de 1 son nombre de definition refusee
+	//on augmente de 1 son nombre de definition refusees
 	$sql = "UPDATE TABLE_UTILISATEUR SET NB_DEF_REFUSEE = NB_DEF_REFUSEE+1 WHERE ID_UTILISATEUR=".$idU.";";
 	$res = $bdd->query($sql);
 	
@@ -44,7 +44,9 @@ if ($id) {
 	$sql = "DELETE FROM TABLE_DEFINITION WHERE ID_DEFINITION = ".$id.";";
 	$res = $bdd->query($sql);
 
-	header('location: admin_liste_def.php');
+	//on retourne sur la page web appelante
+	$url_source=$_SERVER['HTTP_REFERER'];
+	header('location: '.$url_source);
 }
 else{header('location: register.php'); }
 ?>

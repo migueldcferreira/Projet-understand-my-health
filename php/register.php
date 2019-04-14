@@ -1,4 +1,4 @@
-<?php include('Bdd_inscription.php'); //appel à la base de donnée
+<?php include('Bdd_interaction.php'); //appel à la base de donnée
       include('verif_visiteur.php');?>
 <!DOCTYPE html>
 <html>
@@ -47,6 +47,20 @@
 			<div class="input-group form-group">
 			  <label>Confirmer mot de passe</label>
 			  <input type="password" name="MOT_DE_PASSE_2">
+			</div>
+			<div>
+				<label>Choisissez une question secrète</label>
+				<select class="input-group form-group" name="PICK_QUESTION">
+				  <option>Quel est le nom de jeune fille de votre mère ?</option>
+				  <option>Quel était le métier de votre grand père ?</option>
+				  <option>Comment s'appelait votre premier animal de compagnie ?</option>
+				  <option>Comment s'appelait votre meilleur ami lorsque vous étiez adolescent ?</option>
+				  <option>Quel est le nom de la rue où vous avez grandi ?</option>
+				</select>
+			</div>
+			<div class="input-group form-group">
+			  <label>Réponse à votre question secrète</label>
+			  <input type="text" name="REPONSE">
 			</div>
 			<div class="wthree-text form-group">
 					<label class="anim">

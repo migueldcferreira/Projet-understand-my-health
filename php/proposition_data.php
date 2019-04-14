@@ -1,4 +1,6 @@
 <?php
+session_start();
+include("verif_membre.php");
 /* Database connection start */
 require('Bdd.php');
 $db = Bdd::connect("BDD_TRADOCTEUR");
@@ -9,6 +11,12 @@ $columns = array(
   0 => 'MOT',
   1 => 'FREQUENCE'
 );
+
+//deleting def already define
+$sql="DELETE FROM TABLE_PROPOSITION_MOT WHERE MOT IN (SELECT DISTINCT MOT FROM TABLE_DEFINITION WHERE A_CONFIRMER = 0)";
+$query=  $db->prepare($sql) ;
+$query->execute();
+
 // getting total number records without any search
 $sql = "SELECT MOT, FREQUENCE";
 $sql.=" FROM TABLE_PROPOSITION_MOT WHERE MOT_FACILE=0";
@@ -36,7 +44,15 @@ while( $row= $query->fetch() ) {  // preparing an array
   //$nestedData[] = $row["MOT"];
   $nestedData[] = $row["MOT"];
   $nestedData[] = $row["FREQUENCE"];
-  $nestedData[] = '<a href="proposer_definition_mot.php?mot='.$row["MOT"].'"><i class="fas fa-pencil-alt"></i></a>';
+  if($_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
+  {
+    $nestedData[] = '<a href="proposer_definition_mot.php?mot='.$row["MOT"].'"><button class="btn btn-primary btn-sm tooltipsAdmin " title="Définir ce mot"><i class="fas fa-pencil-alt"></i></button></a>'
+                    .' <a href="proposer_definition_mot.php?facile='.$row["MOT"].'"><button class="btn btn-success btn-sm tooltipsAdmin " title="Indiquer que ce mot est facile"><i class="fas fa-balance-scale"></i></button></a>';
+  }
+  else
+  {
+    $nestedData[] = '<a href="proposer_definition_mot.php?mot='.$row["MOT"].'"><button class="btn btn-primary btn-sm tooltipsAdmin " title="Définir ce mot"><i class="fas fa-pencil-alt"></i></button></a>';
+  }
 
   $data[] = $nestedData;
 }

@@ -4,7 +4,9 @@
 
 	
 
-	<script type="text/javascript" src="..\javascript/tooltipsAdmin.js"></script>
+	<script type="text/javascript" src="..\javascript/tooltipsAdmin.js">
+		
+	</script>
 	 <?php session_start();
 	 include ('verif_admin.php');
 	 include("head.php");
@@ -17,7 +19,9 @@
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"> </script>
+
+    
    
     <script type="text/javascript" language="javascript" >
     		<?php
@@ -75,17 +79,72 @@
 
 			} );
 
-		<?php } ?>
 
+
+			$(document).ready(function() {
+				var dataTable = $('#admin_membres_3').DataTable( {
+					"processing": true,
+					"serverSide": true,
+					"columnDefs": [ {
+					"targets": 6,
+					"orderable": false
+					} ],
+					"language": { 
+
+					    "sProcessing": "Traitement en cours ...",
+					    "sLengthMenu": "Afficher _MENU_ lignes",
+					    "sZeroRecords": "Aucun résultat trouvé",
+					    "sEmptyTable": "Aucune donnée disponible",
+					    "sInfo": "Lignes _START_ à _END_ sur _TOTAL_",
+					    "sInfoEmpty": "Aucune ligne affichée",
+					    "sInfoFiltered": "(Filtrer un maximum de_MAX_)",
+					    "sInfoPostFix": "",
+					    "sSearch": "Chercher:",
+					    "sUrl": "",
+					    "sInfoThousands": ",",
+					    "sLoadingRecords": "Chargement...",
+					    "oPaginate": {
+					      "sFirst": "Premier", "sLast": "Dernier", "sNext": "Suivant", "sPrevious": "Précédent"
+					    },
+					    "oAria": {
+					      "sSortAscending": ": Trier par ordre croissant", "sSortDescending": ": Trier par ordre décroissant"
+					    }
+					} ,
+
+					"ajax":{
+						url :"admin_banni.php", // json datasource
+						type: "post",  // method  , by default get
+						dataFilter: function(reps) {
+				                console.log(reps);
+				                return reps;
+		           			 },
+		           		error:function(err){
+			                  console.log(err);
+			            },
+						error: function(){  // error handling
+							$(".admin_membres_3-error").html("");
+							$("#admin_membres_3").append('<tbody class="admin_membres_3-error"><tr><th colspan="3">Pas de données trouvées sur le serveur</th></tr></tbody>');
+							$("#admin_membres_3_processing").css("display","none");
+							
+						}
+					}
+				} );
+
+			} );
+
+
+		<?php } ?>
 
 			$(document).ready(function() {
 				var dataTable = $('#admin_membres_2').DataTable( {
 					"processing": true,
 					"serverSide": true,
+
 					"columnDefs": [ {
-					"targets": 5,
+					"targets": 6,
 					"orderable": false
 					} ],
+
 					"language": { 
 
 					    "sProcessing": "Traitement en cours ...",
@@ -130,6 +189,7 @@
 			} );
 
 
+
 				
 
 		
@@ -154,6 +214,7 @@
 	                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 	                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa fa-user-circle"></i> Administrateurs</a>
 	                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa fa-users"></i> Membres</a>
+	                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="fa fa-users"></i> Membres bannis</a>
 	                            </div>
 	                        </nav>
 	                      <div class="tab-content" id="nav-tabContent">
@@ -164,6 +225,7 @@
 																		<table id="admin_membres_1"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
 																				<thead>
 																					<tr>
+																						
 																						<th>Nom</th>
 																						<th>Prénom</th>
 																						<th>Adresse mail</th>
@@ -183,7 +245,7 @@
 
 
 	                            </div>
-	                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+	                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profil-tab">
 
 	                            							<?php } ?>
 	                            							</br>
@@ -193,16 +255,20 @@
 																		<table id="admin_membres_2"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
 																				<thead>
 																					<tr>
+																					
 																						<th>Nom</th>
 																						<th>Prénom</th>
 																						<th>Adresse mail</th>
 																						<th>Rang</th>
 																						<th>Dernière connexion</th>
+																						<th>Ratio</th>
 																						<th>Actions</th>
 																					</tr>
 																				</thead>
 																		</table>
 																</div>
+
+
 
 						<?php
 								if($_SESSION['rang']=="super-admin")
@@ -210,6 +276,27 @@
 						?>
 
 	                            </div>
+
+	                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+	                            							</br>
+
+	                            								<div style="overflow-x:auto;">
+																		<table id="admin_membres_3"  cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+																				<thead>
+																					<tr>
+																						<th>Nom</th>
+																						<th>Prénom</th>
+																						<th>Adresse mail</th>
+																						<th>Rang</th>
+																						<th>Dernière connexion</th>
+																						<th>Ratio</th>
+																						<th>Actions</th>
+																					</tr>
+																				</thead>
+																		</table>
+																</div>
+								</div>
+
 
 	                        </div>
 	   	</section>

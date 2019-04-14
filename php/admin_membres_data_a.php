@@ -13,12 +13,13 @@ $requestData= $_REQUEST;
 
 $columns = array( 
 // datatable column index  => database column name
-	0 => 'ID_UTILISATEUR', 
-	1 => 'NOM',
-	2 => 'PRENOM',
-	3 => 'ADRESSE_MAIL',
-	4 => 'RANG',
-	5 => 'DATE_DERNIERE_CONNEXION'
+	0 => 'NOM',
+	1 => 'PRENOM',
+	2 => 'ADRESSE_MAIL',
+	3 => 'RANG',
+	4 => 'DATE_DERNIERE_CONNEXION',
+	5 => 'RATIO'
+
 
 
 );
@@ -32,7 +33,7 @@ $totalData = $query->rowCount();
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
 
 
-$sql = "SELECT ID_UTILISATEUR,NOM,PRENOM,ADRESSE_MAIL,RANG,DATE_DERNIERE_CONNEXION";
+$sql = "SELECT NOM,PRENOM, ADRESSE_MAIL,RANG,DATE_DERNIERE_CONNEXION, NB_DEF_ACCEPTEE, NB_DEF_REFUSEE, COALESCE(((NB_DEF_ACCEPTEE)/NULLIF(NB_DEF_REFUSEE + NB_DEF_ACCEPTEE, 0) * 100), 50) AS RATIO, ID_UTILISATEUR";
 $sql.=" FROM TABLE_UTILISATEUR WHERE ACTIF=1 AND RANG LIKE '%membre%'";
 if( !empty($requestData['search']['value']) ) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
 	$sql.=" AND (NOM LIKE '%".$requestData['search']['value']."%' ";    
@@ -62,6 +63,12 @@ while( $row= $query->fetch() ) {  // preparing an array
 	$nestedData[] = $row["RANG"];
 	$nestedData[] = $row["DATE_DERNIERE_CONNEXION"];
 
+	$nombre_total_def = $row["NB_DEF_ACCEPTEE"] + $row["NB_DEF_REFUSEE"];
+	//au depart les utilisateurs ont un ratio neutre ( 0/0 (50%))
+
+	$ratio = $row["NB_DEF_ACCEPTEE"].'/'.$nombre_total_def. ' ('. round($row["RATIO"]). '%)' ; //on arondit au centième près
+	$nestedData[] = $ratio;
+
 	$buttons = '';
 
 	if(!empty($_SESSION['username']) && ($_SESSION['rang']=="super-admin"))
@@ -74,12 +81,12 @@ while( $row= $query->fetch() ) {  // preparing an array
 	{
 		$buttons .= ' <button class="btn btn-success btn-sm tooltipsAdmin" title="Promouvoir comme membre spécialiste" disabled><i class="fas fa-user-plus"></i> </button></a>
 						<a href="retro.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-warning btn-sm tooltipsAdmin" title="Rétrograder à membre"><i class="fas fa-user-minus"></i> </button></a>
-						<a href="supprimer_us.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-danger btn-sm tooltipsAdmin" title="Supprimer ce membre"><i class="fas fa-minus-circle"></i></button></a>';
+						<a href="supprimer_us.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-danger btn-sm tooltipsAdmin" title="Bannir ce membre"><i class="fas fa-minus-circle"></i></button></a>';
 	}
 	else {
 		$buttons .= ' <a href="promotion.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-success btn-sm tooltipsAdmin" title="Promouvoir comme membre spécialiste"><i class="fas fa-user-plus"></i> </button></a>
 						<button class="btn btn-warning btn-sm tooltipsAdmin" title="Rétrograder à membre" disabled><i class="fas fa-user-minus"></i> </button></a>
-						<a href="supprimer_us.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-danger btn-sm tooltipsAdmin" title="Supprimer ce membre"><i class="fas fa-minus-circle"></i></button></a>';
+						<a href="supprimer_us.php?id='.$row["ID_UTILISATEUR"].'"> <button class="btn btn-danger btn-sm tooltipsAdmin" title="Bannir ce membre"><i class="fas fa-minus-circle"></i></button></a>';
 	}
 
 

@@ -71,18 +71,24 @@
 				$tailleDef = strlen($DEFINITION);
 
 				//on determine le classement de la definition selon sa taille
-				$query = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$NOUVEAU_MOT."' AND TAILLE_DEFINITION<=".$tailleDef.";";
+				$query = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".str_replace("'","''",$NOUVEAU_MOT)."' AND TAILLE_DEFINITION<=".$tailleDef.";";
 				$res = $db->query($query);
 				$row = $res->fetch();
 				$classement = $row['CLA']+1;
 
 				//on met a jour les classements des definitions du meme mot de taille superieur a cette definition
-				$query = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".$NOUVEAU_MOT."' AND CLASSEMENT >=".$classement.";";
+				$query = "UPDATE TABLE_DEFINITION SET CLASSEMENT = CLASSEMENT+1 WHERE MOT='".str_replace("'","''",$NOUVEAU_MOT)."' AND CLASSEMENT >=".$classement.";";
 				$stmt= $db->prepare($query); 
 				$stmt->execute(); 
 
+				//on determine l'id de la definition
+				$query = "SELECT COALESCE(MIN(ID_DEFINITION)+1,1) AS ID FROM TABLE_DEFINITION WHERE ID_DEFINITION+1 NOT IN (SELECT ID_DEFINITION FROM TABLE_DEFINITION);";
+				$res = $db->query($query);
+				$row = $res->fetch();
+				$id_definition = $row['ID'];
+				
 				//on insere dans la table la nouvelle definition
-				$query = "INSERT INTO TABLE_DEFINITION (MOT, DEFINITION, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES ('".$NOUVEAU_MOT."' ,'".str_replace("'","''",$DEFINITION)."', ".$id.", ".$tailleDef.", ".$classement.", ".$confirmation.") ;";
+				$query = "INSERT INTO TABLE_DEFINITION (ID_DEFINITION, MOT, DEFINITION, ID_UTILISATEUR_MODIF, TAILLE_DEFINITION, CLASSEMENT, A_CONFIRMER) VALUES (".$id_definition.", '".str_replace("'","''",$NOUVEAU_MOT)."' ,'".str_replace("'","''",$DEFINITION)."', ".$id.", ".$tailleDef.", ".$classement.", ".$confirmation.") ;";
 				$stmt= $db->prepare($query); 
 				$stmt->execute();
 
@@ -113,6 +119,22 @@
 			else
 			{
 				$DEFINITION = '';
+			}
+			
+			//on regarde si un mot propose par weka a ete defini comme facile
+			if(isset($_GET['facile']) and $_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
+			{
+				$query = "UPDATE TABLE_PROPOSITION_MOT SET MOT_FACILE = 1 WHERE MOT='".str_replace("'","''",$_GET['facile'])."' ;";
+				$stmt= $db->prepare($query); 
+				$stmt->execute(); 
+			}
+			
+			//on regarde si un mot facile est finalement defini comme difficile par un admin
+			if(isset($_GET['difficile']) and $_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
+			{
+				$query = "UPDATE TABLE_PROPOSITION_MOT SET MOT_FACILE = 0 WHERE MOT='".str_replace("'","''",$_GET['difficile'])."' ;";
+				$stmt= $db->prepare($query); 
+				$stmt->execute(); 
 			}
 		}
 	?>

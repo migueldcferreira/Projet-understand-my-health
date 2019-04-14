@@ -44,7 +44,6 @@
 					<?php endif ?>
 					
 					
-					</li>
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="#top" class="nav-link">À propos</a>
 					</li>
@@ -55,6 +54,7 @@
 						<a href="admin_liste_membres.php" class="nav-link">Espace Admin</a>
 					</li>
 					<?php endif ?>
+
 				
 				
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
@@ -72,6 +72,15 @@
 					<!--<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="maj.php" class="nav-link">Mettre à jour</a>
 					</li>-->
+
+					<!-- Changer de mot de passe -->
+					<?php if (!empty($_SESSION['username'])): ?>
+					
+					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+						<a href="modifier_mdp.php" class="nav-link">Modifier son mot de passe</a>
+					</li>
+
+					<?php endif ?>
 				</ul>
 			<p class="mx-1 my-2 my-sm-0" style="color:white">
 				Bonjour <?php if(!empty($_SESSION['prenom'])) {echo $_SESSION['prenom'];}

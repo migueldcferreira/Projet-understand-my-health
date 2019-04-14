@@ -52,11 +52,7 @@
 										</div>
 									  </form>
 
-									  <!-- Drop Zone -->
-									  <h4>Ou glisser-déposer ici</h4>
-									  <div class="upload-drop-zone" id="drop-zone">
-										Glisser-déposer ici
-									  </div>
+
 									</div>
 								  </div>
 								</div> <!-- /container -->

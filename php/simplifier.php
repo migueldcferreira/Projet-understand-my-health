@@ -27,7 +27,7 @@
 		return $mot;
 	}
 
-	function chercherExpressionBDD($mot, &$bdd, &$expressionDejaSimplifies, &$tabExpression, &$tabExpressionSingulier)
+	function chercherExpressionBDD($mot, &$bdd, &$expressionDejaSimplifies, &$tabExpression, &$tabExpressionSingulier, &$motPourAlgoWeka)
 	{
 		
 		
@@ -58,22 +58,28 @@
             $expression .= " ".$tabExpression[$j];
 						$expressionSingulier .= " ".$tabExpressionSingulier[$j];
           }
-          //on regarde dans la BDD si l'expression $expression + n'importe quoi est presente dans la BDD
-          $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT LIKE '$expression%' OR MOT LIKE '$expressionSingulier%' ORDER BY CLASSEMENT;";
-          $res = $bdd->query($sql);
+          //on regarde dans la BDD si l'expression $expression + n'importe quoi est presente dans la BDD definition ou image
+					$sql = "(SELECT MOT FROM TABLE_DEFINITION WHERE (MOT LIKE '$expression%' OR MOT LIKE '$expressionSingulier%') AND A_CONFIRMER=0)";
+					$sql .= " UNION";
+					$sql .= " (SELECT MOT FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE (MOT LIKE '$expression%' OR MOT LIKE '$expressionSingulier%') AND A_CONFIRMER=0);";
+					$res = $bdd->query($sql);
 
           //Si on a une definition pour cette expression + potentiellement d'autres mots dans la BDD
           if(!empty($row = $res->fetch()))
           {
             //on test alors s'il y a une definition pour l'expression exacte (sans le %)
-            $sql = "SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '$expression' OR MOT = '$expressionSingulier' ORDER BY CLASSEMENT;";
-            $res = $bdd->query($sql);
+            $sql = "(SELECT DEFINITION FROM TABLE_DEFINITION WHERE MOT = '$expression' OR MOT = '$expressionSingulier' AND A_CONFIRMER=0 ORDER BY CLASSEMENT)";
+            $sql .= " UNION";
+						$sql .= " (SELECT ' ' AS DEFINITION FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE (MOT = '$expression' OR MOT = '$expressionSingulier') AND A_CONFIRMER=0";
+						$sql .= " AND MOT NOT IN";
+						$sql .= " (SELECT DISTINCT MOT FROM TABLE_DEFINITION))";
+						$res = $bdd->query($sql);
 
             //Si on a une definition pour cette expression dans la BDD
             if(!empty($row = $res->fetch()))
             {
               //on regarde s'il existe aussi une image pour cette expression
-              $sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '$expression' OR MOT = '$expressionSingulier' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;";
+              $sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE (MOT = '$expression' OR MOT = '$expressionSingulier') AND A_CONFIRMER=0 ORDER BY CLASSEMENT;";
               $resimg = $bdd->query($sdl);
               if(!empty($rowimg = $resimg->fetch()))
               {
@@ -121,6 +127,9 @@
 					array_shift($tabExpressionSingulier);
           $textePdf["texte"] .= "$premierMot";
           $texteRetour .= "$premierMot";
+					
+					//on ajoute le mot dans le tableau des mots a traiter par l'algo weka
+					$motPourAlgoWeka .= "$premierMot\n";
         }
         else
         {
@@ -171,6 +180,7 @@
     $expressionDejaSimplifies = [];
     $tabExpression = array();
 		$tabExpressionSingulier = array();
+		$motPourAlgoWeka = "";
     $texteSimplifie = "";
     $textePDF = [
       "texte" => "",
@@ -184,7 +194,7 @@
       $text = str_split($text);
     foreach($text as $lettre)
     {
-      if($nbBaliseOuvrante==0 and preg_match("#[a-zA-Z0-9éèàêâùïüëÉÈÀÊÂÙÏÜË]#",$lettre) or (strlen($mot)>0 and $lettre=="-"))
+      if($nbBaliseOuvrante==0 and preg_match("#[a-zA-Z0-9éàèùâêîôûëïüçÉÀÈÙÂÊÎÔÛËÏÜÇ]#",$lettre) or (strlen($mot)>0 and $lettre=="-"))
       {
         $mot = $mot . "$lettre";
 				$nbEspaceAAjouter = 0;
@@ -193,11 +203,11 @@
       {
         if(strlen($mot) > 0)
         {
-          $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
+          $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier, $motPourAlgoWeka);
         }
         if($lettre != " ")
         {
-          $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
+          $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier, $motPourAlgoWeka);
           $texteSimplifie .= $texteArray["retour"];
           $textePDF["texte"] .= $texteArray["PDF"]["texte"];
           $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
@@ -244,10 +254,22 @@
     }
     if(strlen($mot) > 0)
     {
-      $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
+      $texteArray = chercherExpressionBDD($mot, $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier, $motPourAlgoWeka);
     }
-    $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier);
-    $texteSimplifie .= $texteArray["retour"];
+    $texteArray = chercherExpressionBDD("", $bdd, $expressionDejaSimplifies, $tabExpression, $tabExpressionSingulier, $motPourAlgoWeka);
+    
+		//on ecrit les mots sur le serveur pour que l'algo weka puisse decouvrir de nouveaux mots difficiles
+		//on recupere la valeur du compteur et on l'incremente
+		$fichierCompteur = fopen('../../weka/Atraiter/compteur.var', 'r+');
+		$compteur = fgets($fichierCompteur);
+		$compteur += 1;
+		fseek($fichierCompteur, 0);
+		fputs($fichierCompteur, $compteur);
+		fclose($fichierCompteur);
+		$nomFichierWeka = "../../weka/Atraiter/motWeka$compteur.txt";
+		file_put_contents($nomFichierWeka,$motPourAlgoWeka);
+		
+		$texteSimplifie .= $texteArray["retour"];
     $textePDF["texte"] .= $texteArray["PDF"]["texte"];
     $textePDF["traduction"] .= $texteArray["PDF"]["traduction"];
     $arrayRetour = [
