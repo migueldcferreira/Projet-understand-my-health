@@ -54,8 +54,8 @@
 				if($_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
 				{
 					echo '<div class="panel panel-primary">
-									<div class="panel-heading">Definition '.$compteur.' <a href="modifier.php?id='.$row[1].'"><button class="btn btn-sm tooltipsAdmin enabled" title="Modifier cette définition"><i class="fa fa-edit"></i></button>      </a>
-										<a href="supprimer_def.php?id='.$row[1].'"><button class="btn btn-danger btn-sm tooltipsAdmin enabled" title="Supprimer cette définition"><i class="fas fa-minus-circle"></i></button> </a></div>
+									<div class="panel-heading">Definition '.$compteur.' <a href="modifier.php?id='.$row['ID_DEFINITION'].'"><button class="btn btn-sm tooltipsAdmin enabled" title="Modifier cette définition"><i class="fa fa-edit"></i></button>      </a> 
+										<a href="supprimer_def.php?id='.$row['ID_DEFINITION'].'"><button class="btn btn-danger btn-sm tooltipsAdmin enabled" title="Supprimer cette définition"><i class="fas fa-minus-circle"></i></button> </a></div>
 									<div class="panel-body">'.$definition.'</div>
 								</div>';
 				}
@@ -70,7 +70,7 @@
 				$compteur += 1;
       }
 		
-			$sdl = "SELECT ID_IMAGE FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '".str_replace("'","''",$mot) ."' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;"; 
+			$sdl = "SELECT ID_IMAGE, ID_LIEN FROM TABLE_IMAGE NATURAL JOIN TABLE_LIEN_MOT_IMAGE WHERE MOT = '".str_replace("'","''",$mot) ."' AND A_CONFIRMER=0 ORDER BY CLASSEMENT;"; 
 			$res = $bdd->query($sdl);
       
       $compteur = 1;
@@ -78,10 +78,20 @@
       while(!empty($row = $res->fetch()))
       {
 			  $idImage = $row['ID_IMAGE'];
-				echo '<div class="panel panel-primary">
-      					<div class="panel-heading">Image '.$compteur.'</div>
-      					<div class="panel-body"><img style="max-width: 100%; height: auto;" src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/></div>
-    					</div>';
+				if($_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
+				{
+					echo '<div class="panel panel-primary">
+									<div class="panel-heading">Image '.$compteur.' <a href="supprimer_lien_image.php?id='.$row['ID_LIEN'].'"><button class="btn btn-danger btn-sm tooltipsAdmin enabled" title="Supprimer le lien entre ce mot et cette image"><i class="fas fa-minus-circle"></i></button> </a></div>
+									<div class="panel-body"><img style="max-width: 100%; height: auto;" src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/></div>
+								</div>';
+				}
+				else
+				{
+					echo '<div class="panel panel-primary">
+									<div class="panel-heading">Image '.$compteur.'</div>
+									<div class="panel-body"><img style="max-width: 100%; height: auto;" src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/></div>
+								</div>';
+				}
         //echo "Image $compteur : <br/>";
 				//echo '<img style="max-width: 50%; height: auto;" src="genererImage.php?id='.$idImage.'" height="" width="" alt="mon image" title="image"/>';
         echo "<br/><br/>";
