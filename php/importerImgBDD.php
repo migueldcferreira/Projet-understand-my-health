@@ -192,7 +192,7 @@
 		//echo "Mon id : $id <br/>";
 		echo "<br />Nombre de lignes traitées : $nbLigne <br/>";
 		echo "Nombre de défitions ajoutées à la table : $ajoutTable <br/>";
-		echo "Nombre d'image non presente dans la table : $nbErreurImg <br/><br/>";
+		echo "Nombre d'image n'ayant pas pu être récupérée dans l'archive : $nbErreurImg <br/><br/>";
 		echo $text;
 
     

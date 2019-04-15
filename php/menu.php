@@ -44,9 +44,9 @@
 					<?php endif ?>
 					
 					
-					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+					<!-- <li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="#top" class="nav-link">À propos</a>
-					</li>
+					</li> -->
 	
 					
 					<?php if (!empty($_SESSION['username']) && ( $_SESSION['rang']=="super-admin" || $_SESSION['rang']=="admin")): ?>
@@ -57,7 +57,7 @@
 
 				
 				
-					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+					<!-- <li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<div class="btn-group">
   							<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     								Mettre à jour
@@ -68,7 +68,7 @@
     								<a class="dropdown-item" href="majTest.php">Version test</a>
   							</div>
 						</div>
-					</li>
+					</li> -->
 					<!--<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="maj.php" class="nav-link">Mettre à jour</a>
 					</li>-->

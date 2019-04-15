@@ -14,4 +14,4 @@
 <link rel="stylesheet" href="..\css/menudynamique.css">
 <link rel="stylesheet" type="text/css" href="..\css/form_inscr.css">
 
-<title>Docteur Traducteur</title>
+<title>Tradocteur</title>
