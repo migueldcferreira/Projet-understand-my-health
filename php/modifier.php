@@ -60,7 +60,7 @@
 		//on met a jour les classements des definitions reliées au nouveau mot
 		
 		//on determine le classement de la definition selon sa nouvelle taille
-		$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$mot."' AND TAILLE_DEFINITION<=".$tailleDef.";";
+		$sql = "SELECT COALESCE(MAX(CLASSEMENT),0) AS CLA FROM TABLE_DEFINITION WHERE MOT='".$mot."' AND TAILLE_DEFINITION<=".$tailleDef." AND ID_DEFINITION!=".$id.";";
 		$res = $bdd->query($sql);
 		$row = $res->fetch();
 		$classement = $row['CLA']+1;
