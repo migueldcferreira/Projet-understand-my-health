@@ -31,9 +31,6 @@
 					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="proposer_definition_mot.php" class="nav-link">Ajouter une définition</a>
 					</li>
-					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
-						<a href="proposer_image.php" class="nav-link">Ajouter une image</a>
-					</li>
 
 					<?php else: ?>
 
@@ -42,8 +39,11 @@
 					</li>
 
 					<?php endif ?>
-					
-					
+					<?php if (!empty($_SESSION['username']) && ( $_SESSION['rang']=="membre spécialisé" || $_SESSION['rang']=="super-admin" || $_SESSION['rang']=="admin")): ?>
+					<li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
+						<a href="proposer_image.php" class="nav-link">Ajouter une image</a>
+					</li>
+					<?php endif ?>
 					<!-- <li class="nav-item" data-toggle="collapse" data-target="#navbar-collapse.in">
 						<a href="#top" class="nav-link">À propos</a>
 					</li> -->
