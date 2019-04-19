@@ -3,7 +3,11 @@
 <head>
 	<?php
 		session_start();
-		include("verif_membre.php");
+		if(empty($_SESSION['username']) || !($_SESSION['rang']=="membre spécialisé" || $_SESSION['rang']=="super-admin" || $_SESSION['rang']=="admin" ))
+		{
+			header('location: accueil.php');
+			exit();
+		}
 		include("head.php");
 	?>
 	<link rel="stylesheet" href="..\css/choosetrad.css">
