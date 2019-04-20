@@ -16,7 +16,7 @@
   <?php include("menu.php"); ?>
 
   <div class="header form_head bg-success">  
-    <h1 class="title">Termes et conditions d'utilisation</h1>
+    <h1 class="title"><span>Termes et conditions d'utilisation</span></h1>
   </div>
 
 
