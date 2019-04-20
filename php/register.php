@@ -65,8 +65,9 @@
 			<div class="wthree-text form-group">
 					<label class="anim">
 					  <input type="checkbox" class="checkbox" required="">
-					  <span>j'accepte les termes et conditions</span>
 					</label>
+					<span>j'accepte les <a href="cgu.php" rel="noopener noreferrer" target="_blank">termes et conditions</a></span>
+			</div>
 			<div class="input-group form-group">
 				<button type="submit" class="btn btn-success btn-sm" name="reg_user">S'inscrire</button>
 			</div>
