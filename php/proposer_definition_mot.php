@@ -122,7 +122,7 @@
 			}
 			
 			//on regarde si un mot propose par weka a ete defini comme facile
-			if(isset($_GET['facile']) and $_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
+			if(isset($_GET['facile']) and (($_SESSION['rang'] == "admin") OR ($_SESSION['rang'] == "super-admin")))
 			{
 				$query = "UPDATE TABLE_PROPOSITION_MOT SET MOT_FACILE = 1 WHERE MOT='".str_replace("'","''",$_GET['facile'])."' ;";
 				$stmt= $db->prepare($query); 
@@ -130,7 +130,7 @@
 			}
 			
 			//on regarde si un mot facile est finalement defini comme difficile par un admin
-			if(isset($_GET['difficile']) and $_SESSION['rang'] == "admin" OR $_SESSION['rang'] == "super-admin")
+			if(isset($_GET['difficile']) and (($_SESSION['rang'] == "admin") OR ($_SESSION['rang'] == "super-admin")))
 			{
 				$query = "UPDATE TABLE_PROPOSITION_MOT SET MOT_FACILE = 0 WHERE MOT='".str_replace("'","''",$_GET['difficile'])."' ;";
 				$stmt= $db->prepare($query); 
