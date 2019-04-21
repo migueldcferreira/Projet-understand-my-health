@@ -20,7 +20,7 @@ Class Bdd{
 		{
 			try
 			{
-				self::$Lien = new PDO("mysql:host=".self::$BddServeur.";"."dbname=".$BddNom, self::$BddIdentifiant, self::$BddMdp);
+				self::$Lien = new PDO("mysql:host=".self::$BddServeur.";"."dbname=".$BddNom, self::$BddIdentifiant, self::$BddMdp , array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 			}
 			catch(PDOException $e)
 			{
